@@ -5,8 +5,8 @@
 		<title>Trevor Opiyo
 		</title>
 		
-		<link rel="icon" type="image/ico" href="/favicon.ico">
-		<link rel="alternate" type="application/json" href="/feed.json">
+		<link rel="icon" type="image/ico" href="favicon.ico">
+		<link rel="alternate" type="application/json" href="feed.json">
 		
 		<style>
 			a.style {
@@ -46,7 +46,7 @@
 		<br>
 		<br>
 		
-		<a href="Trevor Opiyo Resume.pdf">
+		<a href="resume.pdf">
 			Resume
 		</a>
 		
@@ -54,7 +54,7 @@
 			|
 		</a>
 		
-		<a href="https://www.linkedin.com/in/trevor-opiyo-884604165">
+		<a href="https://www.linkedin.com/in/trevoropiyo">
 			Linkedin
 		</a>
 		
@@ -70,42 +70,37 @@
 			|
 		</a>
 		
-		<a href="https://trevoropiyo.com/feed.json" alt="JSON Feed">
+		<a href="feed.json" alt="JSON Feed">
 			JSON Feed
 		</a>		
 	</p>
 	
 	<hr>
-	<b class="style" href="https://github.com/Trevor-Opiyo/rust-passmaker">
-		<img src="passmaker.png" width="600"/>
-	</b>
-	
-	<h1 class = "style" id="passmaker">
-		Passmaker
-	</h1>
 	
 <p class="style">
-	For many years prior to learning good computer security practices I would reuse passwords. After reading numerous headlines about large data breaches I began to research better ways to store passwords and two password managers stood out to me for having the best security practices. In my experience <a href="https://bitwarden.com">Bitwarden</a> and <a href="https://support.apple.com/guide/mac-help/use-keychains-to-store-passwords-mchlf375f392/mac">Safari Keychain</a> were the simplest and most secure ways to store non-reused passwords between devices. Between the two I use Bitwarden, who's <a href="https://bitwarden.com/download/">software compatibility</a>, and <a href="https://bitwarden.com/images/resources/security-white-paper-2021.pdf">AES-256 bit encryption</a> stood out to me amongst its competitors.
+	<img src="passmaker.png" alt="Passmaker Logo" width="600">
 </p>
 	
-<p class="style">
-	After choosing and configuring a password manager, I found that the password generator included in the password manager did not make acceptable passwords for of the many websites and services that required a new password. Bitwarden's password generator offered too little granularity in password creation. The only options were toggles for special characters(%-#&amp; , etc.) and integers. Other password managers on the internet provided too much granularity in password creation, with configurability that would allow for the creation of passwords that could be cracked in polynomial time. Inclusion of questions such as "How many numbers would you like to include in the password?" disappointed me, by limiting the number of permutations of the password that may be generated.
-</p>
+<h2 class="style" id="catalyst">
+	Catalyst
+</h2>
 	
 <p class="style">
-	Eventually, I decided to write my own password generator that met my personal criteria in terms of security and variability and to serve as an exercise in learning about programming language standard libraries and syntax. The programming languages that I chose to implement the project are <a href="https://github.com/Trevor-Opiyo/java-passmaker">Java</a>, <a href="https://github.com/Trevor-Opiyo/python-passmaker">Python</a>, <a href="https://github.com/Trevor-Opiyo/go-passmaker">Go</a>, <a href="https://github.com/Trevor-Opiyo/rust-passmaker">Rust</a>, and <a href="https://github.com/Trevor-Opiyo/swift-passmaker">Swift</a>. I knew initially that all implementations of Passmaker should attempt to account for two prominent security criteria; The random library used to generate the passwords must be cryptographically random, and the passwords must contain the highest amount of variability during password generation. Examples of cryptographically secure libraries include <a href="https://crates.io/crates/rand_chacha">rand chacha</a>, in rust and <a href="https://pkg.go.dev/crypto/rand">rand</a> in go and are instrumental in ensuring that passwords are difficult, if not impossible to reverse engineer. To meet the second criteria, all implementations of the password generator ask users for characters to include in the password without specifying a number of a given character type or guaranteeing that a character type will be included in the final product. Instead, users are encouraged to regenerate a password with the same parameters until a password is generated that they find acceptable. This also add the benefit of encouraging users to generate more passwords as opposed to utilizing their first choice, and obfuscates attempts at guessing what the password may be. The final results of the password manager may produce results that are somewhat unexpected with respect to a user's initial choices but reflect my values in password generation most effectively.
+	In May of 2018, Twitter disclosed its <a href="https://www.theverge.com/2018/5/3/17316684/twitter-password-bug-security-flaw-exposed-change-now">largest data breach</a>. Twitter exposed user data in plaintext, an indiscretion that prompted me to conduct my own password security audit. At the time, I stored my passwords in my mind, a place more secure than a plaintext document but conducive to passwords that were short and often reused. Twitter's data breach led me down a rabbit hole into the world of password managers and encouraged me to develop a bespoke solution for generating long, future proof passwords.
 </p>
 	
-<p class="style">
-	I found that in the creation of the password generator which I named "Passmaker" there were a number of aesthetic and design decisions that I made to ensure that the program would be available to a large number of users. They include but are not limited to 1) Building a CLI so that the program may be used on Linux, MacOS, and Windows. 2) Reducing the program size a single file with a minimum number of dependencies to increase performance. 3) Ensuring the functions are no more than polynomial time. 4) Attempting a functional approach to software creation to further limit the use of storage and system resources. 5) Publishing the repository to <a href="https://github.com/Trevor-Opiyo">My GitHub</a>, so that other developers would be able to follow along in the software's development and audit the code themselves.
-</p>
+<h2 class="style" id="bitwarden">
+	Bitwarden
+</h2>
 	
 <p class="style">
-	My encouragement to anybody remotely interested in the project and its development is to read the source code for the individual implementations, and clone a copy of the project to use themselves. The rust implementation has been <a href="https://crates.io/crates/rust-passmaker">published</a> as a crate on <a href="https://crates.io">crates.io</a> and may be compiled from source via <a href="https://doc.rust-lang.org/cargo/index.html">cargo</a> if you have the rust programming language installed. This is my preferred method and the installation command is below.
+	Bitwarden distinguished itself from other password managers with cross platform availability and an emphasis on security beyond that of its competitors. Bitwarden reinforced their dedication to security by offering <a href="https://bitwarden.com/products">AES 256 bit encryption</a> and conducting <a href="https://bitwarden.com/products">third party security audits</a>. Bitwarden's functionality extends to users of all platforms and skill levels and in turn solidifies itself as a viable solution for most users. Bitwarden is available on MacOS, Windows, Linux, iOS, Android, the terminal, and via browser extension for Safari, Firefox, Edge, and all chrome based browsers. Everyone from the Linux system administrator running a locally hosted implementation of the Bitwarden cli to the Chromebook user may use Bitwarden to store passwords with confidence. This confidence served as my motivation to do the same.
 </p>
 	
+<h2  class="style" id="passmaker">
+	Passmaker
+</h2>
+	
 <p class="style">
-	<code>
-		cargo install rust-passmaker
-	</code>
+	Bitwarden's password storage left nothing to be desired, but a flaw in its password generator presented me with an opportunity. Bitwarden limits generated passwords to 20 characters, which may be sufficient for the current computer landscape but will render the service ineffective in the near future. As computers advance in processing power, they lower the execution time of a simple a brute force attack. Shorter passwords become particularly susceptible to theft with the only deterrence being longer passwords in the present. It was with this knowledge that I designed my own password generator Passmaker. Passmaker gave me the opportunity to design a password generator with an uncapped character limit and learn more about the syntax and standard libraries of <a href="https://github.com/Trevor-Opiyo/rust-passmaker">Rust</a>, <a href="https://github.com/Trevor-Opiyo/go-passmaker">Go</a>, <a href="https://github.com/Trevor-Opiyo/java-passmaker">Java</a>, <a href="https://github.com/Trevor-Opiyo/python-passmaker">Python</a> and <a href="https://github.com/Trevor-Opiyo/swift-passmaker">Swift</a>. I published the resulting programs to my <a href="https://github.com/Trevor-Opiyo">GitHub</a> so that future developers would be able to extend my solutions and improve their own password security.
 </p>
