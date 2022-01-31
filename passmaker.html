@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html lang="en-US">
 	<head>
 		<title>Trevor Opiyo
@@ -7,44 +5,14 @@
 		
 		<link rel="icon" type="image/ico" href="favicon.ico">
 		<link rel="alternate" type="application/json" href="feed.json">
-		
-		<style>
-			a.style {
-				margin-left: 50px;
-			}
-			b.style {
-				margin-left: 200px;
-			}
-			li.style {
-				margin-left: 200px;
-			}
-			h1.style {
-				margin-left: 200px;
-				margin-right: 200x;
-			}
-			h2.style {
-				margin-left: 200px;
-				margin-right: 200px;
-			}
-			h3.style {
-				margin-left: 200px;
-				margin-right: 200px;
-			}
-			p.style {
-				margin-left: 200px;
-				margin-right: 200px;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	
-	<a class="style" href="index.html">
-		<img src="header.png" width="600"/>
-	</a>
+	<h1 class="style">
+		Trevor Opiyo
+	</h1>
 	
-	<p class="style">
-		I'm Trevor Opiyo, a software developer with a background<br> in systems programming and shell scripting.
-		<br>
-		<br>
+	<h2 class="style">
 		
 		<a href="resume.pdf">
 			Resume
@@ -73,34 +41,22 @@
 		<a href="feed.json" alt="JSON Feed">
 			JSON Feed
 		</a>		
-	</p>
-	
-	<hr>
-	
-<p class="style">
-	<img src="passmaker.png" alt="Passmaker Logo" width="600">
-</p>
-	
-<h2 class="style" id="catalyst">
-	Catalyst
-</h2>
+	</h2>
+
+<h3 class="style">
+	Passmaker
+</h3>
 	
 <p class="style">
 	In May of 2018, Twitter disclosed its <a href="https://www.theverge.com/2018/5/3/17316684/twitter-password-bug-security-flaw-exposed-change-now">largest data breach</a>. Twitter exposed user data in plaintext, an indiscretion that prompted me to conduct my own password security audit. At the time, I stored my passwords in my mind, a place more secure than a plaintext document but conducive to passwords that were short and often reused. Twitter's data breach led me down a rabbit hole into the world of password managers and encouraged me to develop a bespoke solution for generating long, future proof passwords.
-</p>
-	
-<h2 class="style" id="bitwarden">
-	Bitwarden
-</h2>
-	
-<p class="style">
+
+<br>
+<br>
+
 	Bitwarden distinguished itself from other password managers with cross platform availability and an emphasis on security beyond that of its competitors. Bitwarden reinforced their dedication to security by offering <a href="https://bitwarden.com/products">AES 256 bit encryption</a> and conducting <a href="https://bitwarden.com/products">third party security audits</a>. Bitwarden's functionality extends to users of all platforms and skill levels and in turn solidifies itself as a viable solution for most users. Bitwarden is available on MacOS, Windows, Linux, iOS, Android, the terminal, and via browser extension for Safari, Firefox, Edge, and all chrome based browsers. Everyone from the Linux system administrator running a locally hosted implementation of the Bitwarden cli to the Chromebook user may use Bitwarden to store passwords with confidence. This confidence served as my motivation to do the same.
-</p>
-	
-<h2  class="style" id="passmaker">
-	Passmaker
-</h2>
-	
-<p class="style">
+
+<br>
+<br>
+
 	Bitwarden's password storage left nothing to be desired, but a flaw in its password generator presented me with an opportunity. Bitwarden limits generated passwords to 20 characters, which may be sufficient for the current computer landscape but will render the service ineffective in the near future. As computers advance in processing power, they lower the execution time of a simple a brute force attack. Shorter passwords become particularly susceptible to theft with the only deterrence being longer passwords in the present. It was with this knowledge that I designed my own password generator Passmaker. Passmaker gave me the opportunity to design a password generator with an uncapped character limit and learn more about the syntax and standard libraries of <a href="https://gitlab.com/trevoropiyo/rust-passmaker">Rust</a>, <a href="https://gitlab.com/trevoropiyo/go-passmaker">Go</a>, <a href="https://gitlab.com/trevoropiyo/java-passmaker">Java</a>, <a href="https://gitlab.com/trevoropiyo/python-passmaker">Python</a> and <a href="https://gitlab.com/trevoropiyo/swift-passmaker">Swift</a>. I published the resulting programs to my <a href="https://gitlab.com/trevoropiyo">GitLab</a> so that future developers would be able to extend my solutions and improve their own password security.
 </p>
