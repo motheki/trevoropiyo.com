@@ -1,26 +1,29 @@
 a.style {
-	margin-left: 50px;
+	margin: auto;
+	text-align: center;
 }
 
 h1.style {
-	margin-left: 200px;
-	margin-right: 200px;
+	margin: auto;
+	text-align: center;
 	font-size: 50.5px;
 }
 
 h2.style {
-	margin-left: 200px;
-	margin-right: 200px;
+	margin: auto;
+	text-align: center;
 	font-size: 16.5px;
 }
 
 h3.style {
-	margin-left: 200px;
-	margin-right: 200px;
+	margin: auto;
+	text-align: center;
 	font-size: 30px;
 }
 
 p.style {
 	margin-left: 200px;
 	margin-right: 200px;
+	text-align: justify;
+	font-size: 18px;
 }
