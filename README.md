@@ -1,2 +1,2 @@
 # trevoropiyo.com
-Trevor Opiyo’s Developer Website
+Trevor Opiyo’s Personal Website
