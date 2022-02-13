@@ -52,3 +52,71 @@ img {
 	margin: auto;
 	display: block;
 }
+
+@media (prefers-color-scheme: dark) {
+	
+	body {
+			color: white;
+			background: black;
+		}
+	
+	a.style {
+		color: white;
+		margin: auto;
+		text-align: center;
+	}
+	
+	a:link {
+		color: inherit;
+	}
+	
+	h1.style {
+		color: white;
+		margin: auto;
+		text-align: center;
+		font-size: 50.5px;
+	}
+	
+	h1:link {
+		color: inherit;
+	}
+	
+	h2.style {
+		color: white;
+		margin: auto;
+		text-align: center;
+		font-size: 16.5px;
+	}
+	
+	h2:link {
+		color: inherit;
+	}
+	
+	h3.style {
+		color: white;
+		margin: auto;
+		text-align: center;
+		font-size: 30px;
+	}
+	
+	h3:link {
+		color: inherit;
+	}
+	
+	p.style {
+		color: white;
+		margin-left: 200px;
+		margin-right: 200px;
+		text-align: justify;
+		font-size: 18px;
+	}
+	
+	p:link {
+		color: inherit;
+	}
+	
+	img {
+		margin: auto;
+		display: block;
+	}
+}
