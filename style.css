@@ -14,7 +14,7 @@ a:visited {
 h1.style {
 	margin: auto;
 	text-align: center;
-	font-size: 50.5px;
+	font-size: xx-large;
 }
 
 h1:link {
@@ -28,7 +28,7 @@ h1:visited {
 h2.style {
 	margin: auto;
 	text-align: center;
-	font-size: 16.5px;
+	font-size: larger;
 }
 
 h2:link {
@@ -42,7 +42,7 @@ h2:visited {
 h3.style {
 	margin: auto;
 	text-align: center;
-	font-size: 30px;
+	font-size: x-large;
 }
 
 h3:link {
@@ -57,7 +57,7 @@ p.style {
 	margin-left: 200px;
 	margin-right: 200px;
 	text-align: justify;
-	font-size: 18px;
+	font-size: medium;
 }
 
 p:link {
@@ -98,7 +98,7 @@ img {
 		color: white;
 		margin: auto;
 		text-align: center;
-		font-size: 50.5px;
+		font-size: xx-large;
 	}
 	
 	h1:link {
@@ -113,7 +113,7 @@ img {
 		color: white;
 		margin: auto;
 		text-align: center;
-		font-size: 16.5px;
+		font-size: larger;
 	}
 	
 	h2:link {
@@ -128,7 +128,7 @@ img {
 		color: white;
 		margin: auto;
 		text-align: center;
-		font-size: 30px;
+		font-size: x-large;
 	}
 	
 	h3:link {
@@ -144,7 +144,7 @@ img {
 		margin-left: 200px;
 		margin-right: 200px;
 		text-align: justify;
-		font-size: 18px;
+		font-size: medium;
 	}
 	
 	p:link {
