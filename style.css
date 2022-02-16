@@ -12,16 +12,19 @@
 
 	a:link {
 		color: inherit;
+		font-weight: bold;
 		text-decoration: none;
 	}
 
 	a:visited {
-		color: inherit;
+		color: gray;
+		font-weight: bold;
 		text-decoration: none;
 	}
 
 	a:hover {
 		color: inherit;
+		font-weight: bold;
 		text-decoration: underline;
 	}
 
@@ -29,34 +32,9 @@
 		color: inherit;
 		text-decoration: underline;
 	}
-
-	b.style {
-		margin: auto;
-		text-align: center;
-		color: inherit;
-		font-weight: bolder;
-	}
-
-	b:link {
-		text-decoration: none;
-	}
-
-	b:visited {
-		color: gray;
-	}
-
-	b:hover {
-		text-decoration: underline;
-	}
-
-	b:active {
-		color: gray;
-		text-decoration: underline;
-	}
-
+	
 	h1.style {
 		margin: auto;
-		text-align: center;
 		font-size: xx-large;
 	}
 
@@ -88,6 +66,7 @@
 
 	h2:link {
 		color: inherit;
+		font-size: larger;
 		text-decoration: none;
 	}
 
@@ -96,7 +75,7 @@
 		text-decoration: none;
 	}
 
-	h2:hover {
+	a h2:hover {
 		color: inherit;
 		text-decoration: underline;
 	}
@@ -123,23 +102,12 @@
 
 	h3:hover {
 		color: inherit;
-		text-decoration: underline;
+		text-decoration: none;
 	}
 
 	h3:active {
 		color: inherit;
 		text-decoration: underline;
-	}
-
-	h4.style {
-		margin: auto;
-		font-size: x-large;
-	}
-
-	h5.style {
-		margin: auto;
-		font-size: larger;
-		display: inline-block;
 	}
 
 	p.style {
@@ -174,16 +142,19 @@
 	
 	a:link {
 		color: inherit;
+		font-weight: bold;
 		text-decoration: none;
 	}
 	
 	a:visited {
-		color: inherit;
+		color: gray;
+		font-weight: bold;
 		text-decoration: none;
 	}
 	
 	a:hover {
 		color: inherit;
+		font-weight: bold;
 		text-decoration: underline;
 	}
 	
@@ -192,33 +163,8 @@
 		text-decoration: underline;
 	}
 	
-	b.style {
-		margin: auto;
-		text-align: center;
-		color: inherit;
-		font-weight: bolder;
-	}
-	
-	b:link {
-		text-decoration: none;
-	}
-	
-	b:visited {
-		color: gray;
-	}
-	
-	b:hover {
-		text-decoration: underline;
-	}
-	
-	b:active {
-		color: gray;
-		text-decoration: underline;
-	}
-	
 	h1.style {
 		margin: auto;
-		text-align: center;
 		font-size: xx-large;
 	}
 	
@@ -250,6 +196,7 @@
 	
 	h2:link {
 		color: inherit;
+		font-size: larger;
 		text-decoration: none;
 	}
 	
@@ -258,7 +205,7 @@
 		text-decoration: none;
 	}
 	
-	h2:hover {
+	a h2:hover {
 		color: inherit;
 		text-decoration: underline;
 	}
@@ -285,23 +232,12 @@
 	
 	h3:hover {
 		color: inherit;
-		text-decoration: underline;
+		text-decoration: none;
 	}
 	
 	h3:active {
 		color: inherit;
 		text-decoration: underline;
-	}
-	
-	h4.style {
-		margin: auto;
-		font-size: x-large;
-	}
-	
-	h5.style {
-		margin: auto;
-		font-size: larger;
-		display: inline-block;
 	}
 	
 	p.style {
