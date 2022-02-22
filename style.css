@@ -32,7 +32,7 @@
 	}
 
 	a h1:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 
 	a h1:active {
@@ -57,7 +57,7 @@
 	}
 
 	a h2:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 
 	a h2:active {
@@ -81,7 +81,7 @@
 	}
 
 	a h3:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 
 	a h3:active {
@@ -108,7 +108,7 @@
 	}
 	
 	p a:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 	
 	img {
@@ -151,7 +151,7 @@
 	}
 	
 	a h1:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 	
 	a h1:active {
@@ -176,7 +176,7 @@
 	}
 	
 	a h2:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 	
 	a h2:active {
@@ -200,7 +200,7 @@
 	}
 	
 	a h3:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 	
 	a h3:active {
@@ -227,7 +227,7 @@
 	}
 	
 	p a:hover {
-		text-decoration: underline;
+		color: gray;
 	}
 	
 	img {
