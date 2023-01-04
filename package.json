@@ -1,0 +1,19 @@
+{
+  "name": "motheki",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "^0.3.0"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^5.0.0",
+    "astro": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  }
+}
