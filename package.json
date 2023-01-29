@@ -6,8 +6,8 @@
     "bun-types": "^0.3.0"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^5.0.0",
-    "@astrojs/partytown": "^1.0.2",
+    "@astrojs/cloudflare": "^6.1.0",
+    "@astrojs/partytown": "^1.0.3",
     "@astrojs/prefetch": "^0.1.1",
     "astro": "latest",
     "wrangler": "^2.6.2"
