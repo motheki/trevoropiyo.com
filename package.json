@@ -9,7 +9,11 @@
     "@astrojs/cloudflare": "^6.1.0",
     "@astrojs/partytown": "^1.0.3",
     "@astrojs/prefetch": "^0.1.1",
+    "@astrojs/rss": "^2.1.0",
     "astro": "latest",
+    "astro-compress": "^1.1.28",
+    "astro-critters": "^1.1.26",
+    "astro-html-beautifier": "^1.0.4",
     "wrangler": "^2.6.2"
   },
   "scripts": {
