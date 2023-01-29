@@ -2,7 +2,6 @@ import { defineConfig } from 'astro/config';
 import cloudflare from "@astrojs/cloudflare";
 import partytown from "@astrojs/partytown";
 import prefetch from "@astrojs/prefetch";
-import compress from "astro-compress";
 
 // https://astro.build/config
 import critters from "astro-critters";
@@ -14,7 +13,7 @@ import htmlBeautifier from "astro-html-beautifier";
 export default defineConfig({
   output: "server",
   adapter: cloudflare(),
-  integrations: [partytown(), prefetch(), compress(), critters(), htmlBeautifier()]
+  integrations: [partytown(), prefetch(), critters(), htmlBeautifier()]
 });
 {
   site: 'https://trevoropiyo.com';
