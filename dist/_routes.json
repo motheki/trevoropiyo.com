@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_astro/page.b7cc8384.js",
+    "/_worker.js",
+    "/index.html",
+    "/passmaker/index.html",
+    "/profile.png",
+    "/setting-up-my-website/index.html",
+    "/styles/style.css",
+    "/~partytown/partytown-atomics.js",
+    "/~partytown/partytown-media.js",
+    "/~partytown/partytown-sw.js",
+    "/~partytown/partytown.js",
+    "/",
+    "/setting-up-my-website/",
+    "/passmaker/"
+  ]
+}

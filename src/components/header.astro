@@ -1,6 +1,5 @@
 ---
 export const prerender = true;
-import Header from '../components/header.astro';
 ---
 <html lang="en-US">
   <head>
@@ -11,13 +10,19 @@ import Header from '../components/header.astro';
     <link rel="icon" type="image/png" href="/profile.png" />
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
-    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-    <Header/>
-  <a href="/setting-up-my-website/" alt="My thoughts on creating a website" rel="prefetch">
-    <h3>Setting Up My Website</h3>
+  </head>
+  <a href="/">
+    <picture>
+      <img src="/profile.png" alt="Trevor Opiyo profile photo" width="375" height="375" href="/" rel="prefetch"/>
+    </picture>
   </a>
   <br />
-  <a href="/passmaker/" alt="A password generator for the terminal"rel="prefetch">
-    <h3>Passmaker</h3>
+  <a href="/" alt="Trevor Opiyo" rel="prefetch">
+    <h1 >
+      Trevor Opiyo
+    </h1>
   </a>
+  <br />
+  <br />
+  <br />
 </html>

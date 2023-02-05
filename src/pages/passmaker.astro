@@ -1,5 +1,6 @@
 ---
 export const prerender = true;
+import Header from '../components/header.astro';
 ---
 <html lang="en-US">
   <head>
@@ -11,17 +12,7 @@ export const prerender = true;
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
     <link rel="stylesheet" type="text/css" href="/styles/style.css" />
-  </head>
-  <picture>
-    <img src="/profile.png" alt="Trevor Opiyo profile photo" width="375" height="375" href="/" rel="prefetch"/>
-  </picture>
-  <br />
-  <a href="/" alt="Trevor Opiyo" rel="prefetch">
-    <h1>Trevor Opiyo</h1>
-  </a>
-  <br />
-  <br />
-  <br />
+    <Header/>
   <h3>Passmaker</h3>
   <p class="style">
     In May of 2018, Twitter disclosed its
