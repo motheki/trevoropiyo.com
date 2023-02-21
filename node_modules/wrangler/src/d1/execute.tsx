@@ -27,17 +27,6 @@ import type {
 	StrictYargsOptionsToInterface,
 } from "../yargs-types";
 import type { Database } from "./types";
-import type { Statement as StatementType } from "@miniflare/d1";
-import type { createSQLiteDB as createSQLiteDBType } from "@miniflare/shared";
-
-type MiniflareNpxImportTypes = [
-	{
-		Statement: typeof StatementType;
-	},
-	{
-		createSQLiteDB: typeof createSQLiteDBType;
-	}
-];
 
 export type QueryResult = {
 	results: Record<string, string | number | boolean>[];
@@ -64,7 +53,7 @@ export function Options(yargs: CommonYargsArgv) {
 			type: "boolean",
 		})
 		.option("file", {
-			describe: "A .sql file to injest",
+			describe: "A .sql file to ingest",
 			type: "string",
 		})
 		.option("command", {
@@ -80,55 +69,19 @@ export function Options(yargs: CommonYargsArgv) {
 			describe: "Return output as clean JSON",
 			type: "boolean",
 			default: false,
+		})
+		.option("preview", {
+			describe: "Execute commands/files against a preview D1 DB",
+			type: "boolean",
+			default: false,
 		});
 }
 
-function shorten(query: string | undefined, length: number) {
-	return query && query.length > length
-		? query.slice(0, length) + "..."
-		: query;
-}
-
-export async function executeSql(
-	local: undefined | boolean,
-	config: ConfigFields<DevConfig> & Environment,
-	name: string,
-	shouldPrompt: boolean | undefined,
-	persistTo: undefined | string,
-	file?: string,
-	command?: string,
-	json?: boolean
-) {
-	const sql = file ? readFileSync(file) : command;
-	if (!sql) throw new Error(`Error: must provide --command or --file.`);
-	if (persistTo && !local)
-		throw new Error(`Error: can't use --persist-to without --local`);
-	logger.log(`🌀 Mapping SQL input into an array of statements`);
-	const queries = splitSqlQuery(sql);
-
-	if (file && sql) {
-		if (queries[0].startsWith("SQLite format 3")) {
-			//TODO: update this error to recommend using `wrangler d1 restore` when it exists
-			throw new Error(
-				"Provided file is a binary SQLite database file instead of an SQL text file.\nThe execute command can only process SQL text files.\nPlease export an SQL file from your SQLite database and try again."
-			);
-		}
-	}
-
-	return local
-		? await executeLocally(config, name, shouldPrompt, queries, persistTo, json)
-		: await executeRemotely(
-				config,
-				name,
-				shouldPrompt,
-				batchSplit(queries),
-				json
-		  );
-}
 type HandlerOptions = StrictYargsOptionsToInterface<typeof Options>;
 
 export const Handler = async (args: HandlerOptions): Promise<void> => {
-	const { local, database, yes, persistTo, file, command, json } = args;
+	const { local, database, yes, persistTo, file, command, json, preview } =
+		args;
 	const existingLogLevel = logger.loggerLevel;
 	if (json) {
 		// set loggerLevel to error to avoid readConfig warnings appearing in JSON output
@@ -140,16 +93,17 @@ export const Handler = async (args: HandlerOptions): Promise<void> => {
 		return logger.error(`Error: can't provide both --command and --file.`);
 
 	const isInteractive = process.stdout.isTTY;
-	const response: QueryResult[] | null = await executeSql(
+	const response: QueryResult[] | null = await executeSql({
 		local,
 		config,
-		database,
-		isInteractive && !yes,
+		name: database,
+		shouldPrompt: isInteractive && !yes,
 		persistTo,
 		file,
 		command,
-		json
-	);
+		json,
+		preview,
+	});
 
 	// Early exit if prompt rejected
 	if (!response) return;
@@ -183,14 +137,79 @@ export const Handler = async (args: HandlerOptions): Promise<void> => {
 	}
 };
 
-async function executeLocally(
-	config: Config,
-	name: string,
-	shouldPrompt: boolean | undefined,
-	queries: string[],
-	persistTo: string | undefined,
-	json?: boolean
-) {
+export async function executeSql({
+	local,
+	config,
+	name,
+	shouldPrompt,
+	persistTo,
+	file,
+	command,
+	json,
+	preview,
+}: {
+	local: boolean | undefined;
+	config: ConfigFields<DevConfig> & Environment;
+	name: string;
+	shouldPrompt: boolean | undefined;
+	persistTo: string | undefined;
+	file: string | undefined;
+	command: string | undefined;
+	json: boolean | undefined;
+	preview: boolean | undefined;
+}) {
+	const sql = file ? readFileSync(file) : command;
+	if (!sql) throw new Error(`Error: must provide --command or --file.`);
+	if (preview && local)
+		throw new Error(`Error: can't use --preview with --local`);
+	if (persistTo && !local)
+		throw new Error(`Error: can't use --persist-to without --local`);
+	logger.log(`🌀 Mapping SQL input into an array of statements`);
+	const queries = splitSqlQuery(sql);
+
+	if (file && sql) {
+		if (queries[0].startsWith("SQLite format 3")) {
+			//TODO: update this error to recommend using `wrangler d1 restore` when it exists
+			throw new Error(
+				"Provided file is a binary SQLite database file instead of an SQL text file.\nThe execute command can only process SQL text files.\nPlease export an SQL file from your SQLite database and try again."
+			);
+		}
+	}
+
+	return local
+		? await executeLocally({
+				config,
+				name,
+				shouldPrompt,
+				queries,
+				persistTo,
+				json,
+		  })
+		: await executeRemotely({
+				config,
+				name,
+				shouldPrompt,
+				batches: batchSplit(queries),
+				json,
+				preview,
+		  });
+}
+
+async function executeLocally({
+	config,
+	name,
+	shouldPrompt,
+	queries,
+	persistTo,
+	json,
+}: {
+	config: Config;
+	name: string;
+	shouldPrompt: boolean | undefined;
+	queries: string[];
+	persistTo: string | undefined;
+	json: boolean | undefined;
+}) {
 	const localDB = getDatabaseInfoFromConfig(config, name);
 	if (!localDB) {
 		throw new Error(
@@ -206,11 +225,10 @@ async function executeLocally(
 
 	const dbDir = path.join(persistencePath, "d1");
 	const dbPath = path.join(dbDir, `${localDB.binding}.sqlite3`);
-	const [{ Statement }, { createSQLiteDB }] =
-		await npxImport<MiniflareNpxImportTypes>(
-			["@miniflare/d1", "@miniflare/shared"],
-			logger.log
-		);
+	const [{ D1Database, D1DatabaseAPI }, { createSQLiteDB }] = await npxImport<
+		// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+		[typeof import("@miniflare/d1"), typeof import("@miniflare/shared")]
+	>(["@miniflare/d1", "@miniflare/shared"], logger.log);
 
 	if (!existsSync(dbDir)) {
 		const ok =
@@ -222,24 +240,28 @@ async function executeLocally(
 	}
 
 	logger.log(`🌀 Loading DB at ${readableRelative(dbPath)}`);
-	const db = await createSQLiteDB(dbPath);
 
-	const results: QueryResult[] = [];
-	for (const sql of queries) {
-		const statement = new Statement(db, sql);
-		results.push((await statement.all()) as QueryResult);
-	}
-
-	return results;
+	const sqliteDb = await createSQLiteDB(dbPath);
+	const db = new D1Database(new D1DatabaseAPI(sqliteDb));
+	const stmts = queries.map((query) => db.prepare(query));
+	return (await db.batch(stmts)) as QueryResult[];
 }
 
-async function executeRemotely(
-	config: Config,
-	name: string,
-	shouldPrompt: boolean | undefined,
-	batches: string[],
-	json?: boolean
-) {
+async function executeRemotely({
+	config,
+	name,
+	shouldPrompt,
+	batches,
+	json,
+	preview,
+}: {
+	config: Config;
+	name: string;
+	shouldPrompt: boolean | undefined;
+	batches: string[];
+	json: boolean | undefined;
+	preview: boolean | undefined;
+}) {
 	const multiple_batches = batches.length > 1;
 	// in JSON mode, we don't want a prompt here
 	if (multiple_batches && !json) {
@@ -262,8 +284,13 @@ async function executeRemotely(
 		accountId,
 		name
 	);
-
-	logger.log(`🌀 Executing on ${name} (${db.uuid}):`);
+	if (preview && !db.previewDatabaseUuid) {
+		throw logger.error(
+			"Please define a `preview_database_id` in your wrangler.toml to execute your queries against a preview database"
+		);
+	}
+	const dbUuid = preview ? db.previewDatabaseUuid : db.uuid;
+	logger.log(`🌀 Executing on ${name} (${dbUuid}):`);
 
 	const results: QueryResult[] = [];
 	for (const sql of batches) {
@@ -273,7 +300,7 @@ async function executeRemotely(
 			);
 
 		const result = await fetchResult<QueryResult[]>(
-			`/accounts/${accountId}/d1/database/${db.uuid}/query`,
+			`/accounts/${accountId}/d1/database/${dbUuid}/query`,
 			{
 				method: "POST",
 				headers: {
@@ -318,4 +345,10 @@ function batchSplit(queries: string[]) {
 		);
 	}
 	return batches;
+}
+
+function shorten(query: string | undefined, length: number) {
+	return query && query.length > length
+		? query.slice(0, length) + "..."
+		: query;
 }

@@ -137,7 +137,7 @@ describe("publish", () => {
 
 			expect(std.out).toMatchInlineSnapshot(`
 			"Attempting to login via OAuth...
-			Opening a link in your default browser: https://dash.cloudflare.com/oauth2/auth?response_type=code&client_id=54d11594-84e4-41aa-b438-e81b8fa78ee7&redirect_uri=http%3A%2F%2Flocalhost%3A8976%2Foauth%2Fcallback&scope=account%3Aread%20user%3Aread%20workers%3Awrite%20workers_kv%3Awrite%20workers_routes%3Awrite%20workers_scripts%3Awrite%20workers_tail%3Aread%20d1%3Awrite%20pages%3Awrite%20zone%3Aread%20offline_access&state=MOCK_STATE_PARAM&code_challenge=MOCK_CODE_CHALLENGE&code_challenge_method=S256
+			Opening a link in your default browser: https://dash.cloudflare.com/oauth2/auth?response_type=code&client_id=54d11594-84e4-41aa-b438-e81b8fa78ee7&redirect_uri=http%3A%2F%2Flocalhost%3A8976%2Foauth%2Fcallback&scope=account%3Aread%20user%3Aread%20workers%3Awrite%20workers_kv%3Awrite%20workers_routes%3Awrite%20workers_scripts%3Awrite%20workers_tail%3Aread%20d1%3Awrite%20pages%3Awrite%20zone%3Aread%20ssl_certs%3Awrite%20offline_access&state=MOCK_STATE_PARAM&code_challenge=MOCK_CODE_CHALLENGE&code_challenge_method=S256
 			Successfully logged in.
 			Total Upload: xx KiB / gzip: xx KiB
 			Uploaded test-name (TIMINGS)
@@ -177,7 +177,7 @@ describe("publish", () => {
 
 				expect(std.out).toMatchInlineSnapshot(`
 			"Attempting to login via OAuth...
-			Opening a link in your default browser: https://dash.staging.cloudflare.com/oauth2/auth?response_type=code&client_id=54d11594-84e4-41aa-b438-e81b8fa78ee7&redirect_uri=http%3A%2F%2Flocalhost%3A8976%2Foauth%2Fcallback&scope=account%3Aread%20user%3Aread%20workers%3Awrite%20workers_kv%3Awrite%20workers_routes%3Awrite%20workers_scripts%3Awrite%20workers_tail%3Aread%20d1%3Awrite%20pages%3Awrite%20zone%3Aread%20offline_access&state=MOCK_STATE_PARAM&code_challenge=MOCK_CODE_CHALLENGE&code_challenge_method=S256
+			Opening a link in your default browser: https://dash.staging.cloudflare.com/oauth2/auth?response_type=code&client_id=54d11594-84e4-41aa-b438-e81b8fa78ee7&redirect_uri=http%3A%2F%2Flocalhost%3A8976%2Foauth%2Fcallback&scope=account%3Aread%20user%3Aread%20workers%3Awrite%20workers_kv%3Awrite%20workers_routes%3Awrite%20workers_scripts%3Awrite%20workers_tail%3Aread%20d1%3Awrite%20pages%3Awrite%20zone%3Aread%20ssl_certs%3Awrite%20offline_access&state=MOCK_STATE_PARAM&code_challenge=MOCK_CODE_CHALLENGE&code_challenge_method=S256
 			Successfully logged in.
 			Total Upload: xx KiB / gzip: xx KiB
 			Uploaded test-name (TIMINGS)
@@ -209,7 +209,7 @@ describe("publish", () => {
 			Current Deployment ID: Galaxy-Class"
 		`);
 			expect(std.warn).toMatchInlineSnapshot(`
-			"[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mIt looks like you have used Wrangler 1's \`config\` command to login with an API token.[0m
+			"[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mIt looks like you have used Wrangler v1's \`config\` command to login with an API token.[0m
 
 			  This is no longer supported in the current version of Wrangler.
 			  If you wish to authenticate via an API token then please set the \`CLOUDFLARE_API_TOKEN\`
@@ -791,7 +791,7 @@ describe("publish", () => {
 			await runWrangler("publish ./index --env dev --legacy-env false");
 		});
 
-		it("should fallback to the Wrangler 1 zone-based API if the bulk-routes API fails", async () => {
+		it("should fallback to the Wrangler v1 zone-based API if the bulk-routes API fails", async () => {
 			writeWranglerToml({
 				routes: ["example.com/some-route/*"],
 			});
@@ -1467,7 +1467,7 @@ addEventListener('fetch', event => {});`
 
 			expect(std.out).toMatchInlineSnapshot(`
 			        "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mProcessing wrangler.toml configuration:[0m
@@ -1629,7 +1629,7 @@ addEventListener('fetch', event => {});`
 
 			expect(std.out).toMatchInlineSnapshot(`
 			        "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mMissing entry-point: The entry-point should be specified via the command line (e.g. \`wrangler publish path/to/script\`) or the \`main\` config field.[0m
@@ -1787,7 +1787,7 @@ addEventListener('fetch', event => {});`
 
 			        ",
 			          "out": "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m",
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m",
 			          "warn": "[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe --assets argument is experimental and may change or break at any time[0m
 
 			        ",
@@ -1813,7 +1813,7 @@ addEventListener('fetch', event => {});`
 
 			        ",
 			          "out": "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m",
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m",
 			          "warn": "",
 			        }
 		      `);
@@ -1840,7 +1840,7 @@ addEventListener('fetch', event => {});`
 
 			        ",
 			          "out": "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m",
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m",
 			          "warn": "",
 			        }
 		      `);
@@ -1866,7 +1866,7 @@ addEventListener('fetch', event => {});`
 
 			        ",
 			          "out": "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m",
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m",
 			          "warn": "[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProcessing wrangler.toml configuration:[0m
 
 			            - \\"assets\\" fields are experimental and may change or break at any time.
@@ -1899,7 +1899,7 @@ addEventListener('fetch', event => {});`
 
 			        ",
 			          "out": "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m",
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m",
 			          "warn": "[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProcessing wrangler.toml configuration:[0m
 
 			            - \\"assets\\" fields are experimental and may change or break at any time.
@@ -2693,7 +2693,7 @@ addEventListener('fetch', event => {});`
 			        Uploading as large-file.0ea0637a45.txt...
 			        Reading too-large-file.txt...
 
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mFile too-large-file.txt is too big, it should be under 25 MiB. See https://developers.cloudflare.com/workers/platform/limits#kv-limits[0m
@@ -2834,7 +2834,7 @@ addEventListener('fetch', event => {});`
 			expect(std.out).toMatchInlineSnapshot(`
 			        "Reading folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/file.txt...
 
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mThe asset path key \\"folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/folder/file.3da0d0cd12.txt\\" exceeds the maximum key size limit of 512. See https://developers.cloudflare.com/workers/platform/limits#kv-limits\\",[0m
@@ -3905,7 +3905,7 @@ addEventListener('fetch', event => {});`
 			expect(std.out).toMatchInlineSnapshot(`
 			        "Running custom build: node -e \\"console.log('custom build');\\"
 
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mThe expected output file at \\"index.js\\" was not found after running custom build: node -e \\"console.log('custom build');\\".[0m
@@ -3944,7 +3944,7 @@ addEventListener('fetch', event => {});`
 			expect(std.out).toMatchInlineSnapshot(`
 			        "Running custom build: node -e \\"console.log('custom build');\\"
 
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mThe expected output file at \\".\\" was not found after running custom build: node -e \\"console.log('custom build');\\".[0m
@@ -4830,7 +4830,7 @@ addEventListener('fetch', event => {});`
 					            `);
 			expect(std.out).toMatchInlineSnapshot(`
 			        "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mProcessing wrangler.toml configuration:[0m
@@ -4940,7 +4940,7 @@ addEventListener('fetch', event => {});`
 					            `);
 			expect(std.out).toMatchInlineSnapshot(`
 			        "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mProcessing wrangler.toml configuration:[0m
@@ -5094,7 +5094,7 @@ addEventListener('fetch', event => {});`
 					            `);
 			expect(std.out).toMatchInlineSnapshot(`
 			        "
-			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			        [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		      `);
 			expect(std.err).toMatchInlineSnapshot(`
 			        "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mProcessing wrangler.toml configuration:[0m
@@ -5173,7 +5173,7 @@ addEventListener('fetch', event => {});`
 				);
 				expect(std.out).toMatchInlineSnapshot(`
 			          "
-			          [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			          [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		        `);
 				expect(std.err).toMatchInlineSnapshot(`
 			          "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mYou cannot configure [wasm_modules] with an ES module worker. Instead, import the .wasm module directly in your code[0m
@@ -5316,7 +5316,7 @@ addEventListener('fetch', event => {});`
 				);
 				expect(std.out).toMatchInlineSnapshot(`
 			          "
-			          [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			          [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		        `);
 				expect(std.err).toMatchInlineSnapshot(`
 			          "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mYou cannot configure [text_blobs] with an ES module worker. Instead, import the file directly in your code, and optionally configure \`[rules]\` in your wrangler.toml[0m
@@ -5429,7 +5429,7 @@ addEventListener('fetch', event => {});`
 				);
 				expect(std.out).toMatchInlineSnapshot(`
 			          "
-			          [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/wrangler2/issues/new/choose[0m"
+			          [32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m"
 		        `);
 				expect(std.err).toMatchInlineSnapshot(`
 			          "[31mX [41;31m[[41;97mERROR[41;31m][0m [1mYou cannot configure [data_blobs] with an ES module worker. Instead, import the file directly in your code, and optionally configure \`[rules]\` in your wrangler.toml[0m
@@ -5825,7 +5825,7 @@ addEventListener('fetch', event => {});`
 			"[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProcessing wrangler.toml configuration:[0m
 
 			    - D1 Bindings are currently in alpha to allow the API to evolve before general availability.
-			      Please report any issues to [4mhttps://github.com/cloudflare/wrangler2/issues/new/choose[0m
+			      Please report any issues to [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
 			      Note: Run this command with the environment variable NO_D1_WARNING=true to hide this message
 
 			      For example: \`export NO_D1_WARNING=true && wrangler <YOUR COMMAND HERE>\`
@@ -6422,7 +6422,7 @@ addEventListener('fetch', event => {});`
 		});
 
 		it("should not match regular module specifiers when there aren't any possible legacy module matches", async () => {
-			// see https://github.com/cloudflare/wrangler2/issues/655 for bug details
+			// see https://github.com/cloudflare/workers-sdk/issues/655 for bug details
 
 			fs.writeFileSync(
 				"./index.js",
@@ -6544,7 +6544,7 @@ addEventListener('fetch', event => {});`
 		`);
 		});
 
-		it("should copy any module imports related assets at --outdir if specified", async () => {
+		it("should copy any module imports related assets to --outdir if specified", async () => {
 			writeWranglerToml();
 			fs.writeFileSync(
 				"./index.js",
@@ -6808,7 +6808,7 @@ export default{
 			          the global scope. [code: 11337]
 
 			          If you think this is a bug, please open an issue at:
-			          [4mhttps://github.com/cloudflare/wrangler2/issues/new/choose[0m
+			          [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
 
 			        ",
 			          "warn": "",
@@ -6870,7 +6870,7 @@ export default{
 			  workers.api.error.script_too_large [code: 10027]
 
 			  If you think this is a bug, please open an issue at:
-			  [4mhttps://github.com/cloudflare/wrangler2/issues/new/choose[0m
+			  [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
 
 			",
 			  "warn": "[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mHere are the 2 largest dependencies included in your script:[0m
@@ -6936,7 +6936,7 @@ export default{
 			  Error: Script startup exceeded CPU time limit. [code: 10021]
 
 			  If you think this is a bug, please open an issue at:
-			  [4mhttps://github.com/cloudflare/wrangler2/issues/new/choose[0m
+			  [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
 
 			",
 			  "warn": "[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mYour Worker failed validation because it exceeded startup limits.[0m
@@ -7336,6 +7336,37 @@ export default{
 			).rejects.toMatchInlineSnapshot(
 				`[Error: Queue "queue1" does not exist. To create it, run: wrangler queues create queue1]`
 			);
+		});
+	});
+
+	describe("mtls_certificates", () => {
+		it("should upload mtls_certificate bindings", async () => {
+			writeWranglerToml({
+				mtls_certificates: [{ binding: "CERT_ONE", certificate_id: "1234" }],
+			});
+			await fs.promises.writeFile("index.js", `export default {};`);
+			mockSubDomainRequest();
+			mockUploadWorkerRequest({
+				expectedBindings: [
+					{
+						type: "mtls_certificate",
+						name: "CERT_ONE",
+						certificate_id: "1234",
+					},
+				],
+			});
+
+			await runWrangler("publish index.js");
+			expect(std.out).toMatchInlineSnapshot(`
+			"Total Upload: xx KiB / gzip: xx KiB
+			Your worker has access to the following bindings:
+			- mTLS Certificates:
+			  - CERT_ONE: 1234
+			Uploaded test-name (TIMINGS)
+			Published test-name (TIMINGS)
+			  https://test-name.test-sub-domain.workers.dev
+			Current Deployment ID: Galaxy-Class"
+		`);
 		});
 	});
 

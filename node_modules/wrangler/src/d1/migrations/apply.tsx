@@ -19,7 +19,7 @@ import {
 	getUnappliedMigrations,
 	initMigrationsTable,
 } from "./helpers";
-import { DatabaseWithLocal } from "./options";
+import { MigrationOptions } from "./options";
 import type { ParseError } from "../../parse";
 import type {
 	CommonYargsArgv,
@@ -27,14 +27,16 @@ import type {
 } from "../../yargs-types";
 
 export function ApplyOptions(yargs: CommonYargsArgv) {
-	return DatabaseWithLocal(yargs);
+	return MigrationOptions(yargs);
 }
+
 type ApplyHandlerOptions = StrictYargsOptionsToInterface<typeof ApplyOptions>;
+
 export const ApplyHandler = withConfig<ApplyHandlerOptions>(
-	async ({ config, database, local, persistTo }): Promise<void> => {
+	async ({ config, database, local, persistTo, preview }): Promise<void> => {
 		logger.log(d1BetaWarning);
 
-		const databaseInfo = await getDatabaseInfoFromConfig(config, database);
+		const databaseInfo = getDatabaseInfoFromConfig(config, database);
 		if (!databaseInfo && !local) {
 			throw new Error(
 				`Can't find a DB with name/binding '${database}' in local config. Check info in wrangler.toml...`
@@ -45,31 +47,34 @@ export const ApplyHandler = withConfig<ApplyHandlerOptions>(
 			return;
 		}
 
-		const migrationsPath = await getMigrationsPath(
-			path.dirname(config.configPath),
-			databaseInfo?.migrationsFolderPath ?? DEFAULT_MIGRATION_PATH,
-			false
-		);
+		const migrationsPath = await getMigrationsPath({
+			projectPath: path.dirname(config.configPath),
+			migrationsFolderPath:
+				databaseInfo?.migrationsFolderPath ?? DEFAULT_MIGRATION_PATH,
+			createIfMissing: false,
+		});
 
-		const migrationTableName =
+		const migrationsTableName =
 			databaseInfo?.migrationsTableName ?? DEFAULT_MIGRATION_TABLE;
-		await initMigrationsTable(
-			migrationTableName,
+		await initMigrationsTable({
+			migrationsTableName,
 			local,
 			config,
-			database,
-			persistTo
-		);
+			name: database,
+			persistTo,
+			preview,
+		});
 
 		const unappliedMigrations = (
-			await getUnappliedMigrations(
-				migrationTableName,
+			await getUnappliedMigrations({
+				migrationsTableName,
 				migrationsPath,
 				local,
 				config,
-				database,
-				persistTo
-			)
+				name: database,
+				persistTo,
+				preview,
+			})
 		)
 			.map((migration) => {
 				return {
@@ -107,8 +112,8 @@ Your database may not be available to serve requests during the migration, conti
 		);
 		if (!ok) return;
 
-		// don't backup prod db when applying migrations locally
-		if (!local) {
+		// don't backup prod db when applying migrations locally or in preview
+		if (!local && !preview) {
 			assert(
 				databaseInfo,
 				"In non-local mode `databaseInfo` should be defined."
@@ -124,22 +129,24 @@ Your database may not be available to serve requests during the migration, conti
 				"utf8"
 			);
 			query += `
-								INSERT INTO ${migrationTableName} (name)
+								INSERT INTO ${migrationsTableName} (name)
 								values ('${migration.Name}');
 						`;
 
 			let success = true;
 			let errorNotes: Array<string> = [];
 			try {
-				const response = await executeSql(
+				const response = await executeSql({
 					local,
 					config,
-					database,
-					isInteractive() && !CI.isCI(),
+					name: database,
+					shouldPrompt: isInteractive() && !CI.isCI(),
 					persistTo,
-					undefined,
-					query
-				);
+					command: query,
+					file: undefined,
+					json: undefined,
+					preview,
+				});
 
 				if (response === null) {
 					// TODO:  return error

@@ -5,29 +5,34 @@ import React from "react";
 import { withConfig } from "../../config";
 import { logger } from "../../logger";
 import { requireAuth } from "../../user";
+import { DEFAULT_MIGRATION_PATH, DEFAULT_MIGRATION_TABLE } from "../constants";
 import { d1BetaWarning, getDatabaseInfoFromConfig } from "../utils";
 import {
 	getMigrationsPath,
 	getUnappliedMigrations,
 	initMigrationsTable,
 } from "./helpers";
-import { DatabaseWithLocal } from "./options";
+import { MigrationOptions } from "./options";
 import type {
 	CommonYargsArgv,
 	StrictYargsOptionsToInterface,
 } from "../../yargs-types";
 
 export function ListOptions(yargs: CommonYargsArgv) {
-	return DatabaseWithLocal(yargs);
+	return MigrationOptions(yargs);
 }
+
 type ListHandlerOptions = StrictYargsOptionsToInterface<typeof ListOptions>;
+
 export const ListHandler = withConfig<ListHandlerOptions>(
-	async ({ config, database, local, persistTo }): Promise<void> => {
-		await requireAuth({});
+	async ({ config, database, local, persistTo, preview }): Promise<void> => {
+		if (!local) {
+			await requireAuth({});
+		}
 		logger.log(d1BetaWarning);
 
-		const databaseInfo = await getDatabaseInfoFromConfig(config, database);
-		if (!databaseInfo) {
+		const databaseInfo = getDatabaseInfoFromConfig(config, database);
+		if (!databaseInfo && !local) {
 			throw new Error(
 				`Can't find a DB with name/binding '${database}' in local config. Check info in wrangler.toml...`
 			);
@@ -36,30 +41,36 @@ export const ListHandler = withConfig<ListHandlerOptions>(
 		if (!config.configPath) {
 			return;
 		}
-		const { migrationsTableName, migrationsFolderPath } = databaseInfo;
 
-		const migrationsPath = await getMigrationsPath(
-			path.dirname(config.configPath),
-			migrationsFolderPath,
-			false
-		);
-		await initMigrationsTable(
+		const migrationsPath = await getMigrationsPath({
+			projectPath: path.dirname(config.configPath),
+			migrationsFolderPath:
+				databaseInfo?.migrationsFolderPath ?? DEFAULT_MIGRATION_PATH,
+			createIfMissing: false,
+		});
+
+		const migrationsTableName =
+			databaseInfo?.migrationsTableName ?? DEFAULT_MIGRATION_TABLE;
+
+		await initMigrationsTable({
 			migrationsTableName,
 			local,
 			config,
-			database,
-			persistTo
-		);
+			name: database,
+			persistTo,
+			preview,
+		});
 
 		const unappliedMigrations = (
-			await getUnappliedMigrations(
+			await getUnappliedMigrations({
 				migrationsTableName,
 				migrationsPath,
 				local,
 				config,
-				database,
-				persistTo
-			)
+				name: database,
+				persistTo,
+				preview,
+			})
 		).map((migration) => {
 			return {
 				Name: migration,

@@ -4,7 +4,7 @@ import { Box, render, Text } from "ink";
 import React from "react";
 import { withConfig } from "../../config";
 import { logger } from "../../logger";
-import { requireAuth } from "../../user";
+import { DEFAULT_MIGRATION_PATH } from "../constants";
 import { Database } from "../options";
 import { d1BetaWarning, getDatabaseInfoFromConfig } from "../utils";
 import { getMigrationsPath, getNextMigrationNumber } from "./helpers";
@@ -20,13 +20,14 @@ export function CreateOptions(yargs: CommonYargsArgv) {
 		demandOption: true,
 	});
 }
+
 type CreateHandlerOptions = StrictYargsOptionsToInterface<typeof CreateOptions>;
+
 export const CreateHandler = withConfig<CreateHandlerOptions>(
 	async ({ config, database, message }): Promise<void> => {
-		await requireAuth({});
 		logger.log(d1BetaWarning);
 
-		const databaseInfo = await getDatabaseInfoFromConfig(config, database);
+		const databaseInfo = getDatabaseInfoFromConfig(config, database);
 		if (!databaseInfo) {
 			throw new Error(
 				`Can't find a DB with name/binding '${database}' in local config. Check info in wrangler.toml...`
@@ -37,11 +38,12 @@ export const CreateHandler = withConfig<CreateHandlerOptions>(
 			return;
 		}
 
-		const migrationsPath = await getMigrationsPath(
-			path.dirname(config.configPath),
-			databaseInfo.migrationsFolderPath,
-			true
-		);
+		const migrationsPath = await getMigrationsPath({
+			projectPath: path.dirname(config.configPath),
+			migrationsFolderPath:
+				databaseInfo.migrationsFolderPath ?? DEFAULT_MIGRATION_PATH,
+			createIfMissing: true,
+		});
 		const nextMigrationNumber = pad(getNextMigrationNumber(migrationsPath), 4);
 		const migrationName = message.replaceAll(" ", "_");
 

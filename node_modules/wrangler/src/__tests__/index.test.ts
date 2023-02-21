@@ -1,4 +1,5 @@
 import { getPackageManager } from "../package-manager";
+import { endEventLoop } from "./helpers/end-event-loop";
 import { mockConsoleMethods } from "./helpers/mock-console";
 import { runInTempDir } from "./helpers/run-in-tmp";
 import { runWrangler } from "./helpers/run-wrangler";
@@ -49,6 +50,7 @@ describe("wrangler", () => {
 			  wrangler dispatch-namespace          📦 Interact with a dispatch namespace
 			  wrangler d1                          🗄  Interact with a D1 database
 			  wrangler pubsub                      📮 Interact and manage Pub/Sub Brokers
+			  wrangler mtls-certificate            🪪 Manage certificates used for mTLS connections
 			  wrangler login                       🔓 Login to Cloudflare
 			  wrangler logout                      🚪 Logout from Cloudflare
 			  wrangler whoami                      🕵️  Retrieve your user info and test your auth config
@@ -98,6 +100,7 @@ describe("wrangler", () => {
 			  wrangler dispatch-namespace          📦 Interact with a dispatch namespace
 			  wrangler d1                          🗄  Interact with a D1 database
 			  wrangler pubsub                      📮 Interact and manage Pub/Sub Brokers
+			  wrangler mtls-certificate            🪪 Manage certificates used for mTLS connections
 			  wrangler login                       🔓 Login to Cloudflare
 			  wrangler logout                      🚪 Logout from Cloudflare
 			  wrangler whoami                      🕵️  Retrieve your user info and test your auth config
@@ -269,7 +272,3 @@ describe("wrangler", () => {
 	`);
 	});
 });
-
-function endEventLoop() {
-	return new Promise((resolve) => setImmediate(resolve));
-}

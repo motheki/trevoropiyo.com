@@ -78,7 +78,7 @@ interface EnvironmentInheritable {
 	 * Whether we use <name>.<subdomain>.workers.dev to
 	 * test and deploy your worker.
 	 *
-	 * @default `true` (This is a breaking change from wrangler 1)
+	 * @default `true` (This is a breaking change from Wrangler v1)
 	 * @breaking
 	 * @inheritable
 	 */
@@ -480,6 +480,13 @@ interface EnvironmentNonInheritable {
 			[key: string]: unknown;
 		}[];
 	};
+
+	mtls_certificates: {
+		/** The binding name used to refer to the certificate in the worker */
+		binding: string;
+		/** The uuid of the uploaded mTLS certificate */
+		certificate_id: string;
+	}[];
 }
 
 /**
@@ -497,7 +504,7 @@ interface EnvironmentDeprecated {
 	/**
 	 * Legacy way of defining KVNamespaces that is no longer supported.
 	 *
-	 * @deprecated DO NOT USE. This was a legacy bug from wrangler 1, that we do not want to support.
+	 * @deprecated DO NOT USE. This was a legacy bug from Wrangler v1, that we do not want to support.
 	 */
 	"kv-namespaces"?: string;
 
