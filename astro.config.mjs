@@ -7,7 +7,9 @@ import htmlBeautifier from "astro-html-beautifier";
 export default defineConfig({
   output: "server",
   adapter: cloudflare(),
-  integrations: [prefetch(), critters(), htmlBeautifier()]
+  integrations: [prefetch(), critters(), htmlBeautifier()],
+  expiremental: {assets: true},
+  image: {service: "astro/assets/services/sharp"},
 });
 {
   site: 'https://trevoropiyo.com';

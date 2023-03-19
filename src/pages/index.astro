@@ -1,14 +1,15 @@
 ---
 export const prerender = true;
 import Header from '../components/header.astro';
+import profile from '../assets/profile.png';
 ---
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title> Trevor Opiyo: trevropiyo.com</title>
-    <link rel="icon" type="apple-touch-icon" href="/profile.png" />
-    <link rel="icon" type="image/png" href="/profile.png" />
+    <link rel="icon" type="apple-touch-icon" href={profile} />
+    <link rel="icon" type="image/png" href={profile} />
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
     <link rel="stylesheet" type="text/css" href="/styles/style.css" />
