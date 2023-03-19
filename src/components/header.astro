@@ -1,5 +1,6 @@
 ---
 export const prerender = true;
+import { Image } from 'astro:assets'
 import profile from '../assets/profile.png'
 ---
 <html lang="en-US">
@@ -14,7 +15,7 @@ import profile from '../assets/profile.png'
   </head>
   <a href="/">
     <picture>
-      <img src={profile.src} alt="Trevor Opiyo Profile Photo" width={profile.width} height={profile.height} href="/" rel="prefetch"/>
+      <Image src={profile.src} alt="Trevor Opiyo Profile Photo" width={profile.width} height={profile.height} href="/" rel="prefetch"/>
     </picture>
   </a>
   <br />
