@@ -12,7 +12,7 @@
     "astro-critters": "latest",
     "astro-html-beautifier": "latest",
     "sharp": "latest",
-    "wrangler": "^2.12.3"
+    "wrangler": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
