@@ -8,7 +8,7 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare(),
   integrations: [prefetch(), critters(), htmlBeautifier()],
-  expiremental: {assets: true},
+  experimental: {assets: true},
   image: {service: "astro/assets/services/sharp"},
 });
 {
