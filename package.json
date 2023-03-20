@@ -6,9 +6,9 @@
     "bun-types": "latest"
   },
   "dependencies": {
-    "astro": "latest",
     "@astrojs/cloudflare": "latest",
     "@astrojs/prefetch": "latest",
+    "astro": "latest",
     "astro-critters": "latest",
     "astro-html-beautifier": "latest",
     "wrangler": "latest"
