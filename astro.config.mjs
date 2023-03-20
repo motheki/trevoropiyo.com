@@ -11,5 +11,5 @@ export default defineConfig({
   experimental: {assets: true},
 });
 {
-  site: 'https://trevoropiyo.com';
+  site: 'https://trevoropiyo.com/';
 }
