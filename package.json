@@ -11,7 +11,6 @@
     "@astrojs/prefetch": "latest",
     "astro-critters": "latest",
     "astro-html-beautifier": "latest",
-    "sharp": "latest",
     "wrangler": "latest"
   },
   "scripts": {
