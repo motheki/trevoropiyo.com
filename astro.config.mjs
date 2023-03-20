@@ -9,7 +9,6 @@ export default defineConfig({
   adapter: cloudflare(),
   integrations: [prefetch(), critters(), htmlBeautifier()],
   experimental: {assets: true},
-  image: {service: "astro/assets/services/sharp"},
 });
 {
   site: 'https://trevoropiyo.com';
