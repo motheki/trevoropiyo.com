@@ -8,7 +8,9 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare(),
   integrations: [prefetch(), critters(), htmlBeautifier()],
-  experimental: {assets: true},
+  experimental: {
+    assets: true
+  },
 });
 {
   site: 'https://trevoropiyo.com/';
