@@ -13,7 +13,7 @@ logLevel = "debug"
 #     import {graphql} from 'macro:bun-macro-relay';
 
 [bundle]
-saveTo = "node_modules.bun"
+#saveTo = "node_modules.bun"
 # Don't need this if `framework` is set, but showing it here as an example anyway
 
 [bundle.packages]
