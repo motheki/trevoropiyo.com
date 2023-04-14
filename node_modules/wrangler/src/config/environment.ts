@@ -75,6 +75,12 @@ interface EnvironmentInheritable {
 	main: string | undefined;
 
 	/**
+	 * The directory in which module rules should be evaluated in a `--no-bundle` worker
+	 * This defaults to dirname(main) when left undefined
+	 */
+	base_dir: string | undefined;
+
+	/**
 	 * Whether we use <name>.<subdomain>.workers.dev to
 	 * test and deploy your worker.
 	 *
@@ -337,6 +343,24 @@ interface EnvironmentNonInheritable {
 		id: string;
 		/** The ID of the KV namespace used during `wrangler dev` */
 		preview_id?: string;
+	}[];
+
+	/**
+	 * These specify bindings to send email from inside your Worker.
+	 *
+	 * NOTE: This field is not automatically inherited from the top level environment,
+	 * and so must be specified in every named environment.
+	 *
+	 * @default `[]`
+	 * @nonInheritable
+	 */
+	send_email: {
+		/** The binding name used to refer to the this binding */
+		name: string;
+		/** If this binding should be restricted to a specific verified address */
+		destination_address?: string;
+		/** If this binding should be restricted to a set of verified addresses */
+		allowed_destination_addresses?: string[];
 	}[];
 
 	/**
