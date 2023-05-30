@@ -21,6 +21,7 @@
   h1 {
     margin: auto;
     color: black;
+    width: auto;
     font-size: xx-large;
     text-decoration: none;
   }
@@ -45,6 +46,7 @@
   h2 {
     margin: auto;
     color: black;
+    width: auto;
     font-size: larger;
     text-decoration: none;
     display: inline-block;
@@ -70,6 +72,7 @@
   h3 {
     margin: auto;
     color: black;
+    width: auto;
     font-size: x-large;
     text-decoration: none;
   }
@@ -94,6 +97,7 @@
   p {
     margin-left: auto;
     margin-right: auto;
+    width: auto;
     color: black;
     text-align: justify;
     font-size: medium;
@@ -123,6 +127,7 @@
   body {
     color: white;
     background: black;
+    width: auto;
     text-align: center;
     text-decoration: none;
   }
@@ -140,6 +145,7 @@
     margin: auto;
     color: white;
     font-size: xx-large;
+    width: auto;
     text-decoration: none;
   }
 
@@ -164,6 +170,7 @@
     margin: auto;
     color: white;
     font-size: larger;
+    width: auto;
     text-decoration: none;
     display: inline-block;
   }
@@ -188,6 +195,7 @@
   h3 {
     margin: auto;
     color: white;
+    width: auto;
     font-size: x-large;
     text-decoration: none;
   }
@@ -212,6 +220,7 @@
   p {
     margin-left: auto;
     margin-right: auto;
+    width: auto;
     color: white;
     text-align: justify;
     font-size: medium;
@@ -233,6 +242,7 @@
 
   img {
     margin: auto;
+    width: auto;
     display: block;
   }
 }
