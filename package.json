@@ -10,6 +10,7 @@
     "@astrojs/prefetch": "latest",
     "@astrojs/rss": "latest",
     "astro": "latest",
+    "astro-compress": "latest",
     "astro-critters": "latest",
     "astro-html-beautifier": "latest",
     "wrangler": "latest"
