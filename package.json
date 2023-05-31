@@ -8,6 +8,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "latest",
     "@astrojs/prefetch": "latest",
+    "@astrojs/rss": "latest",
     "astro": "latest",
     "astro-critters": "latest",
     "astro-html-beautifier": "latest",

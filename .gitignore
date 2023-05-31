@@ -1,6 +1,7 @@
+/node_modules
 /node_modules/*
 /dist/*
 .DS_Store
 bun.lockb
 bunfig.toml
-/node_modules
+**/*.astro
