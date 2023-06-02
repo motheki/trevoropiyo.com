@@ -6,7 +6,6 @@
     "bun-types": "latest"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "latest",
     "@astrojs/prefetch": "latest",
     "@astrojs/rss": "latest",
     "astro": "latest",
