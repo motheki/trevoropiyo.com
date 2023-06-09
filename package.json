@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@astrojs/prefetch": "latest",
-    "@astrojs/rss": "latest",
     "astro": "latest",
     "astro-compress": "latest",
     "astro-critters": "latest",

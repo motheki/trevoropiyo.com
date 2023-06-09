@@ -4,6 +4,7 @@
     background: white;
     text-align: center;
     text-decoration: none;
+    margin: auto;
   }
 
   a {
@@ -14,10 +15,6 @@
     color: inherit;
     text-decoration: none;
   }
-  img {
-    width: auto;
-  }
-
   h1 {
     margin: auto;
     color: black;
@@ -49,7 +46,7 @@
     width: auto;
     font-size: larger;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
   }
 
   a h2:link {
@@ -95,8 +92,7 @@
   }
 
   p {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     width: auto;
     color: black;
     text-align: justify;
@@ -119,7 +115,8 @@
 
   img {
     margin: auto;
-    display: block;
+    max-width: 100%;
+    display: flex;
   }
 }
 
@@ -172,7 +169,7 @@
     font-size: larger;
     width: auto;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
   }
 
   a h2:link {
@@ -218,8 +215,7 @@
   }
 
   p {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     width: auto;
     color: white;
     text-align: justify;
@@ -242,7 +238,7 @@
 
   img {
     margin: auto;
-    width: auto;
-    display: block;
+    max-width: 100%;
+    display: flex;
   }
 }
