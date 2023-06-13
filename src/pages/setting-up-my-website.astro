@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import Header from '../components/header.astro';
+import '../styles/global.css';
 ---
 <html lang="en-US">
   <head>
@@ -8,7 +9,8 @@ import Header from '../components/header.astro';
   </head>
   <Header/>
   <h3>Setting Up My Website</h3>
-  <p class="style">
+  <br/>
+  <p class="global">
     At the start of the summer I decided to build myself a website. It has
     become apparent to me that I needed a website for a few months now, but the
     infrastructure that I needed to build the site has only recently become
@@ -19,20 +21,11 @@ import Header from '../components/header.astro';
     Resume provides a traditional way to show my accomplishments. My hope is
     that this website will grow alongside my career and give me a way to reflect
     on my accomplishments thus far.
-    <br />
-    <br />
-    <a
-      href="https://marco.org"
-      title="Marco Arment's Website"
-      rel="prefetch"
-      >Marco Arment's Website
-    </a>
+    <br/>
+    <br/>
+    <a href="https://marco.org" title="Marco Arment's Website" rel="prefetch">Marco Arment's Website</a>
     and
-    <a href="https://daringfireball.net"
-      title="John Gruber's Website" 
-      rel="prefetch"
-      >John Gruber's Website
-    </a>
+    <a href="https://daringfireball.net" title="John Gruber's Website" rel="prefetch">John Gruber's Website</a>
     both served as inspiration when creating my website. Both of these websites
     are well designed and give good insight in their respective developers. The
     websites are both
@@ -48,8 +41,8 @@ import Header from '../components/header.astro';
     download the webpage to be viewed offline. All of these features made a
     static in the style of the two mentioned above the most obvious choice when
     designing my website.
-    <br />
-    <br />
+    <br/>
+    <br/>
     I settled on
     <a href="https://pages.cloudflare.com" title="Cloudflare Pages Website" rel="prefetch">Cloudflare Pages</a>
     as my web hosting provider. Cloudflare provides a few features that place it
@@ -62,8 +55,8 @@ import Header from '../components/header.astro';
     GitLab repository automatically. This flexibility abstracts away many
     elements of the web development process while still providing security and a
     simple interface for deploying my site.
-    <br />
-    <br />
+    <br/>
+    <br/>
     I am very happy with the tools I chose to implement my website. The simple
     static nature of my website means that my website is accessible, loads
     quickly, and is easily and widely available. The Hosting provided by

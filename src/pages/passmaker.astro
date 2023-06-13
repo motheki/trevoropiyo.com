@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import Header from '../components/header.astro';
+import '../styles/global.css';
 ---
 <html lang="en-US">
   <head>
@@ -8,7 +9,8 @@ import Header from '../components/header.astro';
   </head>
   <Header/>
   <h3>Passmaker</h3>
-  <p class="style">
+  <br/>
+  <p class="global">
     In May of 2018, Twitter disclosed its
     <a href="https://www.theverge.com/2018/5/3/17316684/twitter-password-bug-security-flaw-exposed-change-now" rel="prefetch">largest data breach</a>. Twitter exposed user data in plaintext, an indiscretion that prompted me
     to conduct my own password security audit. At the time, I stored my
@@ -17,8 +19,8 @@ import Header from '../components/header.astro';
     breach led me down a rabbit hole into the world of password managers and
     encouraged me to develop a bespoke solution for generating long, future
     proof passwords.
-    <br />
-    <br />
+    <br/>
+    <br/>
     Bitwarden distinguished itself from other password managers with cross
     platform availability and an emphasis on security beyond that of its
     competitors. Bitwarden reinforced their dedication to security by offering
@@ -33,8 +35,8 @@ import Header from '../components/header.astro';
     implementation of the Bitwarden cli to the Chromebook user may use Bitwarden
     to store passwords with confidence. This confidence served as my motivation
     to do the same.
-    <br />
-    <br />
+    <br/>
+    <br/>
     Bitwarden's password storage left nothing to be desired, but a flaw in its
     password generator presented me with an opportunity. Bitwarden limits
     generated passwords to 20 characters, which may be sufficient for the
