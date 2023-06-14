@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
 import prefetch from "@astrojs/prefetch";
-import critters from "astro-critters";
 import htmlBeautifier from "astro-html-beautifier";
+import critters from "astro-critters";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [prefetch(), critters(), htmlBeautifier()]
+  integrations: [prefetch(), htmlBeautifier(), critters()]
 });
 {
   site: 'https://trevoropiyo.com/';

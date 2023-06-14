@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import profile from '../assets/profile.png';
+import '../styles/global.css';
 ---
 <html lang="en-US">
   <head>
@@ -16,20 +17,20 @@ import profile from '../assets/profile.png';
       <img src={profile} alt="Trevor Opiyo Profile Photo" href="/" rel="prefetch"/>
     </picture>
   </a>
-  <br />
-  <a href="/" alt="Trevor Opiyo" rel="prefetch">
-    <h1 >
+  <br/>
+  <a href="/" alt="trevoropiyo.com: Home Page" rel="prefetch">
+    <h1>
       Trevor Opiyo
     </h1>
   </a>
-  <hr />
+  <hr/>
   <nav>
-    <a href="/">Home </a>
+    <a href="/" rel="prefetch" alt="Home Page">Home  </a>
     &bull;
-    <a href="/blog/"> Blog</a>
+    <a href="/blog/" alt="Blog Page" rel="prefetch">  Blog</a>
     &bull;
-    <a href="/about/"> About </a>
+    <a href="/about/" alt="About Page" rel="prefetch">  About</a>
   </nav>
-  <hr />
-  <br />
+  <hr/>
+  <br/>
 </html>

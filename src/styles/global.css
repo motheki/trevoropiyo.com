@@ -5,33 +5,31 @@
     text-align: center;
     text-decoration: none;
     margin: auto;
+    max-width: 100%;
   }
 
   a {
     margin: auto;
+    max-width: 100%;
   }
 
   a:link {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  nav { 
-    display: block; 
-    margin: 0; 
-    padding: 1em 0; 
+    color: gray;
+    text-decoration: underline;
   }
 
   h1 {
     margin: auto;
     color: black;
     width: auto;
+    max-width: 100%;
     font-size: xx-large;
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   a h1:link {
-    color: inherit;
+    color: gray;
+    text-decoration: underline;
   }
 
   a h1:visited {
@@ -43,7 +41,7 @@
   }
 
   a h1:active {
-    color: gray;
+    color: red;
     text-decoration: underline;
   }
 
@@ -51,25 +49,28 @@
     margin: auto;
     color: black;
     width: auto;
+    max-width: 100%;
     font-size: larger;
     text-decoration: none;
-    display: flex;
   }
 
   a h2:link {
-    color: inherit;
+    color: gray;
+    text-decoration: underline;
   }
 
   a h2:visited {
     color: inherit;
+    text-decoration: underline;
   }
 
   a h2:hover {
     color: gray;
+    text-decoration: underline;
   }
 
   a h2:active {
-    color: gray;
+    color: red;
     text-decoration: underline;
   }
 
@@ -77,12 +78,13 @@
     margin: auto;
     color: black;
     width: auto;
+    max-width: 100%;
     font-size: x-large;
-    text-decoration: none;
   }
 
   a h3:link {
-    color: inherit;
+    color: gray;
+    text-decoration: underline;
   }
 
   a h3:visited {
@@ -94,13 +96,48 @@
   }
 
   a h3:active {
-    color: inherit;
+    color: red;
     text-decoration: underline;
+  }
+
+  nav {
+    margin: auto;
+    color: black;
+    width: auto;
+    font-size: x-large;
+    display: flex;
+  }
+
+  a nav {
+    margin: auto;
+    color: black;
+    width: auto;
+    font-size: x-large;
+    display: flex;
+  }
+
+  a nav:link {
+    color: white;
+    text-decoration: underline;
+  }
+
+  a nav:visited {
+    color: white;
+  }
+
+  nav:link {
+    color: white;
+    text-decoration: underline;
+  }
+
+  nav:visited {
+    color: white;
   }
 
   p {
     margin: auto;
     width: auto;
+    max-width: 100%;
     color: black;
     text-align: justify;
     font-size: medium;
@@ -120,6 +157,11 @@
     color: gray;
   }
 
+  p a:active {
+    color: red;
+    text-decoration: underline;
+  }
+
   img {
     margin: auto;
     width: auto;
@@ -133,6 +175,7 @@
     color: white;
     background: black;
     width: auto;
+    max-width: 100%;
     text-align: center;
     text-decoration: none;
   }
@@ -146,11 +189,13 @@
     text-decoration: none;
   }
 
+
   h1 {
     margin: auto;
     color: white;
     font-size: xx-large;
     width: auto;
+    max-width: 100%;
     text-decoration: none;
   }
 
@@ -167,7 +212,7 @@
   }
 
   a h1:active {
-    color: gray;
+    color: red;
     text-decoration: underline;
   }
 
@@ -176,8 +221,8 @@
     color: white;
     font-size: larger;
     width: auto;
+    max-width: 100%;
     text-decoration: none;
-    display: flex;
   }
 
   a h2:link {
@@ -193,20 +238,22 @@
   }
 
   a h2:active {
-    color: gray;
+    color: red;
     text-decoration: underline;
   }
 
   h3 {
     margin: auto;
+    max-width: 100%;
     color: white;
     width: auto;
     font-size: x-large;
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   a h3:link {
     color: inherit;
+    text-decoration: underline;
   }
 
   a h3:visited {
@@ -218,13 +265,48 @@
   }
 
   a h3:active {
-    color: inherit;
+    color: red;
     text-decoration: underline;
+  }
+
+  a nav {
+    margin: auto;
+    color: white;
+    width: auto;
+    font-size: x-large;
+    display: flex;
+  }
+  
+  nav {
+    margin: auto;
+    color: white;
+    width: auto;
+    font-size: x-large;
+    display: flex;
+  }
+
+  a nav:link {
+    color: white;
+    text-decoration: underline;
+  }
+
+  a nav:visited {
+    color: white;
+  }
+
+  nav:link {
+    color: white;
+    text-decoration: underline;
+  }
+
+  nav:visited {
+    color: gray;
   }
 
   p {
     margin: auto;
     width: auto;
+    max-width: 100%;
     color: white;
     text-align: justify;
     font-size: medium;
