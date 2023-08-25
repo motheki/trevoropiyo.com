@@ -115,17 +115,17 @@
     text-decoration: underline;
   }
 
-  nav:hover {
+  nav:link:hover {
     color: gray;
     text-decoration: underline;
   }
 
-  nav:active {
+  nav:link:active {
     color: red;
     text-decoration: underline;
   }
 
-  nav:visited {
+  nav:link:visited {
     color: gray;
     text-decoration: underline;
   }
@@ -243,9 +243,9 @@
 
   h3 {
     margin: auto;
-    max-width: 100%;
     color: white;
     width: auto;
+    max-width: 100%;
     font-size: x-large;
   }
 
@@ -280,18 +280,19 @@
     text-decoration: underline;
   }
 
-  nav:hover {
+  nav:link:hover {
     color: gray;
     text-decoration: underline;
   }
 
-  nav:active {
+  nav:link:active {
     color: red;
     text-decoration: underline;
   }
 
-  nav:visited {
+  nav:link:visited {
     color: gray;
+    text-decoration: underline;
   }
 
   p {
