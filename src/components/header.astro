@@ -1,5 +1,6 @@
 ---
 export const prerender = true;
+import { Image } from 'astro:assets';
 import profile from '../assets/profile.png';
 import '../styles/global.css';
 ---
@@ -12,13 +13,9 @@ import '../styles/global.css';
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
   </head>
-  <a href="/">
-    <picture>
-      <img src={profile} alt="Trevor Opiyo Profile Photo" href="/" rel="prefetch"/>
-    </picture>
-  </a>
+  <Image src={profile} alt="Trevor Opiyo Profile Photo" format="png" quality="max"/>
   <br/>
-  <a href="/" alt="trevoropiyo.com: Home Page" rel="prefetch">
+  <a href="/" alt="trevoropiyo.com: Home Page" rel="prefetch-intent">
     <h1>
       Trevor Opiyo
     </h1>
@@ -26,9 +23,9 @@ import '../styles/global.css';
   <hr/>
   <body>
   <nav>
-    <a href="/" rel="prefetch" alt="Home Page">Home</a> &bull;
-    <a href="/blog/" alt="Blog Page" rel="prefetch">Blog</a> &bull;
-    <a href="/about/" alt="About Page" rel="prefetch">About</a>
+    <a href="/" alt="Home Page" rel="prefetch-intent">Home</a> &bull;
+    <a href="/blog/" alt="Blog Page" rel="prefetch-intent">Blog</a> &bull;
+    <a href="/about/" alt="About Page" rel="prefetch-intent">About</a>
   </nav>
   <hr/>
   <br/>

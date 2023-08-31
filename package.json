@@ -8,9 +8,6 @@
   "dependencies": {
     "@astrojs/prefetch": "latest",
     "astro": "latest",
-    "astro-compress": "latest",
-    "astro-critters": "latest",
-    "astro-html-beautifier": "latest",
     "wrangler": "latest"
   },
   "scripts": {
