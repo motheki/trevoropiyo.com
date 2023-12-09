@@ -1,6 +1,5 @@
 ---
 export const prerender = true;
-import { Picture } from 'astro:assets';
 import profile from '../assets/profile.png';
 import '../styles/global.css';
 ---
@@ -13,7 +12,7 @@ import '../styles/global.css';
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
   </head>
-  <Picture src={profile} alt="Trevor Opiyo's Profile Photo"/>
+  <img src={profile.src} loading="lazy" alt="Trevor Opiyo Profile Photo"/>
   <br/>
   <a href="/" alt="trevoropiyo.com: Home Page" rel="prefetch-intent">
     <h1>
