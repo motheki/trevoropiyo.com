@@ -22,8 +22,8 @@
     margin: auto;
     color: black;
     width: auto;
-    max-width: 100%;
     font-size: xx-large;
+    max-width: 100%;
     text-decoration: none;
   }
 
@@ -50,9 +50,9 @@
   h2 {
     margin: auto;
     color: black;
+    font-size: larger;
     width: auto;
     max-width: 100%;
-    font-size: larger;
     text-decoration: none;
   }
 
@@ -189,8 +189,8 @@
   h1 {
     margin: auto;
     color: white;
-    font-size: xx-large;
     width: auto;
+    font-size: xx-large;
     max-width: 100%;
     text-decoration: none;
   }
@@ -234,6 +234,7 @@
 
   a h2:hover {
     color: gray;
+    text-decoration: underline;
   }
 
   a h2:active {
@@ -316,6 +317,11 @@
 
   p a:hover {
     color: gray;
+  }
+
+  p a:active {
+    color: red;
+    text-decoration: underline;
   }
 
   img {
