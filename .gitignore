@@ -5,3 +5,4 @@
 bun.lockb
 bunfig.toml
 .wrangler/*
+~/*
