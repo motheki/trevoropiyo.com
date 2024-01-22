@@ -50,30 +50,10 @@
   h2 {
     margin: auto;
     color: black;
-    font-size: larger;
+    font-size: x-large;
     width: auto;
     max-width: 100%;
     text-decoration: none;
-  }
-
-  a h2:link {
-    color: gray;
-    text-decoration: underline;
-  }
-
-  a h2:visited {
-    color: inherit;
-    text-decoration: underline;
-  }
-
-  a h2:hover {
-    color: gray;
-    text-decoration: underline;
-  }
-
-  a h2:active {
-    color: red;
-    text-decoration: underline;
   }
 
   h3 {
@@ -218,28 +198,10 @@
   h2 {
     margin: auto;
     color: white;
-    font-size: larger;
+    font-size: x-large;
     width: auto;
     max-width: 100%;
     text-decoration: none;
-  }
-
-  a h2:link {
-    color: inherit;
-  }
-
-  a h2:visited {
-    color: inherit;
-  }
-
-  a h2:hover {
-    color: gray;
-    text-decoration: underline;
-  }
-
-  a h2:active {
-    color: red;
-    text-decoration: underline;
   }
 
   h3 {

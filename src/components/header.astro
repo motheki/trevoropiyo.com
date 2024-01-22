@@ -2,19 +2,21 @@
 export const prerender = true;
 import profile from '../assets/profile.png';
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="apple-touch-icon" href={profile} />
-    <link rel="icon" type="image/png" href={profile} />
+    <link rel="icon" type="apple-touch-icon" href={profile.src} />
+    <link rel="icon" type="image/png" href={profile.src} />
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
+    <ViewTransitions />
   </head>
   <img src={profile.src} loading="lazy" alt="Trevor Opiyo Profile Photo"/>
   <br/>
-  <a href="/" alt="trevoropiyo.com: Home Page" rel="prefetch-intent">
+  <a href="/" alt="trevoropiyo.com: Home Page">
     <h1>
       Trevor Opiyo
     </h1>
@@ -22,9 +24,9 @@ import '../styles/global.css';
   <hr/>
   <body>
   <nav>
-    <a href="/" alt="Home Page" rel="prefetch-intent">Home</a> &bull;
-    <a href="/blog/" alt="Blog Page" rel="prefetch-intent">Blog</a> &bull;
-    <a href="/about/" alt="About Page" rel="prefetch-intent">About</a>
+    <a href="/" alt="Home Page">Home</a> &bull;
+    <a href="/blog/" alt="Blog Page">Blog</a> &bull;
+    <a href="/about/" alt="About Page">About</a>
   </nav>
   <hr/>
   <br/>
