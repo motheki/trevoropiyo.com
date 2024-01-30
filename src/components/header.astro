@@ -2,7 +2,6 @@
 export const prerender = true;
 import profile from '../assets/profile.png';
 import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
 ---
 <html lang="en">
   <head>
@@ -12,7 +11,6 @@ import { ViewTransitions } from 'astro:transitions';
     <link rel="icon" type="image/png" href={profile.src} />
     <link rel="alternate" type="application/feed+json" href="/feed.json" />
     <link rel="alternate" type="application/json" href="/feed.json" />
-    <ViewTransitions />
   </head>
   <img src={profile.src} loading="lazy" alt="Trevor Opiyo Profile Photo"/>
   <br/>
