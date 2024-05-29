@@ -4,5 +4,4 @@
 .DS_Store
 bun.lockb
 bunfig.toml
-.wrangler/*
 ~/*
