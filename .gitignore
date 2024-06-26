@@ -1,6 +1,7 @@
 /node_modules
 /node_modules/*
 /dist/*
+.direnv/*
 .DS_Store
 bun.lockb
 bunfig.toml
