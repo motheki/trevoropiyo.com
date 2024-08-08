@@ -7,3 +7,6 @@ bun.lockb
 bunfig.toml
 .wrangler/*
 ~/*
+.envrc
+bun.lockb*
+flake.lock
