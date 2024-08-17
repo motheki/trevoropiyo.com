@@ -4,8 +4,8 @@ export const SITE: Site = {
   website: "https://trevoropiyo.com", // replace this with your deployed domain
   author: "Trevor Opiyo",
   profile: "https://trevoropiyo.com",
-  desc: "Trevor Opiyo's Blog",
-  title: "AstroPaper",
+  desc: "Trevor Opiyo's Website",
+  title: "Trevor Opiyo",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
@@ -20,9 +20,9 @@ export const LOCALE = {
 
 export const LOGO_IMAGE = {
   enable: false,
-  svg: true,
-  width: 216,
-  height: 46,
+  svg: false,
+  width: 400,
+  height: 400,
 };
 
 export const SOCIALS: SocialObjects = [
@@ -52,9 +52,9 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:trevoropiyo@trevoropiyo.com",
     linkTitle: `Send an email to ${SITE.title}`,
-    active: false,
+    active: true,
   },
   {
     name: "Twitter",
