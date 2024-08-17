@@ -13,12 +13,8 @@
     "lint": "eslint ."
   },
   "overrides": {
-    "react": {
-      "@preact/compat": "latest"
-    },
-    "react-dom": {
-      "@preact/compat": "latest"
-    }
+    "react": "@preact/compat: 'latest'",
+    "react-dom": "@preact/compat: 'latest'"
   },
   "dependencies": {
     "@astrojs/check": "latest",
