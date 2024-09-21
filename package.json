@@ -23,7 +23,7 @@
     "@resvg/resvg-js": "latest",
     "astro": "latest",
     "cloudflare": "^3.5.0",
-    "create-cloudflare": "^2.25.0",
+    "create-cloudflare": "^2.27.3",
     "fuse.js": "latest",
     "github-slugger": "latest",
     "preact": "latest",
@@ -32,7 +32,7 @@
     "satori": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
-    "wrangler": "^3.72.0"
+    "wrangler": "^3.78.7"
   },
   "devDependencies": {
     "@astrojs/sitemap": "latest",
