@@ -32,7 +32,7 @@
     "satori": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
-    "wrangler": "^3.80.3"
+    "wrangler": "^3.80.4"
   },
   "devDependencies": {
     "@astrojs/sitemap": "latest",

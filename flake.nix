@@ -3,15 +3,12 @@
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/master";
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, systems, nixpkgs }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
-        pkgs = import nixpkgs { inherit system; };
-      });
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
     in
     {
-      devShells = forEachSupportedSystem ({ pkgs }: {
+      devShells = eachSystem (pkgs: {
         default = pkgs.mkShell {
           packages = with pkgs; [ bun ];
         };
