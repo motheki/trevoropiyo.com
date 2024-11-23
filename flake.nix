@@ -3,15 +3,21 @@
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/master";
 
-  outputs = { self, systems, nixpkgs }:
-    let
-      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
-    in
-    {
-      devShells = eachSystem (pkgs: {
-        default = pkgs.mkShell {
-          packages = with pkgs; [ bun ];
-        };
-      });
-    };
+  outputs = {
+    self,
+    systems,
+    nixpkgs,
+  }: let
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+  in {
+    devShells = eachSystem (pkgs: {
+      default = pkgs.mkShell {
+        packages = with pkgs; [
+          bun
+          alejandra
+        ];
+      };
+    });
+    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+  };
 }

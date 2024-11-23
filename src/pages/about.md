@@ -11,4 +11,4 @@ My name is Trevor Opiyo a backend software developer based in Texas.
 
 ## Background
 
-Hi I'm Trevor. Welcome to my website. Feel free to subscribe to [my rss feed,](/rss.xml) or follow me by clicking my social links.
+Hi I'm Trevor. Welcome to my website. Feel free to subscribe to [my rss feed,](/rss.xml) and follow me across the web.
