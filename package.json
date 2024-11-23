@@ -29,7 +29,7 @@
     "remark-toc": "latest",
     "satori": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest",
+    "typescript": "latest"
   },
   "devDependencies": {
     "@astrojs/sitemap": "latest",
