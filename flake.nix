@@ -1,23 +1,23 @@
 {
   description = "A Nix-flake-based Bun development environment";
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/master";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/master";
 
   outputs = {
     self,
-    systems,
     nixpkgs,
   }: let
-    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forEachSupportedSystem = f:
+      nixpkgs.lib.genAttrs supportedSystems (system:
+        f {
+          pkgs = import nixpkgs {inherit system;};
+        });
   in {
-    devShells = eachSystem (pkgs: {
+    devShells = forEachSupportedSystem ({pkgs}: {
       default = pkgs.mkShell {
-        packages = with pkgs; [
-          bun
-          alejandra
-        ];
+        packages = with pkgs; [alejandra bun];
       };
     });
-    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
   };
 }
