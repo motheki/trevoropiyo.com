@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based Bun development environment";
+  description = "Trevor's Website";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/master";
 
