@@ -1,12 +1,11 @@
 {
-  "name": "",
+  "name": "Trevor's website and build scripts",
   "version": "4.3.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "sync": "astro sync",
     "astro": "astro",
     "format:check": "prettier --check . --plugin=prettier-plugin-astro",
     "format": "prettier --write . --plugin=prettier-plugin-astro",
@@ -29,13 +28,15 @@
     "remark-toc": "latest",
     "satori": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "wrangler": "latest"
   },
   "devDependencies": {
     "@astrojs/sitemap": "latest",
     "@astrojs/tailwind": "latest",
     "@tailwindcss/typography": "latest",
     "@types/github-slugger": "latest",
+    "@tailwindcss/postcss": "latest",
     "@types/react": "latest",
     "@typescript-eslint/parser": "latest",
     "astro-eslint-parser": "latest",

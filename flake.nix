@@ -16,7 +16,7 @@
   in {
     devShells = forEachSupportedSystem ({pkgs}: {
       default = pkgs.mkShell {
-        packages = with pkgs; [alejandra bun wrangler];
+        packages = with pkgs; [bun];
       };
     });
   };
