@@ -1,49 +1,21 @@
 {
-  "name": "Trevor's website and build scripts",
-  "version": "4.3.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "format:check": "prettier --check . --plugin=prettier-plugin-astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro",
-    "lint": "eslint ."
-  },
-  "overrides": {
-    "react": "@preact/compat: 'latest'",
-    "react-dom": "@preact/compat: 'latest'"
-  },
-  "dependencies": {
-    "@astrojs/check": "latest",
-    "@astrojs/preact": "latest",
-    "@astrojs/rss": "latest",
-    "@resvg/resvg-js": "latest",
-    "astro": "latest",
-    "fuse.js": "latest",
-    "github-slugger": "latest",
-    "preact": "latest",
-    "remark-collapse": "latest",
-    "remark-toc": "latest",
-    "satori": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest",
-    "wrangler": "latest"
-  },
-  "devDependencies": {
-    "@astrojs/sitemap": "latest",
-    "@astrojs/tailwind": "latest",
-    "@tailwindcss/typography": "latest",
-    "@types/github-slugger": "latest",
-    "@tailwindcss/postcss": "latest",
-    "@types/react": "latest",
-    "@typescript-eslint/parser": "latest",
-    "astro-eslint-parser": "latest",
-    "eslint": "latest",
-    "eslint-plugin-astro": "latest",
-    "prettier": "latest",
-    "prettier-plugin-astro": "latest",
-    "prettier-plugin-tailwindcss": "latest"
-  }
+	"name": "trevoropiyo",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && wrangler pages dev",
+		"sync": "astro sync",
+		"astro": "astro",
+		"deploy": "astro build && wrangler pages deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"astro": "latest"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "latest",
+		"wrangler": "latest"
+	}
 }
