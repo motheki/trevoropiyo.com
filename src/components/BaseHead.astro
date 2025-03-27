@@ -12,7 +12,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/background.png' } = Astro.props;
+const { title, description, image = '/big-bend.png' } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -33,6 +33,7 @@ const { title, description, image = '/background.png' } = Astro.props;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+<link rel="me" href="https://mastodon.social/@trevoropiyo">
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
