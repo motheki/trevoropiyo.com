@@ -2,6 +2,7 @@
 /node_modules/*
 /dist/*
 .direnv/*
+yarn.lock
 .devenv/*
 .DS_Store
 bun.lock
