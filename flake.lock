@@ -46,6 +46,7 @@
       },
       "original": {
         "owner": "cachix",
+        "ref": "main",
         "repo": "devenv",
         "type": "github"
       }

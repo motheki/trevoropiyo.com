@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts/main";
     nixpkgs.url = "github:numtide/nixpkgs-unfree?ref=main";
     treefmt-nix.url = "github:numtide/treefmt-nix/main";
-    devenv.url = "github:cachix/devenv";
+    devenv.url = "github:cachix/devenv/main";
     devenv-root = {
       url = "file+file:///dev/null";
       flake = false;
