@@ -1,24 +1,24 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-	site: 'https://trevoropiyo.com',
+	site: "https://trevoropiyo.com",
 	integrations: [mdx(), sitemap()],
 	prefetch: {
-	  prefetchAll: true
+		prefetchAll: true,
 	},
 	experimental: {
-		responsiveImages : true
+		responsiveImages: true,
 	},
 	image: {
-    // Example: Enable the Sharp-based image service with a custom config
-    service: {
-       entrypoint: 'astro/assets/services/sharp',
-       config: {
-         limitInputPixels: false,
-      },
-     },
-    experimentalLayout: "responsive"
-  }
+		// Example: Enable the Sharp-based image service with a custom config
+		service: {
+			entrypoint: "astro/assets/services/sharp",
+			config: {
+				limitInputPixels: false,
+			},
+		},
+		experimentalLayout: "responsive",
+	},
 });
