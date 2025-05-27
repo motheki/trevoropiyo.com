@@ -3,7 +3,7 @@
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts/main";
-    nixpkgs.url = "github:numtide/nixpkgs-unfree?ref=main";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     treefmt-nix.url = "github:numtide/treefmt-nix/main";
     devenv.url = "github:cachix/devenv/main";
     devenv-root = {
@@ -33,8 +33,6 @@
       }: {
         treefmt = {
           programs = {
-            ruff-format.enable = true;
-            ruff-check.enable = true;
             alejandra.enable = true;
             biome.enable = true;
           };
@@ -44,11 +42,10 @@
             devenvRootFileContent = builtins.readFile devenv-root.outPath;
           in
             pkgs.lib.mkIf (devenvRootFileContent != "") devenvRootFileContent;
-          #packages = [config.packages.default];
           name = "trevoropiyo.com";
           languages.javascript.enable = true;
-          languages.javascript.bun.install.enable = true;
           languages.javascript.bun.enable = true;
+          languages.javascript.bun.install.enable = true;
           languages.typescript.enable = true;
         };
       };

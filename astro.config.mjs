@@ -19,6 +19,6 @@ export default defineConfig({
 				limitInputPixels: false,
 			},
 		},
-		experimentalLayout: "responsive",
+		experimentalLayout: "constrained",
 	},
 });
