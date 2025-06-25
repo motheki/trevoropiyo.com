@@ -7,17 +7,9 @@
     git-hooks-nix.url = "github:cachix/git-hooks.nix/master";
     treefmt-nix.url = "github:numtide/treefmt-nix/main";
     devenv.url = "github:cachix/devenv/main";
-    devenv-root = {
-      url = "file+file:///dev/null";
-      flake = false;
-    };
   };
 
-  outputs = inputs @ {
-    flake-parts,
-    devenv-root,
-    ...
-  }:
+  outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.treefmt-nix.flakeModule
@@ -34,10 +26,6 @@
         ...
       }: {
         devenv.shells.default = {
-          devenv.root = let
-            devenvRootFileContent = builtins.readFile devenv-root.outPath;
-          in
-            pkgs.lib.mkIf (devenvRootFileContent != "") devenvRootFileContent;
           name = "trevoropiyo.com";
           languages.javascript = {
             enable = true;

@@ -8,9 +8,6 @@ export default defineConfig({
 	prefetch: {
 		prefetchAll: true,
 	},
-	experimental: {
-		responsiveImages: true,
-	},
 	image: {
 		// Example: Enable the Sharp-based image service with a custom config
 		service: {
