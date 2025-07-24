@@ -5,14 +5,12 @@
     flake-parts.url = "github:hercules-ci/flake-parts/main";
     nixpkgs.url = "github:nixos/nixpkgs/master";
     git-hooks-nix.url = "github:cachix/git-hooks.nix/master";
-    treefmt-nix.url = "github:numtide/treefmt-nix/main";
     devenv.url = "github:cachix/devenv/main";
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        inputs.treefmt-nix.flakeModule
         inputs.devenv.flakeModule
         inputs.git-hooks-nix.flakeModule
       ];
@@ -39,13 +37,6 @@
           git-hooks = {
             hooks = {
               check-merge-conflicts.enable = true;
-              treefmt = {
-                enable = true;
-                formatters = [
-                  pkgs.alejandra
-                  pkgs.biome
-                ];
-              };
             };
           };
         };
