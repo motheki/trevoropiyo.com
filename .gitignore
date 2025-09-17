@@ -13,5 +13,4 @@ bunfig.toml
 .envrc
 bun.lockb*
 flake.lock
-wrangler.jsonc
 .devenv
