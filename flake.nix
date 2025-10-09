@@ -7,6 +7,7 @@
     git-hooks-nix.url = "github:cachix/git-hooks.nix/master";
     devenv.url = "github:cachix/devenv/main";
     nix2container.url = "github:nlewo/nix2container/master";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin/main";
   };
 
   outputs = inputs @ {flake-parts, ...}:
