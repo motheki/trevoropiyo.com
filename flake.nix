@@ -8,6 +8,7 @@
     devenv.url = "github:cachix/devenv/main";
     nix2container.url = "github:nlewo/nix2container/master";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin/main";
+    treefmt-nix.url = "github:numtide/treefmt-nix/main";
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -15,6 +16,7 @@
       imports = [
         inputs.devenv.flakeModule
         inputs.git-hooks-nix.flakeModule
+        inputs.treefmt-nix.flakeModule
       ];
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {
@@ -43,6 +45,33 @@
             };
           };
         };
+        treefmt = {
+          flakeFormatter = true;
+          programs = {
+            biome = {
+              enable = true;
+              formatUnsafe = true;
+            };
+            statix = {
+              enable = true;
+              includes = [
+                "*.nix"
+              ];
+            };
+            alejandra = {
+              enable = true;
+              includes = [
+                "*.nix"
+              ];
+            };
+            taplo = {
+              enable = true;
+              includes = [
+                "*.toml"
+              ];
+            };
+          };
+        };
         pre-commit = {
           check = {
             enable = true;
@@ -56,9 +85,6 @@
                 enable = true;
               };
               check-merge-conflicts = {
-                enable = true;
-              };
-              check-json = {
                 enable = true;
               };
               check-yaml = {
@@ -81,6 +107,9 @@
               };
               biome = {
                 enable = true;
+                args = [
+                  "--unsafe"
+                ];
               };
             };
           };
