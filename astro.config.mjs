@@ -1,24 +1,22 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import fontGoogle from "@astrojs/font-google";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
   site: "https://trevoropiyo.com",
-  integrations: [
-    mdx(),
-    sitemap(),
-    fontGoogle({
-      families: {
-        Quantico: true,
-      },
-    }),
-  ],
+  integrations: [mdx(), sitemap()],
   prefetch: {
     prefetchAll: true,
   },
   experimental: {
     clientPrerender: true,
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Quantico",
+        cssVariable: "--font-quantico",
+      },
+    ],
   },
   image: {
     // Example: Enable the Sharp-based image service with a custom config
