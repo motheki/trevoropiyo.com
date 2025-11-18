@@ -1,117 +1,195 @@
 ---
 ---
 
-<button
-	id="theme-toggle"
-	class="theme-toggle"
-	aria-label="Toggle dark mode"
-	type="button"
->
-	<span class="theme-toggle-icon" aria-hidden="true">
-		<svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-			<circle cx="10" cy="10" r="4" />
-			<path d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.657 4.343l-1.414 1.414M5.757 14.243l-1.414 1.414M15.657 15.657l-1.414-1.414M5.757 5.757l-1.414-1.414" />
-		</svg>
-		<svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-			<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-		</svg>
-	</span>
-</button>
+<div class="theme-toggle-container">
+	<div class="theme-slider" id="theme-slider" role="radiogroup" aria-label="Theme selection">
+		<button
+			class="theme-option"
+			data-theme="auto"
+			aria-label="Respect browser theme"
+			type="button"
+			title="Respect browser theme"
+		>
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+				<line x1="8" y1="21" x2="16" y2="21" />
+				<line x1="12" y1="17" x2="12" y2="21" />
+			</svg>
+		</button>
+		<button
+			class="theme-option"
+			data-theme="dark"
+			aria-label="Dark mode"
+			type="button"
+			title="Dark mode"
+		>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+				<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+			</svg>
+		</button>
+		<button
+			class="theme-option"
+			data-theme="light"
+			aria-label="Light mode"
+			type="button"
+			title="Light mode"
+		>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="10" cy="10" r="4" />
+				<path d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.657 4.343l-1.414 1.414M5.757 14.243l-1.414 1.414M15.657 15.657l-1.414-1.414M5.757 5.757l-1.414-1.414" />
+			</svg>
+		</button>
+		<div class="slider-indicator" id="slider-indicator"></div>
+	</div>
+</div>
 
 <script>
 	(function () {
-		const themeToggle = document.getElementById("theme-toggle");
+		const slider = document.getElementById("theme-slider");
+		const indicator = document.getElementById("slider-indicator");
+		const options = slider?.querySelectorAll(".theme-option");
 		const html = document.documentElement;
 
-		// Get initial theme from localStorage or browser preference
+		// Get initial theme from localStorage or default to "auto"
 		function getInitialTheme() {
 			const stored = localStorage.getItem("theme");
-			if (stored === "light" || stored === "dark") {
+			if (stored === "auto" || stored === "dark" || stored === "light") {
 				return stored;
 			}
-			// Check browser preference
-			return window.matchMedia("(prefers-color-scheme: dark)").matches
-				? "dark"
-				: "light";
+			return "auto"; // Default to respecting browser preference
+		}
+
+		// Get effective theme (resolves "auto" to actual theme based on browser preference)
+		function getEffectiveTheme(theme) {
+			if (theme === "auto") {
+				return window.matchMedia("(prefers-color-scheme: dark)").matches
+					? "dark"
+					: "light";
+			}
+			return theme;
 		}
 
 		// Set theme
 		function setTheme(theme) {
-			html.setAttribute("data-theme", theme);
 			localStorage.setItem("theme", theme);
-			updateIcon(theme);
+			const effectiveTheme = getEffectiveTheme(theme);
+			html.setAttribute("data-theme", effectiveTheme);
+			updateSliderPosition(theme);
 		}
 
-		// Update icon visibility
-		function updateIcon(theme) {
-			const sunIcon = themeToggle?.querySelector(".sun-icon");
-			const moonIcon = themeToggle?.querySelector(".moon-icon");
-			if (sunIcon && moonIcon) {
-				if (theme === "dark") {
-					sunIcon.style.display = "none";
-					moonIcon.style.display = "block";
-				} else {
-					sunIcon.style.display = "block";
-					moonIcon.style.display = "none";
-				}
+		// Update slider indicator position
+		function updateSliderPosition(theme) {
+			if (!indicator || !options) return;
+			
+			const positions = { auto: 0, dark: 1, light: 2 };
+			const position = positions[theme] ?? 0;
+			const option = options[position];
+			
+			if (option) {
+				const optionRect = option.getBoundingClientRect();
+				const sliderRect = slider.getBoundingClientRect();
+				const left = optionRect.left - sliderRect.left;
+				const width = optionRect.width;
+				
+				indicator.style.left = `${left}px`;
+				indicator.style.width = `${width}px`;
 			}
+
+			// Update aria-checked for accessibility
+			options.forEach((opt, index) => {
+				opt.setAttribute("aria-checked", index === position ? "true" : "false");
+			});
 		}
 
-		// Initialize theme on page load (before page is visible)
+		// Initialize theme
 		const initialTheme = getInitialTheme();
 		setTheme(initialTheme);
 
-		// Toggle theme on button click
-		themeToggle?.addEventListener("click", () => {
-			const currentTheme = html.getAttribute("data-theme") || "light";
-			const newTheme = currentTheme === "dark" ? "light" : "dark";
-			setTheme(newTheme);
+		// Handle option clicks
+		options?.forEach((option) => {
+			option.addEventListener("click", () => {
+				const theme = option.getAttribute("data-theme");
+				if (theme) {
+					setTheme(theme);
+				}
+			});
 		});
 
-		// Listen for system theme changes
+		// Listen for system theme changes (only when in "auto" mode)
 		window
 			.matchMedia("(prefers-color-scheme: dark)")
 			.addEventListener("change", (e) => {
-				// Only update if user hasn't manually set a preference
-				if (!localStorage.getItem("theme")) {
-					setTheme(e.matches ? "dark" : "light");
+				const currentTheme = localStorage.getItem("theme") || "auto";
+				if (currentTheme === "auto") {
+					const effectiveTheme = e.matches ? "dark" : "light";
+					html.setAttribute("data-theme", effectiveTheme);
 				}
 			});
+
+		// Update position on resize
+		window.addEventListener("resize", () => {
+			const currentTheme = localStorage.getItem("theme") || "auto";
+			updateSliderPosition(currentTheme);
+		});
 	})();
 </script>
 
 <style>
-	.theme-toggle {
+	.theme-toggle-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.theme-slider {
+		position: relative;
+		display: flex;
+		align-items: center;
+		background: var(--highlight-low);
+		border-radius: 8px;
+		padding: 4px;
+		gap: 4px;
+	}
+
+	.theme-option {
+		position: relative;
 		background: transparent;
 		border: none;
 		cursor: pointer;
-		padding: 0.5em;
+		padding: 8px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--text);
+		color: var(--muted);
 		transition: color 0.2s ease;
+		border-radius: 6px;
+		z-index: 1;
+		min-width: 36px;
+		height: 36px;
 	}
 
-	.theme-toggle:hover {
-		color: var(--accent);
+	.theme-option:hover {
+		color: var(--text);
 	}
 
-	.theme-toggle-icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.theme-option[aria-checked="true"] {
+		color: var(--text);
+	}
+
+	.theme-option svg {
 		width: 20px;
 		height: 20px;
+		pointer-events: none;
 	}
 
-	.theme-toggle-icon svg {
-		width: 100%;
-		height: 100%;
-	}
-
-	.moon-icon {
-		display: none;
+	.slider-indicator {
+		position: absolute;
+		background: var(--surface);
+		border-radius: 6px;
+		height: 36px;
+		transition: left 0.3s ease, width 0.3s ease;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		z-index: 0;
+		left: 4px;
+		width: 36px;
 	}
 </style>
-

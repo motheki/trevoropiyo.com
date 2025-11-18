@@ -21,10 +21,20 @@ const { title, description, image = "/big-bend.png" } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <script is:inline>
 	(function() {
-		const stored = localStorage.getItem("theme");
-		const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		const theme = stored === "light" || stored === "dark" ? stored : (prefersDark ? "dark" : "light");
-		document.documentElement.setAttribute("data-theme", theme);
+		const stored = localStorage.getItem("theme") || "auto";
+		let effectiveTheme;
+		
+		if (stored === "auto") {
+			// Respect browser preference
+			effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+		} else if (stored === "dark" || stored === "light") {
+			effectiveTheme = stored;
+		} else {
+			// Fallback to browser preference if invalid value
+			effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+		}
+		
+		document.documentElement.setAttribute("data-theme", effectiveTheme);
 	})();
 </script>
 <link rel="icon" type="image/png" href="/logo.png" />

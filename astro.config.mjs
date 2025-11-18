@@ -15,6 +15,7 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: "Quantico",
         cssVariable: "--font-quantico",
+        weights: [400, 700],
       },
     ],
   },
