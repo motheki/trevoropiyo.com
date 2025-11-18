@@ -41,10 +41,6 @@
         treefmt = {
           flakeFormatter = true;
           programs = {
-            biome = {
-              enable = true;
-              formatUnsafe = true;
-            };
             statix = {
               enable = true;
               includes = [
@@ -97,12 +93,6 @@
               };
               lychee = {
                 enable = true;
-              };
-              biome = {
-                enable = true;
-                args = [
-                  "--unsafe"
-                ];
               };
             };
           };
