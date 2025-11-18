@@ -45,18 +45,20 @@
 
 <script>
 	(function () {
-		const slider = document.getElementById("theme-slider");
-		const indicator = document.getElementById("slider-indicator");
-		const options = slider?.querySelectorAll(".theme-option");
 		const html = document.documentElement;
 
-		// Get initial theme from localStorage or default to "auto"
+		// Get initial theme from sessionStorage or default to "auto"
 		function getInitialTheme() {
-			const stored = localStorage.getItem("theme");
+			const stored = sessionStorage.getItem("theme");
 			if (stored === "auto" || stored === "dark" || stored === "light") {
 				return stored;
 			}
 			return "auto"; // Default to respecting browser preference
+		}
+
+		// Get current theme from sessionStorage
+		function getCurrentTheme() {
+			return sessionStorage.getItem("theme") || "auto";
 		}
 
 		// Get effective theme (resolves "auto" to actual theme based on browser preference)
@@ -69,9 +71,17 @@
 			return theme;
 		}
 
+		// Get elements dynamically (not cached)
+		function getElements() {
+			const slider = document.getElementById("theme-slider");
+			const indicator = document.getElementById("slider-indicator");
+			const options = slider?.querySelectorAll(".theme-option");
+			return { slider, indicator, options };
+		}
+
 		// Set theme
 		function setTheme(theme) {
-			localStorage.setItem("theme", theme);
+			sessionStorage.setItem("theme", theme);
 			const effectiveTheme = getEffectiveTheme(theme);
 			html.setAttribute("data-theme", effectiveTheme);
 			updateSliderPosition(theme);
@@ -79,20 +89,24 @@
 
 		// Update slider indicator position
 		function updateSliderPosition(theme) {
-			if (!indicator || !options) return;
+			const { slider, indicator, options } = getElements();
+			if (!indicator || !options || !slider) return;
 			
 			const positions = { auto: 0, dark: 1, light: 2 };
 			const position = positions[theme] ?? 0;
 			const option = options[position];
 			
 			if (option) {
-				const optionRect = option.getBoundingClientRect();
-				const sliderRect = slider.getBoundingClientRect();
-				const left = optionRect.left - sliderRect.left;
-				const width = optionRect.width;
-				
-				indicator.style.left = `${left}px`;
-				indicator.style.width = `${width}px`;
+				// Use requestAnimationFrame to ensure layout is complete
+				requestAnimationFrame(() => {
+					const optionRect = option.getBoundingClientRect();
+					const sliderRect = slider.getBoundingClientRect();
+					const left = optionRect.left - sliderRect.left;
+					const width = optionRect.width;
+					
+					indicator.style.left = `${left}px`;
+					indicator.style.width = `${width}px`;
+				});
 			}
 
 			// Update aria-checked for accessibility
@@ -101,25 +115,28 @@
 			});
 		}
 
-		// Initialize theme
-		const initialTheme = getInitialTheme();
-		setTheme(initialTheme);
+		// Initialize theme and slider position
+		function initializeTheme() {
+			const initialTheme = getInitialTheme();
+			setTheme(initialTheme);
+		}
 
-		// Handle option clicks
-		options?.forEach((option) => {
-			option.addEventListener("click", () => {
-				const theme = option.getAttribute("data-theme");
+		// Event delegation for theme option clicks
+		document.addEventListener("click", (e) => {
+			const target = e.target.closest(".theme-option");
+			if (target) {
+				const theme = target.getAttribute("data-theme");
 				if (theme) {
 					setTheme(theme);
 				}
-			});
+			}
 		});
 
 		// Listen for system theme changes (only when in "auto" mode)
 		window
 			.matchMedia("(prefers-color-scheme: dark)")
 			.addEventListener("change", (e) => {
-				const currentTheme = localStorage.getItem("theme") || "auto";
+				const currentTheme = getCurrentTheme();
 				if (currentTheme === "auto") {
 					const effectiveTheme = e.matches ? "dark" : "light";
 					html.setAttribute("data-theme", effectiveTheme);
@@ -128,9 +145,30 @@
 
 		// Update position on resize
 		window.addEventListener("resize", () => {
-			const currentTheme = localStorage.getItem("theme") || "auto";
+			const currentTheme = getCurrentTheme();
 			updateSliderPosition(currentTheme);
 		});
+
+		// Handle Astro view transitions
+		document.addEventListener("astro:page-load", () => {
+			// Re-initialize slider position after navigation
+			const currentTheme = getCurrentTheme();
+			updateSliderPosition(currentTheme);
+		});
+
+		document.addEventListener("astro:after-swap", () => {
+			// Re-initialize slider position after DOM swap
+			const currentTheme = getCurrentTheme();
+			updateSliderPosition(currentTheme);
+		});
+
+		// Initialize when DOM is ready
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initializeTheme);
+		} else {
+			// DOM already ready, but wait a tick for layout
+			setTimeout(initializeTheme, 0);
+		}
 	})();
 </script>
 
@@ -144,7 +182,7 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		background: var(--highlight-low);
+		background: var(--overlay);
 		border-radius: 8px;
 		padding: 4px;
 		gap: 4px;
@@ -187,9 +225,10 @@
 		border-radius: 6px;
 		height: 36px;
 		transition: left 0.3s ease, width 0.3s ease;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 		z-index: 0;
 		left: 4px;
 		width: 36px;
+		border: 1px solid var(--highlight-med);
 	}
 </style>
