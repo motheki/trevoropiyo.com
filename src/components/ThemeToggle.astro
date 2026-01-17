@@ -47,18 +47,18 @@
 	(function () {
 		const html = document.documentElement;
 
-		// Get initial theme from sessionStorage or default to "auto"
+		// Get initial theme from localStorage or default to "auto"
 		function getInitialTheme() {
-			const stored = sessionStorage.getItem("theme");
+			const stored = localStorage.getItem("theme");
 			if (stored === "auto" || stored === "dark" || stored === "light") {
 				return stored;
 			}
 			return "auto"; // Default to respecting browser preference
 		}
 
-		// Get current theme from sessionStorage
+		// Get current theme from localStorage
 		function getCurrentTheme() {
-			return sessionStorage.getItem("theme") || "auto";
+			return localStorage.getItem("theme") || "auto";
 		}
 
 		// Get effective theme (resolves "auto" to actual theme based on browser preference)
@@ -81,7 +81,7 @@
 
 		// Set theme
 		function setTheme(theme) {
-			sessionStorage.setItem("theme", theme);
+			localStorage.setItem("theme", theme);
 			const effectiveTheme = getEffectiveTheme(theme);
 			html.setAttribute("data-theme", effectiveTheme);
 			updateSliderPosition(theme);
@@ -151,15 +151,15 @@
 
 		// Handle Astro view transitions
 		document.addEventListener("astro:page-load", () => {
-			// Re-initialize slider position after navigation
+			// Re-initialize theme and slider position after navigation
 			const currentTheme = getCurrentTheme();
-			updateSliderPosition(currentTheme);
+			setTheme(currentTheme);
 		});
 
 		document.addEventListener("astro:after-swap", () => {
-			// Re-initialize slider position after DOM swap
+			// Re-initialize theme and slider position after DOM swap
 			const currentTheme = getCurrentTheme();
-			updateSliderPosition(currentTheme);
+			setTheme(currentTheme);
 		});
 
 		// Initialize when DOM is ready

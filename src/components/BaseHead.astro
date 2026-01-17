@@ -28,8 +28,8 @@ body {
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <script is:inline>
 	(function() {
-		// Get theme from sessionStorage (persists during session, clears on browser close)
-		const stored = sessionStorage.getItem("theme") || "auto";
+		// Get theme from localStorage (persists permanently until user changes it)
+		const stored = localStorage.getItem("theme") || "auto";
 		let effectiveTheme;
 		
 		if (stored === "auto") {
