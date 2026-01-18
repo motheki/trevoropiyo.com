@@ -1,0 +1,11 @@
+telemetry = false
+
+[install]
+linker = "isolated"
+
+[debug]
+editor = "nvim"
+
+[run]
+shell = "bun"
+bun = true

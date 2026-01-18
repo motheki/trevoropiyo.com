@@ -1,174 +1,173 @@
-
 /* Rosé Pine Dawn (Light Mode) - Default */
 :root {
-	/* Base colors */
-	--base: #faf4ed;
-	--surface: #fffaf3;
-	--overlay: #f2e9e1;
-	
-	/* Text colors */
-	--text: #575279;
-	--muted: #9893a5;
-	--subtle: #797593;
-	
-	/* Accent colors */
-	--love: #b4637a;
-	--gold: #ea9d34;
-	--rose: #d7827e;
-	--pine: #286983;
-	--foam: #56949f;
-	--iris: #907aa9;
-	
-	/* Highlight colors */
-	--highlight-low: #f4ede8;
-	--highlight-med: #dfdad9;
-	--highlight-high: #cecacd;
-	
-	/* Semantic mappings for backward compatibility */
-	--accent: var(--pine);
-	--accent-dark: var(--foam);
-	--black: var(--text);
-	--gray: var(--muted);
-	--gray-light: var(--highlight-low);
-	--gray-dark: var(--text);
-	--gray-gradient: rgba(244, 237, 232, 0.5), var(--surface);
-	--box-shadow:
-		0 2px 6px rgba(152, 147, 165, 0.25), 0 8px 24px rgba(152, 147, 165, 0.33), 0 16px
-		32px rgba(152, 147, 165, 0.33);
+  /* Base colors */
+  --base: #faf4ed;
+  --surface: #fffaf3;
+  --overlay: #f2e9e1;
+
+  /* Text colors */
+  --text: #575279;
+  --muted: #9893a5;
+  --subtle: #797593;
+
+  /* Accent colors */
+  --love: #b4637a;
+  --gold: #ea9d34;
+  --rose: #d7827e;
+  --pine: #286983;
+  --foam: #56949f;
+  --iris: #907aa9;
+
+  /* Highlight colors */
+  --highlight-low: #f4ede8;
+  --highlight-med: #dfdad9;
+  --highlight-high: #cecacd;
+
+  /* Semantic mappings for backward compatibility */
+  --accent: var(--pine);
+  --accent-dark: var(--foam);
+  --black: var(--text);
+  --gray: var(--muted);
+  --gray-light: var(--highlight-low);
+  --gray-dark: var(--text);
+  --gray-gradient: rgba(244, 237, 232, 0.5), var(--surface);
+  --box-shadow:
+    0 2px 6px rgba(152, 147, 165, 0.25), 0 8px 24px rgba(152, 147, 165, 0.33),
+    0 16px 32px rgba(152, 147, 165, 0.33);
 }
 
 /* Rosé Pine Moon (Dark Mode) */
 [data-theme="dark"] {
-	/* Base colors */
-	--base: #232136;
-	--surface: #2a273f;
-	--overlay: #393552;
-	
-	/* Text colors */
-	--text: #e0def4;
-	--muted: #6e6a86;
-	--subtle: #908caa;
-	
-	/* Accent colors */
-	--love: #eb6f92;
-	--gold: #f6c177;
-	--rose: #ea9a97;
-	--pine: #3e8fb0;
-	--foam: #9ccfd8;
-	--iris: #c4a7e7;
-	
-	/* Highlight colors */
-	--highlight-low: #2a283e;
-	--highlight-med: #44415a;
-	--highlight-high: #56526e;
-	
-	/* Semantic mappings for backward compatibility */
-	--accent: var(--pine);
-	--accent-dark: var(--foam);
-	--black: var(--text);
-	--gray: var(--muted);
-	--gray-light: var(--highlight-low);
-	--gray-dark: var(--text);
-	--gray-gradient: rgba(42, 40, 62, 0.5), var(--surface);
-	--box-shadow:
-		0 2px 6px rgba(110, 106, 134, 0.25), 0 8px 24px rgba(110, 106, 134, 0.33), 0 16px
-		32px rgba(110, 106, 134, 0.33);
+  /* Base colors */
+  --base: #232136;
+  --surface: #2a273f;
+  --overlay: #393552;
+
+  /* Text colors */
+  --text: #e0def4;
+  --muted: #6e6a86;
+  --subtle: #908caa;
+
+  /* Accent colors */
+  --love: #eb6f92;
+  --gold: #f6c177;
+  --rose: #ea9a97;
+  --pine: #3e8fb0;
+  --foam: #9ccfd8;
+  --iris: #c4a7e7;
+
+  /* Highlight colors */
+  --highlight-low: #2a283e;
+  --highlight-med: #44415a;
+  --highlight-high: #56526e;
+
+  /* Semantic mappings for backward compatibility */
+  --accent: var(--pine);
+  --accent-dark: var(--foam);
+  --black: var(--text);
+  --gray: var(--muted);
+  --gray-light: var(--highlight-low);
+  --gray-dark: var(--text);
+  --gray-gradient: rgba(42, 40, 62, 0.5), var(--surface);
+  --box-shadow:
+    0 2px 6px rgba(110, 106, 134, 0.25), 0 8px 24px rgba(110, 106, 134, 0.33),
+    0 16px 32px rgba(110, 106, 134, 0.33);
 }
 
 /* Force light mode when explicitly set */
 [data-theme="light"] {
-	/* Base colors */
-	--base: #faf4ed;
-	--surface: #fffaf3;
-	--overlay: #f2e9e1;
-	
-	/* Text colors */
-	--text: #575279;
-	--muted: #9893a5;
-	--subtle: #797593;
-	
-	/* Accent colors */
-	--love: #b4637a;
-	--gold: #ea9d34;
-	--rose: #d7827e;
-	--pine: #286983;
-	--foam: #56949f;
-	--iris: #907aa9;
-	
-	/* Highlight colors */
-	--highlight-low: #f4ede8;
-	--highlight-med: #dfdad9;
-	--highlight-high: #cecacd;
-	
-	/* Semantic mappings for backward compatibility */
-	--accent: var(--pine);
-	--accent-dark: var(--foam);
-	--black: var(--text);
-	--gray: var(--muted);
-	--gray-light: var(--highlight-low);
-	--gray-dark: var(--text);
-	--gray-gradient: rgba(244, 237, 232, 0.5), var(--surface);
-	--box-shadow:
-		0 2px 6px rgba(152, 147, 165, 0.25), 0 8px 24px rgba(152, 147, 165, 0.33), 0 16px
-		32px rgba(152, 147, 165, 0.33);
+  /* Base colors */
+  --base: #faf4ed;
+  --surface: #fffaf3;
+  --overlay: #f2e9e1;
+
+  /* Text colors */
+  --text: #575279;
+  --muted: #9893a5;
+  --subtle: #797593;
+
+  /* Accent colors */
+  --love: #b4637a;
+  --gold: #ea9d34;
+  --rose: #d7827e;
+  --pine: #286983;
+  --foam: #56949f;
+  --iris: #907aa9;
+
+  /* Highlight colors */
+  --highlight-low: #f4ede8;
+  --highlight-med: #dfdad9;
+  --highlight-high: #cecacd;
+
+  /* Semantic mappings for backward compatibility */
+  --accent: var(--pine);
+  --accent-dark: var(--foam);
+  --black: var(--text);
+  --gray: var(--muted);
+  --gray-light: var(--highlight-low);
+  --gray-dark: var(--text);
+  --gray-gradient: rgba(244, 237, 232, 0.5), var(--surface);
+  --box-shadow:
+    0 2px 6px rgba(152, 147, 165, 0.25), 0 8px 24px rgba(152, 147, 165, 0.33),
+    0 16px 32px rgba(152, 147, 165, 0.33);
 }
 
 @media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]):not([data-theme="dark"]) {
-		/* Base colors */
-		--base: #232136;
-		--surface: #2a273f;
-		--overlay: #393552;
-		
-		/* Text colors */
-		--text: #e0def4;
-		--muted: #6e6a86;
-		--subtle: #908caa;
-		
-		/* Accent colors */
-		--love: #eb6f92;
-		--gold: #f6c177;
-		--rose: #ea9a97;
-		--pine: #3e8fb0;
-		--foam: #9ccfd8;
-		--iris: #c4a7e7;
-		
-		/* Highlight colors */
-		--highlight-low: #2a283e;
-		--highlight-med: #44415a;
-		--highlight-high: #56526e;
-		
-		/* Semantic mappings for backward compatibility */
-		--accent: var(--pine);
-		--accent-dark: var(--foam);
-		--black: var(--text);
-		--gray: var(--muted);
-		--gray-light: var(--highlight-low);
-		--gray-dark: var(--text);
-		--gray-gradient: rgba(42, 40, 62, 0.5), var(--surface);
-		--box-shadow:
-			0 2px 6px rgba(110, 106, 134, 0.25), 0 8px 24px rgba(110, 106, 134, 0.33), 0 16px
-			32px rgba(110, 106, 134, 0.33);
-	}
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    /* Base colors */
+    --base: #232136;
+    --surface: #2a273f;
+    --overlay: #393552;
+
+    /* Text colors */
+    --text: #e0def4;
+    --muted: #6e6a86;
+    --subtle: #908caa;
+
+    /* Accent colors */
+    --love: #eb6f92;
+    --gold: #f6c177;
+    --rose: #ea9a97;
+    --pine: #3e8fb0;
+    --foam: #9ccfd8;
+    --iris: #c4a7e7;
+
+    /* Highlight colors */
+    --highlight-low: #2a283e;
+    --highlight-med: #44415a;
+    --highlight-high: #56526e;
+
+    /* Semantic mappings for backward compatibility */
+    --accent: var(--pine);
+    --accent-dark: var(--foam);
+    --black: var(--text);
+    --gray: var(--muted);
+    --gray-light: var(--highlight-low);
+    --gray-dark: var(--text);
+    --gray-gradient: rgba(42, 40, 62, 0.5), var(--surface);
+    --box-shadow:
+      0 2px 6px rgba(110, 106, 134, 0.25), 0 8px 24px rgba(110, 106, 134, 0.33),
+      0 16px 32px rgba(110, 106, 134, 0.33);
+  }
 }
 
 body {
-	font-family: var(--font-quantico), "Quantico", sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background-color: var(--base);
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: var(--text);
-	font-size: 20px;
-	line-height: 1.7;
+  font-family: var(--font-quantico), "Quantico", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background-color: var(--base);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1.7;
 }
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+  width: 720px;
+  max-width: calc(100% - 2em);
+  margin: auto;
+  padding: 3em 1em;
 }
 
 h1,
@@ -177,101 +176,101 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
-	color: var(--text);
-	line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+  line-height: 1.2;
 }
 h1 {
-	font-size: 1.052em;
+  font-size: 1.052em;
 }
 h2 {
-	font-size: 1.441em;
+  font-size: 1.441em;
 }
 h3 {
-	font-size: 1.953em;
+  font-size: 1.953em;
 }
 h4 {
-	font-size: 1.563em;
+  font-size: 1.563em;
 }
 h5 {
-	font-size: 1.25em;
+  font-size: 1.25em;
 }
 strong,
 b {
-	font-weight: 700;
+  font-weight: 700;
 }
 a {
-	color: var(--accent);
+  color: var(--accent);
 }
 a:hover {
-	color: var(--accent);
+  color: var(--accent);
 }
 p {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 textarea {
-	width: 100%;
-	font-size: 14px;
+  width: 100%;
+  font-size: 14px;
 }
 input {
-	font-size: 14px;
+  font-size: 14px;
 }
 table {
-	width: 100%;
+  width: 100%;
 }
 img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 code {
-	padding: 2px 5px;
-	background-color: var(--highlight-low);
-	border-radius: 2px;
+  padding: 2px 5px;
+  background-color: var(--highlight-low);
+  border-radius: 2px;
 }
 pre {
-	padding: 1.5em;
-	border-radius: 8px;
+  padding: 1.5em;
+  border-radius: 8px;
 }
 pre > code {
-	all: unset;
+  all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
+  border-left: 4px solid var(--accent);
+  padding: 0 0 0 20px;
+  margin: 0px;
+  font-size: 1.333em;
 }
 hr {
-	border: none;
-	border-top: 1px solid var(--highlight-low);
+  border: none;
+  border-top: 1px solid var(--highlight-low);
 }
 @media (max-width: 720px) {
-	body {
-		font-size: 12px;
-	}
-	main {
-		padding: 1em;
-	}
+  body {
+    font-size: 12px;
+  }
+  main {
+    padding: 1em;
+  }
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px 1px 1px 1px);
+  /* maybe deprecated but we need to support legacy browsers */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* modern browsers, clip-path works inwards from each corner */
+  clip-path: inset(50%);
+  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+  white-space: nowrap;
 }

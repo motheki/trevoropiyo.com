@@ -11,8 +11,6 @@ export async function GET(context) {
     title: "Trevor Opiyo",
     description: "Trevor Opiyo's Blog",
     site: context.site,
-    items: await pagesGlobToRssItems(
-      import.meta.glob('./blog/*.{md,mdx}'),
-    ),
+    items: await pagesGlobToRssItems(import.meta.glob("./blog/*.{md,mdx}")),
   });
 }
