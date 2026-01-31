@@ -1,27 +1,27 @@
-/* Rosé Pine Dawn (Light Mode) - Default */
+/* Nord - Light Mode - Default */
 :root {
   /* Base colors */
-  --base: #faf4ed;
-  --surface: #fffaf3;
-  --overlay: #f2e9e1;
+  --base: #eceff4;
+  --surface: #e5e9f0;
+  --overlay: #d8dee9;
 
   /* Text colors */
-  --text: #575279;
-  --muted: #9893a5;
-  --subtle: #797593;
+  --text: #434c5e;
+  --muted: #4c566a;
+  --subtle: #3b4252;
 
   /* Accent colors */
-  --love: #b4637a;
-  --gold: #ea9d34;
-  --rose: #d7827e;
-  --pine: #286983;
-  --foam: #56949f;
-  --iris: #907aa9;
+  --love: #bf616a;
+  --gold: #ebcb8b;
+  --rose: #d08770;
+  --pine: #88c0d0;
+  --foam: #81a1c1;
+  --iris: #b48ead;
 
   /* Highlight colors */
-  --highlight-low: #f4ede8;
-  --highlight-med: #dfdad9;
-  --highlight-high: #cecacd;
+  --highlight-low: #e5e9f0;
+  --highlight-med: #d8dee9;
+  --highlight-high: #81a1c1;
 
   /* Semantic mappings for backward compatibility */
   --accent: var(--pine);
@@ -30,10 +30,10 @@
   --gray: var(--muted);
   --gray-light: var(--highlight-low);
   --gray-dark: var(--text);
-  --gray-gradient: rgba(244, 237, 232, 0.5), var(--surface);
+  --gray-gradient: rgba(76, 86, 106, 0.15), var(--surface);
   --box-shadow:
-    0 2px 6px rgba(152, 147, 165, 0.25), 0 8px 24px rgba(152, 147, 165, 0.33),
-    0 16px 32px rgba(152, 147, 165, 0.33);
+    0 2px 6px rgba(67, 76, 94, 0.15), 0 8px 24px rgba(67, 76, 94, 0.2),
+    0 16px 32px rgba(67, 76, 94, 0.2);
 }
 
 /* Rosé Pine Moon (Dark Mode) */

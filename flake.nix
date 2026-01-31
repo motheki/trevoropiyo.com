@@ -3,30 +3,23 @@
 
   inputs = {
     nixpkgs = {
-			url = "github:nixos/nixpkgs/master";
-		};
+      url = "github:nixos/nixpkgs/master";
+    };
     flake-parts = {
-			url = "github:hercules-ci/flake-parts/main";
-		};
+      url = "github:hercules-ci/flake-parts/main";
+    };
     git-hooks-nix = {
-			url = "github:cachix/git-hooks.nix/master";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+      url = "github:cachix/git-hooks.nix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     devenv = {
-			url = "github:cachix/devenv/main";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-    nix2container = {
-			url = "github:nlewo/nix2container/master";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-    mk-shell-bin = {
-			url = "github:rrbutani/nix-mk-shell-bin/main";
-		};
+      url = "github:cachix/devenv/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
-			url = "github:numtide/treefmt-nix/main";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+      url = "github:numtide/treefmt-nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
