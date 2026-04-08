@@ -41,7 +41,7 @@
                 lsp = {
                   enable = true;
                 };
-                pnpm = {
+                bun = {
                   enable = true;
                   package = pkgs.pnpm;
                   install = {
@@ -66,19 +66,16 @@
               statix = {
                 enable = true;
               };
-              nixfmt-rfc-style = {
-                enable = true;
-              };
               oxlint = {
                 enable = true;
                 name = "oxlint";
-                entry = "pnpm lint";
+                entry = "bun lint";
                 pass_filenames = false;
               };
               oxfmt = {
                 enable = true;
                 name = "oxfmt";
-                entry = "pnpm fmt";
+                entry = "bun fmt";
                 pass_filenames = false;
               };
             };

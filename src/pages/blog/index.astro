@@ -20,8 +20,7 @@ const posts = (await getCollection("blog")).sort(
 	<body>
 		<Header />
 		<main
-			transition:animate="slide"
-			class="w-[960px]! max-w-[calc(100%-2em)] mx-auto py-12 px-4"
+			class="w-full max-w-[960px]! mx-auto py-12 px-4"
 		>
 			<section>
 				<ul class="flex flex-wrap gap-8 list-none m-0 p-0">
@@ -29,34 +28,31 @@ const posts = (await getCollection("blog")).sort(
 						posts.map((post, i) => (
 							<li
 								class:list={[
-									"rounded-xl transition-transform duration-200 hover:-translate-y-1",
+									"rounded-xl",
 									i === 0
 										? "w-full mb-4 text-center"
-										: "w-[calc(50%-1rem)]",
+										: "w-full sm:w-[calc(50%-1rem)]",
 								]}
-								style="box-shadow: none"
-								onmouseover="this.style.boxShadow='var(--box-shadow)'"
-								onmouseout="this.style.boxShadow='none'"
 							>
 								<a href={`/blog/${post.id}/`} class="block no-underline">
 									<Image
 										transition:name={"hero-" + post.id}
 										width={i === 0 ? 960 : 720}
 										height={i === 0 ? 480 : 360}
-										src={post.data.heroImage ?? "/big-bend.png"}
-										alt={post.data.title}
-										class:list={["mb-2 rounded-xl", i === 0 && "w-full"]}
+                    src={post.data.heroImage ?? "../../images/big-bend.png"}
+										alt={post.data.title ?? null}
+										class:list={["mb-2 rounded-xl w-full h-auto"]}
 									/>
 									<h4
 										transition:name={"title-" + post.id}
 										class:list={[
-											"m-0 text-body leading-none",
+											"m-0 text-body leading-tight",
 											i === 0 ? "text-[2.369rem]" : "",
 										]}
 									>
 										{post.data.title}
 									</h4>
-									<p class="m-0 text-muted">
+									<p class="m-0 text-muted text-sm">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
 								</a>
