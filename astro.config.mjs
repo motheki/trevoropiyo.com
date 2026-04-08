@@ -1,24 +1,36 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, memoryCache } from "astro/config";
+
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://trevoropiyo.com",
   integrations: [mdx(), sitemap()],
+
   prefetch: {
     prefetchAll: true,
   },
+
+  fonts: [{
+    provider: fontProviders.google(),
+    name: "Quantico",
+    cssVariable: "--font-quantico",
+    weights: [400, 700],
+  }],
+
   experimental: {
+   cache: {
+      provider: memoryCache(),
+    },
     clientPrerender: true,
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Quantico",
-        cssVariable: "--font-quantico",
-        weights: [400, 700],
-      },
-    ],
+    queuedRendering: {
+      enabled: true,
+      contentCache: true
+    },
+    rustCompiler: true
   },
+
   image: {
     // Example: Enable the Sharp-based image service with a custom config
     service: {
@@ -28,5 +40,9 @@ export default defineConfig({
       },
     },
     experimentalLayout: "constrained",
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });

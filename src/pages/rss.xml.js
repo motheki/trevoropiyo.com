@@ -1,16 +1,16 @@
+import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import rss, { pagesGlobToRssItems } from "@astrojs/rss";
-import MarkdownIt from "markdown-it";
-import sanitizeHtml from "sanitize-html";
-
-const parser = new MarkdownIt();
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 export async function GET(context) {
-  const blog = await getCollection("blog");
+  const posts = await getCollection("blog");
   return rss({
-    title: "Trevor Opiyo",
-    description: "Trevor Opiyo's Blog",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     site: context.site,
-    items: await pagesGlobToRssItems(import.meta.glob("./blog/*.{md,mdx}")),
+    items: posts.map((post) => ({
+      ...post.data,
+      link: `/blog/${post.id}/`,
+    })),
   });
 }

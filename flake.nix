@@ -16,72 +16,42 @@
       url = "github:cachix/devenv/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.devenv.flakeModule
-        inputs.git-hooks-nix.flakeModule
-        inputs.treefmt-nix.flakeModule
       ];
-      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
-      perSystem = _: {
-        devenv = {
-          shells = {
-            default = {
-              name = "trevoropiyo.com";
-              languages = {
-                javascript = {
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      perSystem =
+        { pkgs, ... }:
+        {
+          devenv.shells.default = {
+            name = "trevoropiyo.com";
+            languages = {
+              javascript = {
+                enable = true;
+                lsp = {
                   enable = true;
-                  bun = {
+                };
+                pnpm = {
+                  enable = true;
+                  package = pkgs.pnpm;
+                  install = {
                     enable = true;
-                    install = {
-                      enable = true;
-                    };
                   };
                 };
               };
             };
-          };
-        };
-        treefmt = {
-          flakeFormatter = true;
-          programs = {
-            statix = {
-              enable = true;
-              includes = [
-                "*.nix"
-              ];
-            };
-            alejandra = {
-              enable = true;
-              includes = [
-                "*.nix"
-              ];
-            };
-            taplo = {
-              enable = true;
-              includes = [
-                "*.toml"
-              ];
-            };
-          };
-        };
-        pre-commit = {
-          check = {
-            enable = true;
-          };
-          settings = {
-            hooks = {
+            pre-commit.hooks = {
               check-added-large-files = {
-                enable = true;
-              };
-              check-docstring-first = {
                 enable = true;
               };
               check-merge-conflicts = {
@@ -96,18 +66,23 @@
               statix = {
                 enable = true;
               };
-              html-tidy = {
+              nixfmt-rfc-style = {
                 enable = true;
               };
-              mdformat = {
+              oxlint = {
                 enable = true;
+                name = "oxlint";
+                entry = "pnpm lint";
+                pass_filenames = false;
               };
-              lychee = {
+              oxfmt = {
                 enable = true;
+                name = "oxfmt";
+                entry = "pnpm fmt";
+                pass_filenames = false;
               };
             };
           };
         };
-      };
     };
 }
