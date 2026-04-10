@@ -5,6 +5,7 @@ import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import { SITE_TITLE } from "../consts";
 import { Font } from "astro:assets";
+import faviconImage from "../images/logo.png";
 
 interface Props {
   title: string;
@@ -21,7 +22,7 @@ const { title, description } = Astro.props;
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/png" href="../images/logo.png" />
+<link rel="icon" type="image/png" href={faviconImage.src} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
   rel="alternate"
