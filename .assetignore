@@ -1,0 +1,13 @@
+**/node_modules
+**/.DS_Store
+**/.git
+**/.jj
+**/.envrc
+**/flake.nix
+**/.oxlintrc.json
+**/.oxfmtrc.json
+**/flake.lock
+**/.direnv
+**/.claude
+**/.devenv
+**/.astro
