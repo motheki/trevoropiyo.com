@@ -3,9 +3,9 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
-import { SITE_TITLE } from "../consts";
+import { LINKEDIN_URL, SITE_TITLE } from "../consts";
 import { Font } from "astro:assets";
-import faviconImage from "../images/logo.png";
+import faviconImage from "../images/trevor-opiyo-llc-logo.png";
 
 interface Props {
   title: string;
@@ -34,10 +34,15 @@ const { title, description } = Astro.props;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
-<link rel="me" href="https://mastodon.social/@trevoropiyo" />
+<link rel="me" href={LINKEDIN_URL} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="theme-color" content="#020814" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
 <ClientRouter />

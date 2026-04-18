@@ -1,64 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  /* Nord Light palette */
-  --color-base: #eceff4;
-  --color-surface: #e5e9f0;
-  --color-overlay: #d8dee9;
-  --color-body: #2e3440;
-  --color-muted: #434c5e;
-  --color-subtle: #4c566a;
-  --color-love: #bf616a;
-  --color-gold: #ebcb8b;
-  --color-rose: #d08770;
-  --color-pine: #88c0d0;
-  --color-foam: #81a1c1;
-  --color-iris: #b48ead;
-  --color-hl-low: #e5e9f0;
-  --color-hl-med: #d8dee9;
-  --color-hl-high: #81a1c1;
+  --color-base: #020814;
+  --color-surface: #07162a;
+  --color-overlay: #0c2746;
+  --color-body: #f5f9ff;
+  --color-muted: #b8c8dd;
+  --color-subtle: #7ba9d6;
+  --color-love: #ff5b6e;
+  --color-gold: #f6d57b;
+  --color-rose: #86d9ff;
+  --color-pine: #24b7ff;
+  --color-foam: #63d7ff;
+  --color-iris: #dfe7f1;
+  --color-hl-low: #0d1c31;
+  --color-hl-med: #143659;
+  --color-hl-high: #1c9df0;
 
   --font-quantico: "Quantico", sans-serif;
 }
 
-/* Nord Dark palette — overrides via system preference, no JS needed */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-base: #2e3440;
-    --color-surface: #3b4252;
-    --color-overlay: #434c5e;
-    --color-body: #eceff4;
-    --color-muted: #d8dee9;
-    --color-subtle: #e5e9f0;
-    --color-hl-low: #3b4252;
-    --color-hl-med: #434c5e;
-    --color-hl-high: #4c566a;
-  }
-}
-
 @layer base {
+  html {
+    background-color: var(--color-base);
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-quantico), "Quantico", sans-serif;
-    background-color: var(--color-base);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(36, 183, 255, 0.16), transparent 28rem),
+      linear-gradient(135deg, #020814 0%, #031124 44%, #06192d 100%);
     color: var(--color-body);
-    font-size: clamp(14px, 1.25vw + 10px, 20px);
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.65;
     text-align: left;
     word-wrap: break-word;
     overflow-wrap: break-word;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
   }
 
   main {
-    width: 720px;
-    max-width: calc(100% - 2em);
+    width: min(1120px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 3em 1em;
+    padding: 64px 0;
   }
 
   a {
     color: var(--color-pine);
+    text-underline-offset: 0.2em;
   }
 
   h1,
@@ -68,24 +60,25 @@
   h5,
   h6 {
     color: var(--color-body);
-    line-height: 1.2;
+    line-height: 1.08;
     margin: 0 0 0.5rem 0;
+    letter-spacing: 0;
   }
 
   h1 {
-    font-size: 2.488em;
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
   }
   h2 {
-    font-size: 2.074em;
+    font-size: clamp(2rem, 4vw, 3.2rem);
   }
   h3 {
-    font-size: 1.728em;
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
   }
   h4 {
-    font-size: 1.44em;
+    font-size: 1.2rem;
   }
   h5 {
-    font-size: 1.2em;
+    font-size: 1rem;
   }
   h6 {
     font-size: 1em;
@@ -97,11 +90,11 @@
   }
 
   p {
-    margin-bottom: 1em;
+    margin: 0 0 1rem;
   }
 
   .prose p {
-    margin-bottom: 2em;
+    margin-bottom: 1.25rem;
   }
 
   textarea {
@@ -119,7 +112,6 @@
     max-width: 100%;
     width: 100%;
     height: auto;
-    border-radius: 8px;
     object-fit: cover;
   }
 
@@ -139,20 +131,27 @@
   }
 
   blockquote {
-    border-left: 4px solid var(--color-pine);
-    padding: 0 0 0 20px;
-    margin: 0;
-    font-size: 1.333em;
+    border-left: 3px solid var(--color-pine);
+    color: var(--color-muted);
+    padding: 0 0 0 1rem;
+    margin: 1.5rem 0;
+    font-size: 1.05rem;
   }
 
   hr {
     border: none;
-    border-top: 1px solid var(--color-hl-low);
+    border-top: 1px solid rgba(99, 215, 255, 0.18);
+  }
+
+  ::selection {
+    background: rgba(36, 183, 255, 0.28);
+    color: var(--color-body);
   }
 
   @media (max-width: 720px) {
     main {
-      padding: 1em;
+      width: min(100% - 24px, 1120px);
+      padding: 40px 0;
     }
   }
 }

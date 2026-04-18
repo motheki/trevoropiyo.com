@@ -17,42 +17,79 @@ const { title, description, pubDate, updatedDate, heroImage, id } = Astro.props;
   </head>
   <body>
     <Header />
-    <main class="w-full! max-w-full! m-0! p-0!">
-      <article>
-        <div class="w-full max-w-[960px] mx-auto px-4">
+    <main class="m-0! w-full! max-w-full! p-0!">
+      <article class="px-4 py-12 sm:py-16">
+        <div class="mx-auto mb-8 max-w-[960px]">
           {
             heroImage && (
-              <Image
-                transition:name={id ? "hero-" + id : undefined}
-                width={1020}
-                height={510}
-                src={heroImage}
-                alt={title ?? null}
-                class="block w-full h-auto rounded-xl"
-                style="box-shadow: var(--box-shadow)"
-              />
+              <div class="flex min-h-[280px] items-center justify-center rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.76)] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
+                <Image
+                  transition:name={id ? "hero-" + id : undefined}
+                  width={heroImage.width}
+                  height={heroImage.height}
+                  src={heroImage}
+                  alt={title ?? ""}
+                  class="max-h-[320px] w-auto rounded-none object-contain"
+                />
+              </div>
             )
           }
         </div>
-        <div class="w-full max-w-[720px] mx-auto px-4 text-body">
-          <div class="mb-4 py-4 text-center leading-none">
-            <div class="mb-2 text-muted text-sm">
+        <div class="mx-auto w-full max-w-[780px] text-body">
+          <div class="mb-8 leading-none">
+            <div class="mb-3 text-sm font-bold uppercase text-pine">
               <FormattedDate date={pubDate} />
               {
                 updatedDate && (
-                  <div class="italic">
+                  <div class="mt-2 text-muted">
                     Last updated on <FormattedDate date={updatedDate} />
                   </div>
                 )
               }
             </div>
-            <h1 transition:name={id ? "title-" + id : undefined}>{title}</h1>
-            <hr />
+            <h1 transition:name={id ? "title-" + id : undefined} class="text-[clamp(2.4rem,6vw,4.8rem)]">
+              {title}
+            </h1>
+            <p class="mt-5 text-xl leading-8 text-muted">{description}</p>
           </div>
-          <slot />
+          <div class="case-study-content">
+            <slot />
+          </div>
         </div>
       </article>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  :global(.case-study-content h2) {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  :global(.case-study-content h3) {
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  :global(.case-study-content p),
+  :global(.case-study-content li) {
+    color: var(--color-muted);
+  }
+
+  :global(.case-study-content ul) {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+  }
+
+  :global(.case-study-content li) {
+    margin-bottom: 0.55rem;
+  }
+
+  :global(.case-study-content a) {
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>

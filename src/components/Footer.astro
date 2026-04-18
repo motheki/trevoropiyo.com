@@ -1,9 +1,26 @@
 ---
+import { LINKEDIN_URL, SITE_EMAIL } from "../consts";
+
 const today = new Date();
 ---
 
 <footer
-  class="px-4 py-8 pb-24 bg-base text-muted text-center"
+  class="border-t border-[rgba(99,215,255,0.14)] bg-[rgba(2,8,20,0.9)] px-4 py-10 text-muted"
 >
-  &copy; {today.getFullYear()} Trevor Opiyo. All rights reserved.
+  <div class="mx-auto flex max-w-[1120px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <p class="m-0">&copy; {today.getFullYear()} Trevor Opiyo LLC. All rights reserved.</p>
+    <div class="flex flex-wrap gap-4 text-sm font-semibold">
+      <a href={`mailto:${SITE_EMAIL}`} class="text-muted no-underline hover:text-pine">
+        {SITE_EMAIL}
+      </a>
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="noreferrer"
+        class="text-muted no-underline hover:text-pine"
+      >
+        LinkedIn
+      </a>
+    </div>
+  </div>
 </footer>

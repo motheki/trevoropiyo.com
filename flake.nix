@@ -8,13 +8,8 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts/main";
     };
-    git-hooks-nix = {
-      url = "github:cachix/git-hooks.nix/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     devenv = {
       url = "github:cachix/devenv/main";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -31,10 +26,14 @@
         "x86_64-darwin"
       ];
       perSystem =
-        { pkgs, ... }:
+        _:
         {
           devenv.shells.default = {
             name = "trevoropiyo.com";
+            cachix = {
+              enable = true;
+              push = ["motheki"];
+            };
             languages = {
               javascript = {
                 enable = true;
@@ -43,40 +42,10 @@
                 };
                 bun = {
                   enable = true;
-                  package = pkgs.pnpm;
                   install = {
                     enable = true;
                   };
                 };
-              };
-            };
-            pre-commit.hooks = {
-              check-added-large-files = {
-                enable = true;
-              };
-              check-merge-conflicts = {
-                enable = true;
-              };
-              check-yaml = {
-                enable = true;
-              };
-              check-toml = {
-                enable = true;
-              };
-              statix = {
-                enable = true;
-              };
-              oxlint = {
-                enable = true;
-                name = "oxlint";
-                entry = "bun lint";
-                pass_filenames = false;
-              };
-              oxfmt = {
-                enable = true;
-                name = "oxfmt";
-                entry = "bun fmt";
-                pass_filenames = false;
               };
             };
           };

@@ -12,23 +12,25 @@ export default defineConfig({
     prefetchAll: true,
   },
 
-  fonts: [{
-    provider: fontProviders.google(),
-    name: "Quantico",
-    cssVariable: "--font-quantico",
-    weights: [400, 700],
-  }],
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Quantico",
+      cssVariable: "--font-quantico",
+      weights: [400, 700],
+    },
+  ],
 
   experimental: {
-   cache: {
+    cache: {
       provider: memoryCache(),
     },
     clientPrerender: true,
     queuedRendering: {
       enabled: true,
-      contentCache: true
+      contentCache: true,
     },
-    rustCompiler: true
+    rustCompiler: true,
   },
 
   image: {

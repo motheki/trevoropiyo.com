@@ -1,15 +1,229 @@
 ---
-import Layout from "../layouts/BlogPost.astro";
-import LogoImage from "../images/logo.png"
+import { Image } from "astro:assets";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import {
+  LINKEDIN_URL,
+  SITE_DESCRIPTION,
+  SITE_EMAIL,
+  SITE_TITLE,
+} from "../consts";
+import athletiqLogo from "../images/athletiq-logo.png";
+import usbnLogo from "../images/usbn-logo.webp";
+
+const capabilities = [
+  {
+    title: "Software Platforms",
+    body: "Full-cycle product engineering for websites, internal systems, and digital operations that need to stay maintainable after launch.",
+  },
+  {
+    title: "Mobile and Web Apps",
+    body: "Cross-platform app work with Expo, React Native, Astro, API integrations, authenticated flows, and production deployment paths.",
+  },
+  {
+    title: "IT Systems",
+    body: "Infrastructure-minded implementation shaped by hands-on support, endpoint management, scripting, networking, and operations experience.",
+  },
+  {
+    title: "Applied R&D",
+    body: "Practical research and development for data workflows, AI-assisted product features, camera pipelines, and real-time user experiences.",
+  },
+];
+
+const experience = [
+  "Bachelor of Science in Computer Science with a Mathematics minor from Texas Tech University.",
+  "Systems programming background with Python, Java, SQL, Swift, Rust, Go, C, Zsh, and HTML.",
+  "Experience across help desk operations, hardware encryption, endpoint policy deployment, VPN services, automation, and data recovery.",
+];
 ---
 
-<Layout
-	title="Trevor Opiyo"
-	description="Software Developer"
-	pubDate={new Date('January 30 2024')}
-  heroImage={LogoImage}
->
-	<p>
-Hi I'm Trevor. Subscribe to <a href="/rss.xml">My RSS Feed</a> and follow me across the web via my social links below.
-	</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="m-0! w-full! max-w-full! p-0!">
+      <section class="relative isolate overflow-hidden border-b border-[rgba(99,215,255,0.14)] px-4 py-20 sm:py-24">
+        <div class="absolute inset-0 -z-10 bg-[linear-gradient(145deg,rgba(2,8,20,0.92),rgba(4,19,39,0.78))]"></div>
+        <div class="mx-auto grid max-w-[1120px] gap-10">
+          <div class="max-w-[820px]">
+            <p class="mb-4 text-sm font-bold uppercase text-pine">Software development and systems engineering</p>
+            <h1 class="max-w-[780px]">Trevor Opiyo LLC</h1>
+            <p class="mt-6 max-w-[680px] text-xl leading-8 text-muted">
+              Building practical software, IT systems, and digital product infrastructure for teams
+              that need modern platforms with operational discipline behind them.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                href={`mailto:${SITE_EMAIL}`}
+                class="rounded-full bg-pine px-5 py-3 text-sm font-bold text-[#031124] no-underline shadow-[0_0_28px_rgba(36,183,255,0.28)] transition hover:bg-foam"
+              >
+                Start a Project
+              </a>
+              <a
+                href="#work"
+                class="rounded-full border border-[rgba(99,215,255,0.34)] px-5 py-3 text-sm font-bold text-body no-underline transition hover:border-pine hover:bg-[rgba(36,183,255,0.1)]"
+              >
+                View Work
+              </a>
+            </div>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-3">
+            <div class="border-l border-pine/60 pl-4">
+              <p class="mb-1 text-2xl font-bold text-body">Web</p>
+              <p class="m-0 text-sm text-muted">Public sites, dashboards, content, APIs</p>
+            </div>
+            <div class="border-l border-pine/60 pl-4">
+              <p class="mb-1 text-2xl font-bold text-body">Mobile</p>
+              <p class="m-0 text-sm text-muted">Expo, React Native, device workflows</p>
+            </div>
+            <div class="border-l border-pine/60 pl-4">
+              <p class="mb-1 text-2xl font-bold text-body">Systems</p>
+              <p class="m-0 text-sm text-muted">Operations, scripting, infrastructure</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="px-4 py-16 sm:py-20">
+        <div class="mx-auto max-w-[1120px]">
+          <div class="mb-8 max-w-[720px]">
+            <p class="mb-3 text-sm font-bold uppercase text-pine">Capabilities</p>
+            <h2>Engineering That Connects Product And Operations</h2>
+            <p class="mt-4 text-lg text-muted">
+              Trevor Opiyo LLC combines software delivery with the kind of systems thinking that
+              comes from working close to users, devices, infrastructure, and production support.
+            </p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {
+              capabilities.map((item) => (
+                <article class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.76)] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
+                  <h3 class="text-xl">{item.title}</h3>
+                  <p class="m-0 text-muted">{item.body}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="border-y border-[rgba(99,215,255,0.14)] bg-[rgba(3,14,28,0.72)] px-4 py-16 sm:py-20">
+        <div class="mx-auto max-w-[1120px]">
+          <div class="mb-8 max-w-[760px]">
+            <p class="mb-3 text-sm font-bold uppercase text-pine">Selected Work</p>
+            <h2>Sports Platforms Built For Fans, Players, And Teams</h2>
+            <p class="mt-4 text-lg text-muted">
+              Current work centers on basketball technology: league infrastructure, mobile
+              experiences, media surfaces, analytics, and real-time camera-based workflows.
+            </p>
+          </div>
+          <div class="grid gap-5 lg:grid-cols-2">
+            <article class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-base/80 p-6">
+              <div class="mb-6 flex h-28 items-center justify-center rounded-md bg-white p-5">
+                <Image
+                  src={usbnLogo}
+                  alt="USBN logo"
+                  width={180}
+                  height={180}
+                  class="h-full w-auto rounded-none object-contain"
+                />
+              </div>
+              <p class="mb-2 text-sm font-bold uppercase text-pine">Official Technology Developer</p>
+              <h3>United States Basketball Network</h3>
+              <p class="text-muted">
+                Building the USBN digital ecosystem for the 2026 USBC Champion League, including
+                mobile/web experiences, team and player surfaces, schedules, standings, news,
+                USBNtv, and fan engagement workflows.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                <a href="/blog/usbn-digital-platform/" class="font-bold no-underline hover:text-foam">
+                  Read Case Study
+                </a>
+                <a
+                  href="https://usbn.pro"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="font-bold text-muted no-underline hover:text-foam"
+                >
+                  Visit USBN
+                </a>
+              </div>
+            </article>
+            <article class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-base/80 p-6">
+              <div class="mb-6 flex h-28 items-center justify-center rounded-md bg-black p-5">
+                <Image
+                  src={athletiqLogo}
+                  alt="AthletIQ logo"
+                  width={360}
+                  height={90}
+                  class="max-h-full w-auto rounded-none object-contain"
+                />
+              </div>
+              <p class="mb-2 text-sm font-bold uppercase text-pine">Mobile App Engineering</p>
+              <h3>AthletIQ</h3>
+              <p class="text-muted">
+                Contributing to an Expo React Native basketball training app with game modes,
+                season progression, shot analytics, Clerk and Convex-backed data, real-time
+                camera-based shot detection, and H.264 WebSocket streaming.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                <a href="/blog/athletiq-basketball-technology/" class="font-bold no-underline hover:text-foam">
+                  Read Case Study
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-4 py-16 sm:py-20">
+        <div class="mx-auto grid max-w-[1120px] gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p class="mb-3 text-sm font-bold uppercase text-pine">Experience Foundation</p>
+            <h2>Systems Programmer With Production Support Roots</h2>
+          </div>
+          <div class="grid gap-4">
+            {
+              experience.map((item) => (
+                <p class="m-0 rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.72)] p-5 text-muted">
+                  {item}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="px-4 pb-20">
+        <div class="mx-auto max-w-[1120px] rounded-lg border border-[rgba(99,215,255,0.22)] bg-[linear-gradient(135deg,rgba(7,22,42,0.94),rgba(12,39,70,0.76))] p-8 sm:p-10">
+          <p class="mb-3 text-sm font-bold uppercase text-pine">Contact</p>
+          <h2 class="max-w-[820px]">Need a software partner for a web, mobile, or systems project?</h2>
+          <p class="mt-4 max-w-[700px] text-lg text-muted">
+            Reach out with the problem, current constraints, and what success needs to look like.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href={`mailto:${SITE_EMAIL}`}
+              class="rounded-full bg-pine px-5 py-3 text-sm font-bold text-[#031124] no-underline transition hover:bg-foam"
+            >
+              {SITE_EMAIL}
+            </a>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              class="rounded-full border border-[rgba(99,215,255,0.34)] px-5 py-3 text-sm font-bold text-body no-underline transition hover:border-pine hover:bg-[rgba(36,183,255,0.1)]"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
