@@ -29,5 +29,15 @@
     "oxfmt": "^0.44.0",
     "oxlint": "^1.62.0",
     "oxlint-tsgolint": "^0.20.0"
+  },
+  "overrides": {
+    "vite": "^7"
+  },
+  "aube": {
+    "allowBuilds": {
+      "esbuild": true,
+      "sharp": true,
+      "workerd": true
+    }
   }
 }

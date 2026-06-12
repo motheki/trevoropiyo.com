@@ -10,6 +10,7 @@
     };
     devenv = {
       url = "github:cachix/devenv/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -26,14 +27,13 @@
         "x86_64-darwin"
       ];
       perSystem =
-        _:
+        { pkgs, ... }:
         {
           devenv.shells.default = {
             name = "trevoropiyo.com";
-            cachix = {
-              enable = true;
-              push = ["motheki"];
-            };
+            packages = with pkgs; [
+              aube
+            ];
             languages = {
               javascript = {
                 enable = true;
@@ -41,9 +41,9 @@
                   enable = true;
                 };
                 bun = {
-                  enable = true;
+                  enable = false;
                   install = {
-                    enable = true;
+                    enable = false;
                   };
                 };
               };
