@@ -27,13 +27,10 @@
         "x86_64-darwin"
       ];
       perSystem =
-        { pkgs, ... }:
+        { ... }:
         {
           devenv.shells.default = {
             name = "trevoropiyo.com";
-            packages = with pkgs; [
-              aube
-            ];
             languages = {
               javascript = {
                 enable = true;
@@ -41,9 +38,9 @@
                   enable = true;
                 };
                 bun = {
-                  enable = false;
+                  enable = true;
                   install = {
-                    enable = false;
+                    enable = true;
                   };
                 };
               };

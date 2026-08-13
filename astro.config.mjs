@@ -10,6 +10,11 @@ export default defineConfig({
 
   prefetch: {
     prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
+
+  cache: {
+    provider: memoryCache(),
   },
 
   fonts: [
@@ -22,19 +27,13 @@ export default defineConfig({
   ],
 
   experimental: {
-    cache: {
-      provider: memoryCache(),
-    },
     clientPrerender: true,
-    queuedRendering: {
-      enabled: true,
-      contentCache: true,
-    },
-    rustCompiler: true,
+    contentIntellisense: true,
+    chromeDevtoolsWorkspace: true,
+    incrementalBuild: true,
   },
 
   image: {
-    // Example: Enable the Sharp-based image service with a custom config
     service: {
       entrypoint: "astro/assets/services/sharp",
       config: {
