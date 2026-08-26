@@ -6,14 +6,14 @@
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
     flake-parts = {
-      url = "github:hercules-ci/flake-parts/main";
+      url = "github:hercules-ci/flake-parts";
     };
     treefmt-nix = {
-      url = "github:numtide/treefmt-nix/main";
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv = {
-      url = "github:cachix/devenv/main";
+      url = "github:cachix/devenv";
     };
   };
 
@@ -43,7 +43,15 @@
 
         devenv.shells.default = {
           name = "trevoropiyo.com";
-          cachix.enable = true;
+          cachix = {
+            enable = true;
+            pull = [
+              "devenv"
+              "nixpkgs"
+              "flake-parts"
+              "cachix"
+            ];
+          };
           languages = {
             nix = {
               enable = true;
