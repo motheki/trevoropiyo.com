@@ -1,19 +1,20 @@
 {
-  description = "Trevor Opiyo's Website Flake";
+  description = "trevoropiyo.com";
 
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      url = "github:nixos/nixpkgs/master";
     };
     flake-parts = {
-      url = "github:hercules-ci/flake-parts";
+      url = "github:hercules-ci/flake-parts/main";
     };
     treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
+      url = "github:numtide/treefmt-nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv = {
-      url = "github:cachix/devenv";
+      url = "github:cachix/devenv/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -29,18 +30,7 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      perSystem = {...}: {
-        treefmt = {
-          enableDefaultExcludes = true;
-          programs = {
-            alejandra.enable = true;
-            deadnix.enable = true;
-            mdformat.enable = true;
-            oxfmt.enable = true;
-            taplo.enable = true;
-          };
-        };
-
+      perSystem = _: {
         devenv.shells.default = {
           name = "trevoropiyo.com";
           cachix = {
@@ -53,12 +43,6 @@
             ];
           };
           languages = {
-            nix = {
-              enable = true;
-              lsp = {
-                enable = true;
-              };
-            };
             javascript = {
               enable = true;
               lsp = {
@@ -69,6 +53,18 @@
                 install = {
                   enable = true;
                 };
+              };
+            };
+          };
+          treefmt = {
+            enable = true;
+            config = {
+              programs = {
+                alejandra.enable = true;
+                deadnix.enable = true;
+                statix.enable = true;
+                jsonfmt.enable = true;
+                oxfmt.enable = true;
               };
             };
           };
