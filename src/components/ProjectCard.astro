@@ -1,0 +1,120 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectVisual from "./ProjectVisual.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  headingLevel?: "h2" | "h3";
+}
+const { post, headingLevel: Heading = "h3" } = Astro.props;
+const { project, title, description, heroImage } = post.data;
+const name = project?.name ?? title;
+const href = `/blog/${post.id}/`;
+---
+
+<article class="project-card">
+  <ProjectVisual image={heroImage} name={name} theme={project?.theme} />
+  <div class="project-body">
+    <p class="eyebrow">{project?.category ?? "Case Study"}</p>
+    <Heading>
+      <a href={href}>{name}</a>
+    </Heading>
+    {project && <p class="project-role">{project.role}</p>}
+    <p class="project-description">{description}</p>
+    {project && (
+      <ul class="tags" aria-label={`${name} technologies and focus`}>
+        {project.tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    )}
+    <div class="project-links">
+      <a href={href} class="text-link" aria-label={`Read ${name} case study`}>
+        Read Case Study <span aria-hidden="true">↗</span>
+      </a>
+      {project?.website && (
+        <a
+          href={project.website}
+          class="text-link secondary-link"
+          aria-label={`Visit ${name}`}
+        >
+          Live Site <span aria-hidden="true">↗</span>
+        </a>
+      )}
+      {project?.repository && (
+        <a
+          href={project.repository}
+          class="text-link secondary-link"
+          aria-label={`${name} on GitHub`}
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--color-surface);
+  }
+  .project-card:focus-within {
+    border-color: var(--color-pine);
+  }
+  .project-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+  .eyebrow {
+    margin-bottom: 0.65rem;
+    font-size: 0.65rem;
+  }
+  h2,
+  h3 {
+    font-size: 1.65rem;
+  }
+  h2 a,
+  h3 a {
+    color: var(--color-body);
+    text-decoration: none;
+  }
+  h2 a:hover,
+  h3 a:hover {
+    color: var(--color-pine);
+  }
+  .project-role {
+    margin: 0.6rem 0 1rem;
+    color: var(--color-body);
+    font-size: 0.8rem;
+  }
+  .project-description {
+    margin-bottom: 1.5rem;
+    color: var(--color-muted);
+  }
+  .tags {
+    margin-top: auto;
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+  }
+  .secondary-link {
+    color: var(--color-muted);
+  }
+  .secondary-link:hover {
+    color: var(--color-body);
+  }
+</style>

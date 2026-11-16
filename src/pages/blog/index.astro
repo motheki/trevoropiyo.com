@@ -1,74 +1,33 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-import BaseHead from "../../components/BaseHead.astro";
-import Footer from "../../components/Footer.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
-import fallbackHero from "../../images/trevor-opiyo-llc-logo.webp";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { SITE_TITLE } from "../../consts";
 
 const posts = (await getCollection("blog")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) =>
+    (a.data.project?.order ?? Infinity) - (b.data.project?.order ?? Infinity) ||
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={`Case Studies | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main
-			class="mx-auto w-full max-w-[1120px]! px-4 py-12 sm:py-16"
-		>
-			<section class="mb-10 max-w-[760px]">
-				<p class="mb-3 text-sm font-bold uppercase text-pine">Case Studies</p>
-				<h1 class="text-[clamp(2.4rem,6vw,4.8rem)]">Selected Work</h1>
-				<p class="mt-4 text-xl leading-8 text-muted">
-					Project notes from Trevor Opiyo LLC work across sports platforms, mobile apps,
-					analytics, and operational technology.
-				</p>
-			</section>
-			<section>
-				<ul class="grid list-none gap-5 p-0 md:grid-cols-2">
-					{
-						posts.map((post) => {
-							const heroImage = post.data.heroImage ?? fallbackHero;
-							return (
-								<li
-									class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.78)] p-5"
-								>
-									<a href={`/blog/${post.id}/`} class="block no-underline">
-										<div class="mb-5 flex h-52 items-center justify-center rounded-md bg-[rgba(2,8,20,0.76)] p-6">
-											<Image
-												transition:name={"hero-" + post.id}
-												width={heroImage.width}
-												height={heroImage.height}
-												src={heroImage}
-												alt={post.data.title ?? ""}
-												class="max-h-full w-auto rounded-none object-contain"
-											/>
-										</div>
-										<h4
-											transition:name={"title-" + post.id}
-											class="m-0 text-[1.45rem] leading-tight text-body"
-										>
-											{post.data.title}
-										</h4>
-										<p class="mt-2 text-sm font-bold uppercase text-pine">
-											<FormattedDate date={post.data.pubDate} />
-										</p>
-										<p class="m-0 text-muted">{post.data.description}</p>
-									</a>
-								</li>
-							);
-						})
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout
+  title={`Case Studies | ${SITE_TITLE}`}
+  description="Selected software projects by Trevor Opiyo: AthletIQ, USBN, Super HN, and Ambiance. Mobile engineering, web applications, and product delivery."
+>
+  <div class="site-container section">
+    <div class="section-heading">
+      <p class="eyebrow">The Work, in Detail</p>
+      <h1>Selected Projects.</h1>
+      <p>
+        Product context, engineering decisions, and delivery across basketball
+        technology, football data, and the web.
+      </p>
+    </div>
+    <section class="project-grid" aria-label="Project case studies">
+      {posts.map((post) => (
+        <ProjectCard post={post} headingLevel="h2" />
+      ))}
+    </section>
+  </div>
+</BaseLayout>

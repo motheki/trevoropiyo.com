@@ -1,229 +1,486 @@
 ---
-import { Image } from "astro:assets";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import {
-  LINKEDIN_URL,
-  SITE_DESCRIPTION,
-  SITE_EMAIL,
-  SITE_TITLE,
-} from "../consts";
-import athletiqLogo from "../images/athletiq-logo.png";
-import usbnLogo from "../images/usbn-logo.webp";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { LINKEDIN_URL, SITE_EMAIL } from "../consts";
+
+const projects = (
+  await getCollection("blog", ({ data }) => Boolean(data.project))
+).sort((a, b) => (a.data.project?.order ?? 0) - (b.data.project?.order ?? 0));
 
 const capabilities = [
   {
-    title: "Software Platforms",
-    body: "Full-cycle product engineering for websites, internal systems, and digital operations that need to stay maintainable after launch.",
+    number: "01",
+    title: "App Store & Web Delivery",
+    body: "I have delivered applications to the App Store and the web. I bring hands-on experience across mobile and web implementation, testing, release preparation, and production deployment.",
+    detail: "Expo · React Native · Astro · Next.js",
   },
   {
-    title: "Mobile and Web Apps",
-    body: "Cross-platform app work with Expo, React Native, Astro, API integrations, authenticated flows, and production deployment paths.",
+    number: "02",
+    title: "Software Contracts & Scope",
+    body: "Experience negotiating software contracts and aligning expectations around scope, deliverables, and timelines—so the agreement and the engineering plan support the same outcome.",
+    detail: "Contracts · Requirements · Delivery Planning",
   },
   {
-    title: "IT Systems",
-    body: "Infrastructure-minded implementation shaped by hands-on support, endpoint management, scripting, networking, and operations experience.",
+    number: "03",
+    title: "Project & Team Coordination",
+    body: "Coordinating teams with tools like Linear, translating requirements into actionable work, and creating software timelines that make priorities, dependencies, and milestones visible.",
+    detail: "Linear · Milestones · Team Communication",
   },
   {
-    title: "Applied R&D",
-    body: "Practical research and development for data workflows, AI-assisted product features, camera pipelines, and real-time user experiences.",
+    number: "04",
+    title: "Systems & Product Engineering",
+    body: "Connecting user-facing software with APIs, data workflows, and infrastructure. A background in systems programming and IT operations keeps maintainability and production support in view.",
+    detail: "APIs · Data Workflows · Infrastructure",
   },
 ];
 
-const experience = [
-  "Bachelor of Science in Computer Science with a Mathematics minor from Texas Tech University.",
-  "Systems programming background with Python, Java, SQL, Swift, Rust, Go, C, Zsh, and HTML.",
-  "Experience across help desk operations, hardware encryption, endpoint policy deployment, VPN services, automation, and data recovery.",
+const deliverySteps = [
+  {
+    title: "Define the Work",
+    body: "Scope, contracts, and shared expectations.",
+  },
+  {
+    title: "Coordinate the Team",
+    body: "Linear, clear milestones, and software timelines.",
+  },
+  {
+    title: "Deliver the Product",
+    body: "Applications released to the App Store and web.",
+  },
 ];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main class="m-0! w-full! max-w-full! p-0!">
-      <section class="relative isolate overflow-hidden border-b border-[rgba(99,215,255,0.14)] px-4 py-20 sm:py-24">
-        <div class="absolute inset-0 -z-10 bg-[linear-gradient(145deg,rgba(2,8,20,0.92),rgba(4,19,39,0.78))]"></div>
-        <div class="mx-auto grid max-w-[1120px] gap-10">
-          <div class="max-w-[820px]">
-            <p class="mb-4 text-sm font-bold uppercase text-pine">Software development and systems engineering</p>
-            <h1 class="max-w-[780px]">Trevor Opiyo LLC</h1>
-            <p class="mt-6 max-w-[680px] text-xl leading-8 text-muted">
-              Building practical software, IT systems, and digital product infrastructure for teams
-              that need modern platforms with operational discipline behind them.
-            </p>
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${SITE_EMAIL}`}
-                class="rounded-full bg-pine px-5 py-3 text-sm font-bold text-[#031124] no-underline shadow-[0_0_28px_rgba(36,183,255,0.28)] transition hover:bg-foam"
-              >
-                Start a Project
-              </a>
-              <a
-                href="#work"
-                class="rounded-full border border-[rgba(99,215,255,0.34)] px-5 py-3 text-sm font-bold text-body no-underline transition hover:border-pine hover:bg-[rgba(36,183,255,0.1)]"
-              >
-                View Work
-              </a>
-            </div>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-3">
-            <div class="border-l border-pine/60 pl-4">
-              <p class="mb-1 text-2xl font-bold text-body">Web</p>
-              <p class="m-0 text-sm text-muted">Public sites, dashboards, content, APIs</p>
-            </div>
-            <div class="border-l border-pine/60 pl-4">
-              <p class="mb-1 text-2xl font-bold text-body">Mobile</p>
-              <p class="m-0 text-sm text-muted">Expo, React Native, device workflows</p>
-            </div>
-            <div class="border-l border-pine/60 pl-4">
-              <p class="mb-1 text-2xl font-bold text-body">Systems</p>
-              <p class="m-0 text-sm text-muted">Operations, scripting, infrastructure</p>
-            </div>
-          </div>
+<BaseLayout>
+  <section class="hero">
+    <div class="site-container hero-grid">
+      <div>
+        <p class="eyebrow">Trevor Opiyo · Software & Product Delivery</p>
+        <h1>
+          From first scope
+          <br />
+          to{" "}
+          <span>
+            App Store
+            <br class="desktop-break" /> & web.
+          </span>
+        </h1>
+        <p class="hero-intro">
+          I’m a <strong>Senior Software Developer at AthletIQ</strong>. I build
+          and ship applications—and help align the contracts, teams, and
+          timelines that get them into people’s hands.
+        </p>
+        <div class="actions">
+          <a class="button" href="#work">
+            Explore My Work <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button button-secondary" href={`mailto:${SITE_EMAIL}`}>
+            Discuss a Project
+          </a>
         </div>
-      </section>
-
-      <section id="services" class="px-4 py-16 sm:py-20">
-        <div class="mx-auto max-w-[1120px]">
-          <div class="mb-8 max-w-[720px]">
-            <p class="mb-3 text-sm font-bold uppercase text-pine">Capabilities</p>
-            <h2>Engineering That Connects Product And Operations</h2>
-            <p class="mt-4 text-lg text-muted">
-              Trevor Opiyo LLC combines software delivery with the kind of systems thinking that
-              comes from working close to users, devices, infrastructure, and production support.
-            </p>
-          </div>
-          <div class="grid gap-4 md:grid-cols-2">
-            {
-              capabilities.map((item) => (
-                <article class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.76)] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
-                  <h3 class="text-xl">{item.title}</h3>
-                  <p class="m-0 text-muted">{item.body}</p>
-                </article>
-              ))
-            }
-          </div>
+        <p class="hero-note">
+          Mobile engineering. Web platforms. Delivery ownership.
+        </p>
+      </div>
+      <aside class="delivery-panel" aria-labelledby="delivery-title">
+        <div class="panel-heading">
+          <span class="panel-marker" aria-hidden="true"></span>
+          <p id="delivery-title">Engineering Beyond the Code</p>
         </div>
-      </section>
-
-      <section id="work" class="border-y border-[rgba(99,215,255,0.14)] bg-[rgba(3,14,28,0.72)] px-4 py-16 sm:py-20">
-        <div class="mx-auto max-w-[1120px]">
-          <div class="mb-8 max-w-[760px]">
-            <p class="mb-3 text-sm font-bold uppercase text-pine">Selected Work</p>
-            <h2>Sports Platforms Built For Fans, Players, And Teams</h2>
-            <p class="mt-4 text-lg text-muted">
-              Current work centers on basketball technology: league infrastructure, mobile
-              experiences, media surfaces, analytics, and athlete-focused product workflows.
-            </p>
-          </div>
-          <div class="grid gap-5 lg:grid-cols-2">
-            <article class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-base/80 p-6">
-              <div class="mb-6 flex h-28 items-center justify-center rounded-md bg-white p-5">
-                <Image
-                  src={usbnLogo}
-                  alt="USBN logo"
-                  width={180}
-                  height={180}
-                  class="h-full w-auto rounded-none object-contain"
-                />
+        <ol>
+          {deliverySteps.map((step, index) => (
+            <li>
+              <span class="step-number" aria-hidden="true">
+                0{index + 1}
+              </span>
+              <div>
+                <h2>{step.title}</h2>
+                <p>{step.body}</p>
               </div>
-              <p class="mb-2 text-sm font-bold uppercase text-pine">Official Technology Developer</p>
-              <h3>United States Basketball Network</h3>
-              <p class="text-muted">
-                Building the USBN digital ecosystem for the 2026 USBC Champion League, including
-                mobile/web experiences, team and player surfaces, schedules, standings, news,
-                USBNtv, and fan engagement workflows.
-              </p>
-              <div class="mt-5 flex flex-wrap gap-3">
-                <a href="/blog/usbn-digital-platform/" class="font-bold no-underline hover:text-foam">
-                  Read Case Study
-                </a>
-                <a
-                  href="https://usbn.pro"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="font-bold text-muted no-underline hover:text-foam"
-                >
-                  Visit USBN
-                </a>
-              </div>
-            </article>
-            <article class="rounded-lg border border-[rgba(99,215,255,0.16)] bg-base/80 p-6">
-              <div class="mb-6 flex h-28 items-center justify-center rounded-md bg-black p-5">
-                <Image
-                  src={athletiqLogo}
-                  alt="AthletIQ logo"
-                  width={360}
-                  height={90}
-                  class="max-h-full w-auto rounded-none object-contain"
-                />
-              </div>
-              <p class="mb-2 text-sm font-bold uppercase text-pine">Mobile App Engineering</p>
-              <h3>AthletIQ</h3>
-              <p class="text-muted">
-                Contributing to a basketball training app focused on structured practice,
-                player progress, performance feedback, and mobile experiences that support
-                athletes during live training.
-              </p>
-              <div class="mt-5 flex flex-wrap gap-3">
-                <a href="/blog/athletiq-basketball-technology/" class="font-bold no-underline hover:text-foam">
-                  Read Case Study
-                </a>
-              </div>
-            </article>
-          </div>
+            </li>
+          ))}
+        </ol>
+        <div class="panel-footer">
+          <span>Current Role</span>
+          <strong>
+            Senior Software Developer
+            <br />
+            AthletIQ
+          </strong>
         </div>
-      </section>
+      </aside>
+    </div>
+  </section>
 
-      <section class="px-4 py-16 sm:py-20">
-        <div class="mx-auto grid max-w-[1120px] gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p class="mb-3 text-sm font-bold uppercase text-pine">Experience Foundation</p>
-            <h2>Systems Programmer With Production Support Roots</h2>
-          </div>
-          <div class="grid gap-4">
-            {
-              experience.map((item) => (
-                <p class="m-0 rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.72)] p-5 text-muted">
-                  {item}
-                </p>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="px-4 pb-20">
-        <div class="mx-auto max-w-[1120px] rounded-lg border border-[rgba(99,215,255,0.22)] bg-[linear-gradient(135deg,rgba(7,22,42,0.94),rgba(12,39,70,0.76))] p-8 sm:p-10">
-          <p class="mb-3 text-sm font-bold uppercase text-pine">Contact</p>
-          <h2 class="max-w-[820px]">Need a software partner for a web, mobile, or systems project?</h2>
-          <p class="mt-4 max-w-[700px] text-lg text-muted">
-            Reach out with the problem, current constraints, and what success needs to look like.
+  <section id="work" class="section work-section" aria-labelledby="work-title">
+    <div class="site-container">
+      <div class="work-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2 id="work-title">
+            Different Products.
+            <br />
+            The Same Delivery Mindset.
+          </h2>
+          <p>
+            Basketball platforms, football data, and a better reading
+            experience. A selection of the products I’ve worked on.
           </p>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a
-              href={`mailto:${SITE_EMAIL}`}
-              class="rounded-full bg-pine px-5 py-3 text-sm font-bold text-[#031124] no-underline transition hover:bg-foam"
-            >
-              {SITE_EMAIL}
-            </a>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noreferrer"
-              class="rounded-full border border-[rgba(99,215,255,0.34)] px-5 py-3 text-sm font-bold text-body no-underline transition hover:border-pine hover:bg-[rgba(36,183,255,0.1)]"
-            >
-              LinkedIn
-            </a>
-          </div>
         </div>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+        <a class="text-link" href="/blog/">
+          All Case Studies <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="project-grid">
+        {projects.map((post) => (
+          <ProjectCard post={post} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section" aria-labelledby="services-title">
+    <div class="site-container">
+      <div class="section-heading">
+        <p class="eyebrow">Expertise</p>
+        <h2 id="services-title">
+          Building the Software.
+          <br />
+          Moving the Work Forward.
+        </h2>
+        <p>
+          Hands-on development paired with the commercial and organizational
+          work that makes delivery possible.
+        </p>
+      </div>
+      <div class="capabilities-grid">
+        {capabilities.map((item) => (
+          <article class="capability">
+            <span class="capability-number" aria-hidden="true">
+              {item.number}
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <p class="capability-detail">{item.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="experience"
+    class="section experience-section"
+    aria-labelledby="experience-title"
+  >
+    <div class="site-container experience-grid">
+      <div class="section-heading">
+        <p class="eyebrow">Experience</p>
+        <h2 id="experience-title">A Developer Who Sees the Whole Project.</h2>
+        <p>
+          From hands-on systems support to shipping software, my work connects
+          technical decisions with the people and processes behind them.
+        </p>
+      </div>
+      <div class="experience-list">
+        <article>
+          <p class="eyebrow">Current</p>
+          <h3>Senior Software Developer · AthletIQ</h3>
+          <p>
+            Mobile product engineering for basketball training, player
+            development, and performance feedback.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">Delivery & Leadership</p>
+          <h3>From Agreement to Release</h3>
+          <p>
+            Applications delivered to the App Store and the web, experience
+            negotiating software contracts, and project management through team
+            coordination, Linear, and software timelines.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">Foundation</p>
+          <h3>Computer Science & Systems</h3>
+          <p>
+            B.S. in Computer Science with a Mathematics minor from Texas Tech
+            University. A systems programming background grounded in IT
+            operations, automation, endpoint management, and production support.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section" aria-labelledby="contact-title">
+    <div class="site-container contact-panel">
+      <div>
+        <p class="eyebrow">Let’s Build Something Useful</p>
+        <h2 id="contact-title">
+          Have a Product
+          <br />
+          to Move Forward?
+        </h2>
+        <p>
+          Tell me what you’re building, where things stand, and what a
+          successful release looks like.
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a class="button" href={`mailto:${SITE_EMAIL}`}>
+          Start a Conversation <span aria-hidden="true">↗</span>
+        </a>
+        <a class="text-link" href={`mailto:${SITE_EMAIL}`}>
+          {SITE_EMAIL}
+        </a>
+        <a class="text-link linkedin" href={LINKEDIN_URL}>
+          Connect on LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(
+      ellipse at 85% 30%,
+      #132a45 0%,
+      transparent 60%
+    );
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr;
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 6rem);
+  }
+  h1 span {
+    color: var(--color-pine);
+  }
+  .hero-intro {
+    max-width: 560px;
+    margin-block: 1.75rem 2rem;
+    color: var(--color-muted);
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+  .hero-note {
+    margin: 1.5rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+  }
+  .delivery-panel {
+    min-width: 0;
+    border: 1px solid #35506d;
+    border-radius: 12px;
+    background: rgba(16, 27, 46, 0.8);
+  }
+  .panel-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-heading p {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .panel-marker {
+    width: 6px;
+    height: 6px;
+    background: var(--color-pine);
+  }
+  ol {
+    margin: 0;
+    padding: 0 1.5rem;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-block: 1.6rem;
+  }
+  li + li {
+    border-top: 1px solid var(--line);
+  }
+  .step-number {
+    padding-top: 0.1rem;
+    color: var(--color-pine);
+    font-family: var(--font-quantico);
+    font-size: 0.75rem;
+  }
+  li h2 {
+    font-family: inherit;
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+  li p {
+    margin: 0.5rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .panel-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--line);
+    background: #15263b;
+    border-radius: 0 0 12px 12px;
+    font-size: 0.75rem;
+  }
+  .panel-footer span {
+    color: var(--color-muted);
+  }
+  .panel-footer strong {
+    font-size: 0.8rem;
+  }
+  .work-section {
+    background: #0a1322;
+    border-bottom: 1px solid var(--line);
+  }
+  .work-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .work-heading .section-heading {
+    max-width: 680px;
+    margin: 0;
+  }
+  .work-heading p:last-child {
+    margin-bottom: 0;
+  }
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem 4rem;
+  }
+  .capability {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+  }
+  .capability-number {
+    display: block;
+    margin-bottom: 1.25rem;
+    color: var(--color-pine);
+    font-family: var(--font-quantico);
+    font-size: 0.75rem;
+  }
+  .capability h3 {
+    margin-bottom: 1rem;
+  }
+  .capability p {
+    color: var(--color-muted);
+  }
+  .capability .capability-detail {
+    margin: 1.5rem 0 0;
+    color: var(--color-pine);
+    font-size: 0.75rem;
+  }
+  .experience-section {
+    border-block: 1px solid var(--line);
+  }
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 5rem;
+  }
+  .experience-list article {
+    border-left: 1px solid var(--line);
+    padding: 0 0 2.25rem 2rem;
+  }
+  .experience-list article:last-child {
+    padding-bottom: 0;
+  }
+  .experience-list .eyebrow {
+    margin-bottom: 0.6rem;
+    font-size: 0.65rem;
+  }
+  .experience-list h3 {
+    font-family: inherit;
+    font-size: 1.15rem;
+    letter-spacing: 0;
+  }
+  .experience-list article > p:last-child {
+    margin: 0.75rem 0 0;
+    color: var(--color-muted);
+  }
+  .contact-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    border: 1px solid #35506d;
+    border-radius: 12px;
+    background: var(--color-surface);
+  }
+  .contact-panel p:last-child {
+    max-width: 530px;
+    margin: 1.25rem 0 0;
+    color: var(--color-muted);
+  }
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .contact-actions .button {
+    margin-bottom: 0.75rem;
+  }
+  .contact-actions .text-link {
+    font-size: 0.8rem;
+  }
+  .linkedin {
+    color: var(--color-muted);
+  }
+  @media (max-width: 960px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .desktop-break {
+      display: none;
+    }
+    .delivery-panel {
+      max-width: 620px;
+    }
+    .experience-grid {
+      gap: 2rem;
+    }
+    .contact-panel {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 640px) {
+    .capabilities-grid,
+    .experience-grid {
+      grid-template-columns: 1fr;
+    }
+    .experience-grid {
+      gap: 0;
+    }
+    .hero-intro {
+      font-size: 1rem;
+    }
+    .contact-actions {
+      min-width: 0;
+      max-width: 100%;
+      flex-shrink: 1;
+    }
+  }
+</style>

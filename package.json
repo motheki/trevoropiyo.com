@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro build",
+    "test": "astro build && node --test tests/site.test.mjs",
     "preview": "astro preview",
     "deploy": "wrangler pages deploy",
     "fmt": "oxfmt",

@@ -2,17 +2,39 @@
 import type { HTMLAttributes } from "astro/types";
 
 type Props = HTMLAttributes<"a">;
-
 const { href, class: className, ...props } = Astro.props;
+const isCurrent = href === "/blog/" && Astro.url.pathname.startsWith("/blog");
 ---
 
 <a
   href={href}
-  class:list={[
-    "inline-flex items-center rounded-full px-3 py-2 text-sm font-semibold text-muted no-underline transition hover:bg-overlay hover:text-body",
-    className,
-  ]}
+  class:list={["nav-link", className]}
+  aria-current={isCurrent ? "page" : undefined}
   {...props}
 >
   <slot />
 </a>
+
+<style>
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+  .nav-link:hover,
+  .nav-link[aria-current="page"] {
+    background: var(--color-surface);
+    color: var(--color-body);
+  }
+  @media (max-width: 400px) {
+    .nav-link {
+      padding-inline: 0.35rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>

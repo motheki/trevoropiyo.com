@@ -1,10 +1,8 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
-import { LINKEDIN_URL, SITE_TITLE } from "../consts";
 import { Font } from "astro:assets";
+import { LINKEDIN_URL, SITE_TITLE } from "../consts";
 import faviconImage from "../images/trevor-opiyo-llc-logo.webp";
 
 interface Props {
@@ -14,14 +12,13 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description } = Astro.props;
+const { title, description, image = faviconImage.src } = Astro.props;
+const socialImage = new URL(image, Astro.site);
 ---
 
-<Font cssVariable="--font-quantico" />
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<Font cssVariable="--font-quantico" />
 <link rel="icon" type="image/webp" href={faviconImage.src} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
@@ -30,19 +27,19 @@ const { title, description } = Astro.props;
   title={SITE_TITLE}
   href={new URL("rss.xml", Astro.site)}
 />
-<meta name="generator" content={Astro.generator} />
-
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 <link rel="me" href={LINKEDIN_URL} />
-
-<!-- Primary Meta Tags -->
+<meta name="generator" content={Astro.generator} />
 <title>{title}</title>
-<meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="theme-color" content="#020814" />
+<meta name="theme-color" content="#080f1c" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
-<ClientRouter />
+<meta property="og:image" content={socialImage} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
+<ClientRouter fallback="swap" />

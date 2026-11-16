@@ -1,26 +1,59 @@
 ---
 import { LINKEDIN_URL, SITE_EMAIL } from "../consts";
-
-const today = new Date();
+const year = new Date().getFullYear();
 ---
 
-<footer
-  class="border-t border-[rgba(99,215,255,0.14)] bg-[rgba(2,8,20,0.9)] px-4 py-10 text-muted"
->
-  <div class="mx-auto flex max-w-[1120px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-    <p class="m-0">&copy; {today.getFullYear()} Trevor Opiyo LLC. All rights reserved.</p>
-    <div class="flex flex-wrap gap-4 text-sm font-semibold">
-      <a href={`mailto:${SITE_EMAIL}`} class="text-muted no-underline hover:text-pine">
-        {SITE_EMAIL}
-      </a>
-      <a
-        href={LINKEDIN_URL}
-        target="_blank"
-        rel="noreferrer"
-        class="text-muted no-underline hover:text-pine"
-      >
-        LinkedIn
-      </a>
+<footer>
+  <div class="site-container footer-inner">
+    <div>
+      <p class="footer-name">Trevor Opiyo LLC</p>
+      <p class="copyright">&copy; {year} · Software, from scope to release.</p>
     </div>
+    <nav aria-label="Footer navigation">
+      <a href={`mailto:${SITE_EMAIL}`}>Email</a>
+      <a href={LINKEDIN_URL}>
+        LinkedIn <span aria-hidden="true">↗</span>
+      </a>
+      <a href="https://github.com/motheki">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
   </div>
 </footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-name {
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+  }
+  .copyright {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    gap: 0.4rem;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+</style>

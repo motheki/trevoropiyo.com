@@ -15,6 +15,18 @@ const blog = defineCollection({
         .transform((val) => new Date(val))
         .optional(),
       heroImage: image().optional(),
+      project: z
+        .object({
+          name: z.string(),
+          role: z.string(),
+          category: z.string(),
+          order: z.number().int().nonnegative(),
+          tags: z.array(z.string()),
+          theme: z.enum(["light", "dark"]).default("dark"),
+          website: z.url().optional(),
+          repository: z.url().optional(),
+        })
+        .optional(),
     }),
 });
 
