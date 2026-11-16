@@ -1,5 +1,5 @@
 ---
-import { LINKEDIN_URL, SITE_EMAIL } from "../consts";
+import { LINKEDIN_URL } from "../consts";
 const year = new Date().getFullYear();
 ---
 
@@ -10,7 +10,6 @@ const year = new Date().getFullYear();
       <p class="copyright">&copy; {year} · Software, from scope to release.</p>
     </div>
     <nav aria-label="Footer navigation">
-      <a href={`mailto:${SITE_EMAIL}`}>Email</a>
       <a href={LINKEDIN_URL}>
         LinkedIn <span aria-hidden="true">↗</span>
       </a>

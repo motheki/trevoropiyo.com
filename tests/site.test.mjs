@@ -44,7 +44,7 @@ for (const path of pages) {
     for (const [tag] of html.matchAll(/<(?:a|link|script)\b[^>]*>/g)) {
       const attrs = attributes(tag);
       const href = attrs.href ?? attrs.src;
-      if (!href || /^(?:mailto:|https?:\/\/)/.test(href)) continue;
+      if (!href || /^https?:\/\//.test(href)) continue;
       const url = new URL(href, `${origin}${path}`);
       const file = join(output, url.pathname, url.pathname.endsWith("/") ? "index.html" : "");
       assert.ok(existsSync(file), `local link or asset exists: ${href}`);
@@ -108,6 +108,35 @@ await test("production CSS includes mobile layout, visible focus, and reduced mo
   assert.match(css, /focus-visible/);
   assert.match(css, /grid-template-columns:1fr/);
   assert.match(css, /color-scheme:dark/);
+});
+
+await test("generated site contains no email addresses, mailto links, or email-protection code", () => {
+  const files = readdirSync(output, { recursive: true }).filter((file) =>
+    /\.(?:html|xml|js|css|json)$/i.test(file),
+  );
+  assert.ok(files.length > 0, "generated site files exist");
+  for (const file of files) {
+    assert.doesNotMatch(
+      readFileSync(join(output, file), "utf8"),
+      /mailto:|email-protection|data-cfemail|email_off|trevoropiyo@trevoropiyo\.com/i,
+      `no email contact markup in ${String(file)}`,
+    );
+  }
+});
+
+await test("header omits the email CTA and footer retains LinkedIn and GitHub", () => {
+  for (const path of pages) {
+    const html = readPage(path);
+    const header = html.match(/<header\b[^>]*class="site-header"[^>]*>[\s\S]*?<\/header>/)?.[0];
+    assert.ok(header, "shared site header exists");
+    assert.doesNotMatch(header, /Let’s Talk|mailto:|email-protection/);
+    const footer = html.match(
+      /<nav\b[^>]*aria-label="Footer navigation"[^>]*>([\s\S]*?)<\/nav>/,
+    )?.[1];
+    assert.ok(footer, "footer navigation exists");
+    for (const href of ["https://www.linkedin.com/in/trevoropiyo", "https://github.com/motheki"])
+      assert.ok(footer.includes(`href="${href}"`), `footer destination: ${href}`);
+  }
 });
 
 await test("Cloudflare publishes Astro's static output directory", () => {
