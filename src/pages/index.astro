@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import { LINKEDIN_URL, SITE_EMAIL } from "../consts";
+import { LINKEDIN_URL } from "../consts";
 
 const projects = (
   await getCollection("blog", ({ data }) => Boolean(data.project))
@@ -73,9 +73,6 @@ const deliverySteps = [
         <div class="actions">
           <a class="button" href="#work">
             Explore My Work <span aria-hidden="true">↗</span>
-          </a>
-          <a class="button button-secondary" href={`mailto:${SITE_EMAIL}`}>
-            Discuss a Project
           </a>
         </div>
         <p class="hero-note">
@@ -228,12 +225,6 @@ const deliverySteps = [
         </p>
       </div>
       <div class="contact-actions">
-        <a class="button" href={`mailto:${SITE_EMAIL}`}>
-          Start a Conversation <span aria-hidden="true">↗</span>
-        </a>
-        <a class="text-link" href={`mailto:${SITE_EMAIL}`}>
-          {SITE_EMAIL}
-        </a>
         <a class="text-link linkedin" href={LINKEDIN_URL}>
           Connect on LinkedIn <span aria-hidden="true">↗</span>
         </a>
@@ -438,9 +429,6 @@ const deliverySteps = [
     flex-direction: column;
     align-items: flex-start;
     flex-shrink: 0;
-  }
-  .contact-actions .button {
-    margin-bottom: 0.75rem;
   }
   .contact-actions .text-link {
     font-size: 0.8rem;

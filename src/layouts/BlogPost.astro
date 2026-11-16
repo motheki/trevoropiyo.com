@@ -3,7 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import ProjectVisual from "../components/ProjectVisual.astro";
-import { SITE_EMAIL, SITE_TITLE } from "../consts";
+import { SITE_TITLE } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"] & { id?: string };
 const { title, description, pubDate, updatedDate, heroImage, project } =
@@ -50,13 +50,6 @@ const { title, description, pubDate, updatedDate, heroImage, project } =
     <div class="case-study-content">
       <slot />
     </div>
-    <footer class="article-footer">
-      <h2>Have a Related Project?</h2>
-      <p>Let’s talk about the product, the scope, and the path to release.</p>
-      <a class="button" href={`mailto:${SITE_EMAIL}`}>
-        Discuss a Project <span aria-hidden="true">↗</span>
-      </a>
-    </footer>
   </article>
 </BaseLayout>
 
@@ -132,17 +125,5 @@ const { title, description, pubDate, updatedDate, heroImage, project } =
   }
   .case-study-content :global(a) {
     text-decoration: underline;
-  }
-  .article-footer {
-    margin-top: 3.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--line);
-  }
-  .article-footer h2 {
-    font-size: 1.7rem;
-  }
-  .article-footer p {
-    margin-block: 1rem 1.5rem;
-    color: var(--color-muted);
   }
 </style>

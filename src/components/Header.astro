@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { SITE_EMAIL, SITE_TITLE } from "../consts";
+import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
 import companyLogo from "../images/trevor-opiyo-llc-logo.webp";
 ---
@@ -26,9 +26,6 @@ import companyLogo from "../images/trevor-opiyo-llc-logo.webp";
       <HeaderLink href="/#experience">Experience</HeaderLink>
       <HeaderLink href="/blog/">Case Studies</HeaderLink>
     </div>
-    <a href={`mailto:${SITE_EMAIL}`} class="contact-link">
-      Let’s Talk <span aria-hidden="true">↗</span>
-    </a>
   </nav>
 </header>
 
@@ -77,16 +74,6 @@ import companyLogo from "../images/trevor-opiyo-llc-logo.webp";
     display: flex;
     align-items: center;
     gap: 0.25rem;
-  }
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    min-height: 44px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-    text-decoration: none;
   }
   @media (max-width: 860px) {
     .navigation {
