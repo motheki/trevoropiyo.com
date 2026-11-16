@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  image?: ImageMetadata;
+  name: string;
+  theme?: "light" | "dark";
+}
+const { image, name, theme = "dark" } = Astro.props;
+---
+
+<div class:list={["project-visual", theme]}>
+  {image ? (
+    <Image
+      src={image}
+      alt={`${name} logo`}
+      width={Math.min(image.width, 480)}
+      loading="lazy"
+      class="project-logo"
+    />
+  ) : (
+    <span>{name}</span>
+  )}
+</div>
+
+<style>
+  .project-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 210px;
+    padding: 2rem;
+  }
+  .light {
+    background: #fff;
+    color: #111;
+  }
+  .dark {
+    background: #000;
+    color: #fff;
+  }
+  .project-logo {
+    width: auto;
+    height: auto;
+    max-width: min(100%, 300px);
+    max-height: 120px;
+    object-fit: contain;
+  }
+  span {
+    font-family: var(--font-quantico);
+    font-size: 2rem;
+  }
+</style>

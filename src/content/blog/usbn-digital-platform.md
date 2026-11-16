@@ -3,6 +3,14 @@ title: "USBN Digital Platform"
 description: "How Trevor Opiyo LLC supports the United States Basketball Network as Official Technology Developer."
 pubDate: "May 27 2026"
 heroImage: "../../images/usbn-logo.webp"
+project:
+  name: "United States Basketball Network"
+  role: "Official Technology Developer"
+  category: "Sports · Digital Platform"
+  order: 2
+  tags: ["Expo", "React Native", "Web"]
+  theme: "light"
+  website: "https://usbn.pro"
 ---
 
 Trevor Opiyo LLC serves as Official Technology Developer for the [United States Basketball Network](https://usbn.pro), a professional basketball media network and sports platform preparing for the 2026 United States Basketball Championship Champion League.

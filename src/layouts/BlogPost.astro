@@ -1,95 +1,148 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import Header from "../components/Header.astro";
+import ProjectVisual from "../components/ProjectVisual.astro";
+import { SITE_EMAIL, SITE_TITLE } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"] & { id?: string };
-
-const { title, description, pubDate, updatedDate, heroImage, id } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, project } =
+  Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body>
-    <Header />
-    <main class="m-0! w-full! max-w-full! p-0!">
-      <article class="px-4 py-12 sm:py-16">
-        <div class="mx-auto mb-8 max-w-[960px]">
-          {
-            heroImage && (
-              <div class="flex min-h-[280px] items-center justify-center rounded-lg border border-[rgba(99,215,255,0.16)] bg-[rgba(7,22,42,0.76)] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
-                <Image
-                  transition:name={id ? "hero-" + id : undefined}
-                  width={heroImage.width}
-                  height={heroImage.height}
-                  src={heroImage}
-                  alt={title ?? ""}
-                  class="max-h-[320px] w-auto rounded-none object-contain"
-                />
-              </div>
-            )
-          }
-        </div>
-        <div class="mx-auto w-full max-w-[780px] text-body">
-          <div class="mb-8 leading-none">
-            <div class="mb-3 text-sm font-bold uppercase text-pine">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="mt-2 text-muted">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1 transition:name={id ? "title-" + id : undefined} class="text-[clamp(2.4rem,6vw,4.8rem)]">
-              {title}
-            </h1>
-            <p class="mt-5 text-xl leading-8 text-muted">{description}</p>
-          </div>
-          <div class="case-study-content">
-            <slot />
-          </div>
-        </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout
+  title={`${title} | ${SITE_TITLE}`}
+  description={description}
+  image={heroImage?.src}
+>
+  <article class="site-container section case-study">
+    <a href="/blog/" class="text-link back-link">
+      <span aria-hidden="true">←</span> All Case Studies
+    </a>
+    <header class="article-header">
+      <p class="eyebrow">{project?.category ?? "Case Study"}</p>
+      <h1>{title}</h1>
+      <p class="article-description">{description}</p>
+      <div class="article-meta">
+        {project && <p>{project.role}</p>}
+        <p>
+          {updatedDate ? "Updated " : "Published "}
+          <FormattedDate date={updatedDate ?? pubDate} />
+        </p>
+      </div>
+      {project && (
+        <ul class="tags" aria-label="Technologies and focus">
+          {project.tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )}
+    </header>
+    {heroImage && (
+      <div class="article-visual">
+        <ProjectVisual
+          image={heroImage}
+          name={project?.name ?? title}
+          theme={project?.theme}
+        />
+      </div>
+    )}
+    <div class="case-study-content">
+      <slot />
+    </div>
+    <footer class="article-footer">
+      <h2>Have a Related Project?</h2>
+      <p>Let’s talk about the product, the scope, and the path to release.</p>
+      <a class="button" href={`mailto:${SITE_EMAIL}`}>
+        Discuss a Project <span aria-hidden="true">↗</span>
+      </a>
+    </footer>
+  </article>
+</BaseLayout>
 
 <style>
-  :global(.case-study-content h2) {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  .case-study {
+    max-width: 840px;
   }
-
-  :global(.case-study-content h3) {
-    margin-top: 1.75rem;
-    margin-bottom: 0.75rem;
+  .back-link {
+    margin-bottom: 2.5rem;
   }
-
-  :global(.case-study-content p),
-  :global(.case-study-content li) {
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 4rem);
+  }
+  .article-description {
+    margin-top: 1.5rem;
+    color: var(--color-muted);
+    font-size: 1.2rem;
+  }
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-block: 1.5rem;
+    font-size: 0.8rem;
+  }
+  .article-meta p {
+    margin: 0;
     color: var(--color-muted);
   }
-
-  :global(.case-study-content ul) {
+  .article-meta p:first-child {
+    color: var(--color-body);
+  }
+  .article-visual {
+    margin-block: 2.5rem;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .case-study-content {
+    max-width: 720px;
+    margin-inline: auto;
+    font-size: 1.05rem;
+  }
+  .case-study-content :global(h2) {
+    margin: 2.5rem 0 1rem;
+    font-size: 1.7rem;
+  }
+  .case-study-content :global(h3) {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.3rem;
+  }
+  .case-study-content :global(p),
+  .case-study-content :global(li) {
+    color: var(--color-muted);
+  }
+  .case-study-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+  .case-study-content :global(ul),
+  .case-study-content :global(ol) {
     margin: 0 0 1.5rem;
-    padding-left: 1.25rem;
+    padding-left: 1.5rem;
   }
-
-  :global(.case-study-content li) {
-    margin-bottom: 0.55rem;
+  .case-study-content :global(ul) {
+    list-style: disc;
   }
-
-  :global(.case-study-content a) {
-    font-weight: 700;
-    text-decoration: none;
+  .case-study-content :global(ol) {
+    list-style: decimal;
+  }
+  .case-study-content :global(li) {
+    margin-bottom: 0.6rem;
+    padding-left: 0.25rem;
+  }
+  .case-study-content :global(a) {
+    text-decoration: underline;
+  }
+  .article-footer {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .article-footer h2 {
+    font-size: 1.7rem;
+  }
+  .article-footer p {
+    margin-block: 1rem 1.5rem;
+    color: var(--color-muted);
   }
 </style>

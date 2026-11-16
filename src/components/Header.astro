@@ -1,45 +1,113 @@
 ---
 import { Image } from "astro:assets";
-import { LINKEDIN_URL, SITE_TITLE } from "../consts";
+import { SITE_EMAIL, SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
 import companyLogo from "../images/trevor-opiyo-llc-logo.webp";
 ---
 
-<header
-  transition:persist
-  class="sticky top-0 z-50 m-0 border-b border-[rgba(99,215,255,0.16)] bg-[rgba(2,8,20,0.86)] px-4 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl"
->
-  <nav class="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-3">
-    <h2 class="m-0 text-[1em]">
-      <a
-        href="/"
-        class="flex items-center gap-3 text-[#f5f9ff] no-underline hover:text-pine"
-      >
-        <Image
-          src={companyLogo}
-          alt=""
-          width={144}
-          height={144}
-          class="h-[72px] w-[72px] rounded-lg border border-[rgba(99,215,255,0.42)] object-contain shadow-[0_0_18px_rgba(36,183,255,0.18)]"
-        />
-        <span class="text-lg font-black text-[#f5f9ff] drop-shadow-[0_1px_10px_rgba(99,215,255,0.22)]">
-          {SITE_TITLE}
-        </span>
-      </a>
-    </h2>
-    <div class="flex flex-wrap items-center justify-center gap-1">
-      <HeaderLink href="/#services">Services</HeaderLink>
+<header class="site-header">
+  <nav class="site-container navigation" aria-label="Main navigation">
+    <a href="/" class="brand" aria-label={`${SITE_TITLE} — home`}>
+      <Image
+        src={companyLogo}
+        alt=""
+        width={96}
+        height={96}
+        loading="eager"
+        class="brand-logo"
+      />
+      <span>
+        Trevor Opiyo<span class="brand-caption">Software Developer</span>
+      </span>
+    </a>
+    <div class="nav-links">
       <HeaderLink href="/#work">Work</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/#contact">Contact</HeaderLink>
+      <HeaderLink href="/#services">Expertise</HeaderLink>
+      <HeaderLink href="/#experience">Experience</HeaderLink>
+      <HeaderLink href="/blog/">Case Studies</HeaderLink>
     </div>
-    <a
-      href={LINKEDIN_URL}
-      target="_blank"
-      rel="noreferrer"
-      class="rounded-full border border-[rgba(99,215,255,0.28)] px-4 py-2 text-sm font-bold text-body no-underline transition hover:border-pine hover:bg-[rgba(36,183,255,0.12)]"
-    >
-      LinkedIn
+    <a href={`mailto:${SITE_EMAIL}`} class="contact-link">
+      Let’s Talk <span aria-hidden="true">↗</span>
     </a>
   </nav>
 </header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--line);
+    background: rgba(8, 15, 28, 0.96);
+  }
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 88px;
+  }
+  .brand {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-body);
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  .brand:hover {
+    color: var(--color-pine);
+  }
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .brand-caption {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--color-muted);
+    font-size: 0.7rem;
+    font-weight: 400;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  @media (max-width: 860px) {
+    .navigation {
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      padding-block: 0.75rem 0.35rem;
+    }
+    .nav-links {
+      order: 3;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+  @media (max-width: 380px) {
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+    }
+    .brand {
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>

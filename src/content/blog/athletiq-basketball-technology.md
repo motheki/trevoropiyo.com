@@ -1,13 +1,21 @@
 ---
 title: "AthletIQ Basketball Technology"
-description: "Mobile product engineering for basketball training, player progress, and performance feedback."
+description: "Senior software development for a basketball training app, connecting structured practice, player progress, and performance feedback."
 pubDate: "May 27 2026"
+updatedDate: "2026-11-16"
 heroImage: "../../images/athletiq-logo.png"
+project:
+  name: "AthletIQ"
+  role: "Senior Software Developer"
+  category: "Basketball · Mobile Product"
+  order: 1
+  tags: ["Mobile Engineering", "Player Development", "Product Delivery"]
+  theme: "dark"
 ---
 
 AthletIQ is a mobile app for basketball training and player development. The product brings structured practice, progress tracking, and performance feedback into an experience athletes can use during real training sessions.
 
-Trevor Opiyo LLC's work with AthletIQ sits at the intersection of mobile product engineering and applied sports technology.
+I am a **Senior Software Developer at AthletIQ**, working at the intersection of mobile product engineering and applied sports technology. My broader delivery experience includes applications released to the **App Store and the web**—bringing a production mindset to product decisions, implementation, testing, and release readiness.
 
 ## Product Scope
 

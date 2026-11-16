@@ -5,28 +5,29 @@
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro build",
+    "test": "astro build && node --test tests/site.test.mjs",
     "preview": "astro preview",
     "deploy": "wrangler pages deploy",
     "fmt": "oxfmt",
     "lint": "oxlint --type-check --type-aware --fix-dangerously"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.12",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.3",
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "7.2.6",
-    "markdown-it": "^14.3.0",
-    "sanitize-html": "^2.17.7",
-    "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3",
-    "wrangler": "^4.125.0"
+    "@astrojs/sitemap": "^3.7.5",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "7.4.12",
+    "markdown-it": "^15.0.3",
+    "sanitize-html": "^2.18.2",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.163.0"
   },
   "devDependencies": {
-    "@astrojs/compiler-rs": "0.4.0",
-    "@astrojs/mdx": "7.0.8",
-    "oxfmt": "^0.44.0",
-    "oxlint": "^1.80.0",
-    "oxlint-tsgolint": "^0.20.0"
+    "@astrojs/compiler-rs": "0.5.3",
+    "@astrojs/mdx": "8.1.6",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "oxlint-tsgolint": "^7.0.2007"
   }
 }
